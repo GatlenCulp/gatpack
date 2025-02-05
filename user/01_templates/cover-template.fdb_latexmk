@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1738796543.53505 "/Users/gat/work/gatpack/user/01_templates/cover-template.tex" "cover-template.pdf" "cover-template" 1738796544.06617 0
+["pdflatex"] 1738799670.6103 "/Users/gat/work/gatpack/user/01_templates/cover-template.tex" "cover-template.pdf" "cover-template" 1738799671.17311 0
   "../00_assets/maia-horizontal_cropped.jpeg" 1738783109.12676 86181 b1967451cfb3d5cdbb4fbb7185270be8 ""
-  "/Users/gat/work/gatpack/user/01_templates/cover-template.tex" 1738796542.77068 3408 71dbeb5ffd7bb03dad559905fbfa6001 ""
+  "/Users/gat/work/gatpack/user/01_templates/cover-template.tex" 1738799670.41276 3705 2cfed75e5e5013066873b9655687d2cd ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm" 1136768653 4484 b828043cbd581d289d955903c1339981 ""
@@ -80,9 +80,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1727144615.65937 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727144510 8221424 01fe6597be54a99e4c081fc5d27a3de1 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "cover-template.aux" 1738796544.02836 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
-  "cover-template.out" 1738796543.87633 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cover-template.tex" 1738796542.77068 3408 71dbeb5ffd7bb03dad559905fbfa6001 ""
+  "cover-template.aux" 1738799671.13159 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
+  "cover-template.out" 1738799670.96999 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "cover-template.tex" 1738799670.41276 3705 2cfed75e5e5013066873b9655687d2cd ""
   (generated)
   "cover-template.aux"
   "cover-template.log"

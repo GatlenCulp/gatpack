@@ -34,31 +34,8 @@ ai-apps = [  # AI application development packages
     "langchain>=0.3.12",     # LLM application framework
     # "megaparse>=0.0.45",     # Advanced text parsing (TODO: Requires Python 3.10+)
 ]
-ai-train = [  # Machine learning and model training packages
-    "datasets>=3.1.0",         # Dataset handling
-    "einops>=0.8.0",           # Tensor operations
-    "jaxtyping>=0.2.36",       # Type hints for JAX
-    "onnx>=1.17.0",            # ML model interoperability
-    "pytorch-lightning>=2.4.0", # PyTorch training framework
-    "ray[tune]>=2.40.0",       # Distributed computing
-    "safetensors>=0.4.5",      # Safe tensor serialization
-    "scikit-learn>=1.6.0",     # Traditional ML algorithms
-    "shap>=0.46.0",            # Model explainability
-    "torch>=2.5.1",            # Deep learning framework
-    "transformers>=4.47.0",    # Transformer models
-    "umap-learn>=0.5.7",       # Dimensionality reduction
-    "wandb>=0.19.1",           # Experiment tracking
-    "nnsight>=0.3.7",          # ML Interp and Manipulation
-]
-async = [  # Asynchronous programming
-    "uvloop>=0.21.0",          # Fast event loop implementation
-]
 cli = [  # Command-line interface tools
     "typer>=0.15.1",           # CLI builder
-]
-cloud = [  # Cloud infrastructure tools
-    # "ansible>=11.1.0",       # Infrastructure automation (# TODO: Doesn't work for Python 3.10)
-    "boto3>=1.35.81",          # AWS SDK
 ]
 config = [  # Configuration management
     "cookiecutter>=2.6.0",     # Project templating
@@ -112,12 +89,6 @@ dev-doc = [  # Documentation tools
     "mkdocs-material>=9.5.48", # Documentation theme
     "mkdocs>=1.6.1",           # Documentation generator
 ]
-dev-nb = [  # Notebook development tools
-    "jupyter-book>=1.0.3",     # Notebook publishing
-    "nbformat>=5.10.4",        # Notebook file format
-    "nbqa>=1.9.1",             # Notebook linting
-    "testbook>=0.4.2",         # Notebook testing
-]
 gui = [  # Graphical interface tools
     "streamlit>=1.41.1",       # Web app framework
 ]
@@ -125,13 +96,6 @@ misc = [  # Miscellaneous utilities
     "boltons>=24.1.0",         # Python utilities
     "cachetools>=5.5.0",       # Caching utilities
     "wrapt>=1.17.0",           # Decorator utilities
-]
-nb = [  # Jupyter notebook tools
-    "chime>=0.7.0",            # Sound notifications
-    "ipykernel>=6.29.5",       # Jupyter kernel
-    "ipython>=7.34.0",         # Interactive Python shell
-    "ipywidgets>=8.1.5",       # Jupyter widgets
-    "jupyterlab>=4.3.3",       # Notebook IDE
 ]
 web = [  # Web development and scraping
     "beautifulsoup4>=4.12.3",  # HTML parsing
