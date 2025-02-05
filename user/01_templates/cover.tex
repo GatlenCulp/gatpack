@@ -5,6 +5,8 @@
 \usepackage{graphicx}  % Required for including images
 \usepackage[scaled]{helvet} % Helvetica font package
 \renewcommand{\familydefault}{\sfdefault} % Make Helvetica the default font
+\usepackage{array}  % Add this line near the other usepackage statements
+\usepackage{xcolor}  % Add this line near the other usepackage statements
 
 \usepackage{sectsty}        % Allows customizing section fonts
 \allsectionsfont{\sffamily} % Make section titles sans-serif
@@ -33,20 +35,11 @@
 \vspace{2em}
 
 \begin{center}
-    \begin{minipage}{0.9\textwidth}
-        \begin{itemize}
-            \item \textbf{Locating and Editing Factual Associations in GPT: Companion blog post}\\
-            \emph{(Meng et al.,)}
-
-            \vspace{1em}
-            \item \textbf{Discovering latent knowledge in language models without supervision (Pages 1--5)}\\
-            \emph{(Burns et al., 2022)}
-
-            \vspace{1em}
-            \item \textbf{Inference-Time Intervention: Eliciting Truthful Answers from a Language Model (\S1--3)}\\
-            \emph{(Li et al., 2022)}
-        \end{itemize}
-    \end{minipage}
+    \begin{tabular}{>{\centering\arraybackslash\small\color[HTML]{333333}}p{0.3\textwidth}>{\centering\arraybackslash\small\color[HTML]{333333}}p{0.3\textwidth}>{\centering\arraybackslash\small\color[HTML]{333333}}p{0.3\textwidth}}
+        Locating and Editing Factual Associations in GPT: Companion blog post \newline \emph{(Meng et al.)}&
+        Discovering latent knowledge in language models without supervision (Pages 1--5) \newline \emph{(Burns et al., 2022)}&
+        Inference-Time Intervention: Eliciting Truthful Answers from a Language Model (\S1--3) \emph{(Li et al., 2022)}
+    \end{tabular}
 \end{center}
 
 \end{document}
