@@ -1,12 +1,11 @@
 \documentclass[12pt]{article}
 
 \usepackage[margin=1in]{geometry}
-\usepackage{fontspec}  % Required for custom fonts in XeLaTeX
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}  % Required for including images
-\setmainfont{Futura}[
-    Path = ../00_assets/,
-    Extension = .ttc,
-]
+\usepackage[scaled]{helvet} % Helvetica font package
+\renewcommand{\familydefault}{\sfdefault} % Make Helvetica the default font
+
 \usepackage{sectsty}        % Allows customizing section fonts
 \allsectionsfont{\sffamily} % Make section titles sans-serif
 
