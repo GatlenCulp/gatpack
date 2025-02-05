@@ -2,8 +2,8 @@ PWD /Users/gat/work/gatpack/user/01_templates
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/gat/work/gatpack/user/01_templates/cover.tex
-OUTPUT cover.log
+INPUT /Users/gat/work/gatpack/user/01_templates/futher_readings.tex
+OUTPUT futher_readings.log
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/size12.clo
@@ -54,10 +54,10 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/t1phv.fd
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvr8t.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./cover.aux
-INPUT ./cover.aux
-INPUT cover.aux
-OUTPUT cover.aux
+INPUT ./futher_readings.aux
+INPUT ./futher_readings.aux
+INPUT futher_readings.aux
+OUTPUT futher_readings.aux
 INPUT /usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -70,7 +70,7 @@ INPUT ../00_assets/maia-horizontal_cropped.jpeg
 INPUT ../00_assets/maia-horizontal_cropped.jpeg
 INPUT ../00_assets/maia-horizontal_cropped.jpeg
 INPUT ../00_assets/maia-horizontal_cropped.jpeg
-OUTPUT cover.pdf
+OUTPUT futher_readings.pdf
 INPUT ../00_assets/maia-horizontal_cropped.jpeg
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvr8t.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvr8t.tfm
@@ -97,7 +97,7 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/helvetic/phvr8t.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvr8r.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/helvetic/phvro8t.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvro8r.tfm
-INPUT cover.aux
+INPUT futher_readings.aux
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb
