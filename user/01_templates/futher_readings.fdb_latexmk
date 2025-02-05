@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1738796237.87114 "/Users/gat/work/gatpack/user/01_templates/futher_readings.tex" "futher_readings.pdf" "futher_readings" 1738796238.40532 0
-  "/Users/gat/work/gatpack/user/01_templates/futher_readings.tex" 1738796237.68229 3658 1acc5730a1d6bb8dd10de2b60a28d911 ""
+["pdflatex"] 1738796406.10377 "/Users/gat/work/gatpack/user/01_templates/futher_readings.tex" "futher_readings.pdf" "futher_readings" 1738796406.85396 0
+  "/Users/gat/work/gatpack/user/01_templates/futher_readings.tex" 1738796405.91717 3429 7ac531ea029f97e3cc837d9c855cd6ce ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -81,9 +81,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1727144615.65937 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727144510 8221424 01fe6597be54a99e4c081fc5d27a3de1 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "futher_readings.aux" 1738796238.35279 162 fa61bf9ecf9314f94d51aa32222a725c "pdflatex"
-  "futher_readings.out" 1738796238.19814 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "futher_readings.tex" 1738796237.68229 3658 1acc5730a1d6bb8dd10de2b60a28d911 ""
+  "futher_readings.aux" 1738796406.79762 162 87159b23cce7c2b923b11c85495bbd6d "pdflatex"
+  "futher_readings.out" 1738796406.6374 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "futher_readings.tex" 1738796405.91717 3429 7ac531ea029f97e3cc837d9c855cd6ce ""
   (generated)
   "futher_readings.aux"
   "futher_readings.log"

@@ -164,8 +164,6 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/helvetic/phvr8t.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvr8r.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/helvetic/phvr8t.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvr8r.tfm
 INPUT futher_readings.aux
 INPUT ./futher_readings.out
 INPUT ./futher_readings.out
