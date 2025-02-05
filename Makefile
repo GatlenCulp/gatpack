@@ -9,7 +9,11 @@ DOCS_PORT ?= 8000
 
 .PHONY: example
 example: ## Run example code
-	weasyprint 
+	weasyprint ./example/report.html ./example/test.pdf
+
+.PHONY: compile
+compile: ## Run compilation code
+	weasyprint ./user/02_web/cover.html ./user/03_pdf/cover-test.pdf
 
 
 #################################################################################
