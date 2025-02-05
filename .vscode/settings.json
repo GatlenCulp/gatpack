@@ -93,6 +93,12 @@
 	// Editor Theme Customization
 	"workbench.colorCustomizations": {
 		"editor.lineHighlightBackground": "#1073cf2d",
-		"editor.lineHighlightBorder": "#9fced11f"
+		"editor.lineHighlightBorder": "#9fced11f",
+		"statusBar.background": "#28632b",
+		"statusBar.foreground": "#ffffff",
+		"statusBarItem.hoverBackground": "#327e36",
+		"activityBar.background": "#5D0C15",
+		"titleBar.activeBackground": "#83111D",
+		"titleBar.activeForeground": "#FFFBFC"
 	}
 }
