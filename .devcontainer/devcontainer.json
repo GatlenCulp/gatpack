@@ -3,13 +3,20 @@
 {
 	"name": "gatpack",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
 	"features": {
 		"ghcr.io/dhoeric/features/act:1": {},
 		"ghcr.io/jsburckhardt/devcontainer-features/uv:1": {}
 	},
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+	"remoteEnv": {
+		// "UV_FROZEN": "true",
+		"UV_PYTHON_PREFERENCE": "only-managed",
+		"UV_PROJECT_ENVIRONMENT": "${containerWorkspaceFolder}/.devcontainer/.venv",
+		"VIRTUAL_ENV": "${containerWorkspaceFolder}/.devcontainer/.venv",
+		"PATH": "${containerWorkspaceFolder}/.devcontainer/.venv/bin:${env:PATH}"
+	},
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
@@ -22,6 +29,7 @@
 				"njpwerner.autodocstring", // Automatically generate Python docstrings
 				"rodolphebarbanneau.python-docstring-highlighter", // Highlight Python docstring syntax
 				"kevinrose.vsc-python-indent", // Correct indents for python
+				"tamasfe.even-better-toml", // TOML support
 				// Data Science & Notebooks
 				"ms-toolsai.jupyter", // Jupyter Notebooks in VSCode
 				"ms-toolsai.jupyter-renderers", // Jupyter Cell Output Renderer
@@ -49,17 +57,6 @@
 				"aaron-bond.better-comments", // Comments w/ Styling
 				// Project Management & Navigation
 				"alefragnani.project-manager", // Manage VSCode Workspaces
-				/* Add the below to your projects.json file to add this project
-		'~/Library/Application Support/Cursor/User/globalStorage/alefragnani.project-manager/projects.json'
-		{
-			"name": "🍪 gatpack",
-			"rootPath": "/Path/to/your/project/gatpack/.vscode/gatpack.code-workspace",
-			"tags": [
-				"🪿 gotem"
-			],
-			"enabled": true
-		},
-		*/
 				"peterschmalfeldt.explorer-exclude", // Keep Explorer Clean by Hiding Files
 				"christian-kohler.path-intellisense", // Path Intellisense
 				"kisstkondoros.vscode-gutter-preview", // Image Preview
