@@ -14,11 +14,8 @@ license = { file = "LICENSE" }
 # 
 readme = {file = "README.md", content-type = "text/markdown"}
 classifiers = [
-    "Private :: Do Not Upload",
     "Programming Language :: Python :: 3",
-    # 
     "License :: OSI Approved :: MIT License",
-    # 
 ]
 requires-python = "~=3.12"
 
@@ -29,6 +26,7 @@ dependencies = [
     "rich>=13.9.4", # Rich terminal output
     "numpy>=1.26.4", # Numerical computing # Load .env into environment vars
     "python-dotenv>=1.0.0",
+    "weasyprint>=64.0",
 ]
 
 [dependency-groups]

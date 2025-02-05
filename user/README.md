@@ -4,6 +4,15 @@ This sample project is created by [GatPack](<>), a Python templating tool.
 
 ## Setup
 
+```bash
+brew install pango
+brew install libffi
+brew install cairo
+brew install gobject-introspection
+
+brew install weasyprint
+```
+
 To install GatPack, you will need python installed, then you can run
 
 ```bash
