@@ -1,0 +1,143 @@
+version: "3"
+
+vars:
+  PROJECT_NAME: "gatpack"
+  PYTHON_VERSION: "3.12"
+  PYTHON_INTERPRETER: python
+  MODULE_NAME: "gatpack"
+  DOCS_PORT: "8000"
+
+tasks:
+  ###############################################################################
+  # Dependencies & Environment
+  ###############################################################################
+
+  #
+  requirements:
+    desc: Install Python dependencies
+    cmds:
+      #
+      - uv sync
+      #
+  #
+
+  #
+  create-environment:
+    desc: Set up python interpreter environment
+    cmds:
+      #
+      - uv venv
+      - 'echo ">>> New virtualenv with uv created. Activate with: source ''.venv/bin/activate''"'
+      #
+  #
+
+  ###############################################################################
+  # Utilities
+  ###############################################################################
+
+  prep:
+    desc: Clean up .DS_Store files
+    cmds:
+      - rm -f **/*/.DS_store
+
+  welcome:
+    desc: Print a Welcome screen
+    cmds:
+      - curl -s https://raw.githubusercontent.com/GatlenCulp/gatlens-opinionated-template/vscode-customization/welcome.txt
+
+  ###############################################################################
+  # Code Quality
+  ###############################################################################
+
+  clean:
+    desc: Delete all compiled Python files
+    cmds:
+      - find . -type f -name "*.py[co]" -delete
+      - find . -type d -name "__pycache__" -delete
+
+  lint:
+    desc: Lint using ruff
+    cmds:
+      #
+      - ruff check --config pyproject.toml {{.MODULE_NAME}}
+      #
+
+  format:
+    desc: Format source code with ruff
+    cmds:
+      #
+      - ruff --config pyproject.toml {{.MODULE_NAME}}
+      #
+
+  ###############################################################################
+  # Documentation
+  ###############################################################################
+
+  docs-serve:
+    desc: Serve documentation locally
+    dir: docs
+    cmds:
+      #
+      - mkdocs serve -a localhost:{{.DOCS_PORT}} || echo "Instance found running on {{.DOCS_PORT}}, try killing process and rerun."
+      #
+
+  docs-publish:
+    desc: Build and deploy documentation to GitHub Pages
+    dir: docs
+    cmds:
+      - mkdocs build
+      - mkdocs gh-deploy --clean
+
+  ###############################################################################
+  # Testing
+  ###############################################################################
+
+  test:
+    desc: Run all tests
+    deps: [prep]
+    cmds:
+      - pytest -vvv --durations=0
+
+  test-fastest:
+    desc: Run tests with fail-fast option
+    deps: [prep]
+    cmds:
+      - pytest -vvv -FFF
+
+  test-continuous:
+    desc: Run tests in watch mode using pytest-watcher
+    deps: [prep]
+    cmds:
+      - ptw . --now --runner pytest --config-file pyproject.toml -vvv -FFF
+
+  test-debug-last:
+    desc: Debug last failed test with pdb
+    cmds:
+      - pytest --lf --pdb
+
+  ###############################################################################
+  # Data Sync
+  ###############################################################################
+
+  #
+
+  ###############################################################################
+  # Project Tasks
+  ###############################################################################
+
+  #
+  data:
+    desc: Make dataset
+    deps: [requirements]
+    cmds:
+      #
+      - "{{.PYTHON_INTERPRETER}} {{.MODULE_NAME}}/dataset.py"
+      #
+  #
+
+  default:
+    desc: List all available tasks
+    cmds:
+      - task --list
+
+  # 
