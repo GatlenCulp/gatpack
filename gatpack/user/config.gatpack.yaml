@@ -1,0 +1,18 @@
+# Some issues: Not super flexible to specify like this whatsoever. This needs to be far more hackable.
+# But it's okay to specify a config per template
+workflows:
+  example-packet:
+    assets:
+      - name: logo
+        path: ./00_assets/maia-horizontal_cropped.jpeg
+    context:
+      - name: logo
+      # ...
+    templates:
+      - name: cover
+        path: ./01_templates/cover.jinja.html
+      - name: style
+        path: ./01_templates/style.jinja.css
+    output:
+      - path: ./03_pdf/cover.pdf
+        type: pdf
