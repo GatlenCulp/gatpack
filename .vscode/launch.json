@@ -9,6 +9,15 @@
 			"program": "${workspaceFolder}/gatpack/main.py",
 			"console": "integratedTerminal"
 		},
+		// Debug the cli application entry point
+		{
+			"name": "Debug CLI",
+			"type": "debugpy",
+			"request": "launch",
+			"program": "${workspaceFolder}/gatpack/cli/main.py",
+			"console": "integratedTerminal",
+			"args": ["init", "manual_test"]
+		},
 		// Debug the currently active file
 		{
 			"name": "Debug Current File",

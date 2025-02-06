@@ -19,6 +19,9 @@ compile: ## Run compilation code
 gatpack: ## Run gatpack cli
 	echo "HELLO"
 
+.PHONY: test-init
+test-init: ## Run gatpack init
+	cookiecutter "https://github.com/GatlenCulp/cookiecutter-gatpack" --checkout "dev"
 
 #################################################################################
 # UTILITIES                                                                     #

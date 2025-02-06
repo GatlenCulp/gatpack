@@ -29,7 +29,7 @@ dependencies = [
 ]
 
 [project.scripts]
-gatpack = "gatpack.main:app"
+gatpack = "gatpack.cli:app"
 
 [dependency-groups]
 ai-apps = [  # AI application development packages
