@@ -1,7 +1,7 @@
 """CLI command for project initialization."""
 
 from pathlib import Path
-from typing import Annotated, Any
+from typing import Annotated
 
 from loguru import logger
 from rich.console import Console

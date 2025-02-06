@@ -820,6 +820,7 @@ version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "cookiecutter" },
+    { name = "jinja2" },
     { name = "loguru" },
     { name = "numpy" },
     { name = "plotly" },
@@ -905,6 +906,7 @@ web = [
 [package.metadata]
 requires-dist = [
     { name = "cookiecutter", specifier = ">=2.6.0" },
+    { name = "jinja2", specifier = ">=3.1.5" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "numpy", specifier = ">=1.26.4" },
     { name = "plotly", specifier = ">=5.24.1" },

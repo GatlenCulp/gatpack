@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1738808608.55824 "/Users/gat/work/gatpack/user/01_templates/cover-template.tex" "cover-template.pdf" "cover-template" 1738808609.15352 0
+["pdflatex"] 1738808632.15142 "/Users/gat/work/gatpack/user/01_templates/cover-template copy.tex" "cover-template copy.pdf" "cover-template copy" 1738808632.69301 0
   "../00_assets/maia-horizontal_cropped.jpeg" 1738783109.12676 86181 b1967451cfb3d5cdbb4fbb7185270be8 ""
-  "/Users/gat/work/gatpack/user/01_templates/cover-template.tex" 1738808608.19173 3705 fb4cd1b45137f0c181ea195de46a35b5 ""
+  "/Users/gat/work/gatpack/user/01_templates/cover-template copy.tex" 1738808631.1691 3705 fb4cd1b45137f0c181ea195de46a35b5 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm" 1136768653 4484 b828043cbd581d289d955903c1339981 ""
@@ -80,12 +80,12 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1727144615.65937 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727144510 8221424 01fe6597be54a99e4c081fc5d27a3de1 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "cover-template.aux" 1738808609.1114 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
-  "cover-template.out" 1738808608.95347 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cover-template.tex" 1738808608.19173 3705 fb4cd1b45137f0c181ea195de46a35b5 ""
+  "cover-template copy.aux" 1738808632.65378 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
+  "cover-template copy.out" 1738808632.49906 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "cover-template copy.tex" 1738808631.1691 3705 fb4cd1b45137f0c181ea195de46a35b5 ""
   (generated)
-  "cover-template.aux"
-  "cover-template.log"
-  "cover-template.out"
-  "cover-template.pdf"
+  "cover-template copy.aux"
+  "cover-template copy.log"
+  "cover-template copy.out"
+  "cover-template copy.pdf"
   (rewritten before read)

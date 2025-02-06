@@ -6,6 +6,7 @@ from rich import print
 import typer
 
 from gatpack.cli.init import init
+from gatpack.cli.render import render
 
 # Create Typer app instance
 app = typer.Typer(
@@ -14,8 +15,8 @@ app = typer.Typer(
     add_completion=False,
 )
 
-# Add init command
 app.command()(init)
+app.command()(render)
 
 
 @app.command()

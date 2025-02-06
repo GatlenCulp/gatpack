@@ -23,6 +23,12 @@ gatpack: ## Run gatpack cli
 test-init: ## Run gatpack init
 	cookiecutter "https://github.com/GatlenCulp/cookiecutter-gatpack" --checkout "dev"
 
+.PHONY: test-render
+test-render: ## Run gatpack render
+	# gatpack render ./tests/test.jinja.tex ./tests/test.tex
+	rm ./user/01_templates/cover-test.tex
+	gatpack render ./user/01_templates/cover-test.jinja.tex ./user/01_templates/cover-test.tex
+
 #################################################################################
 # UTILITIES                                                                     #
 #################################################################################

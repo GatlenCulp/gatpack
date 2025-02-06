@@ -11,12 +11,21 @@
 		},
 		// Debug the cli application entry point
 		{
-			"name": "Debug CLI",
+			"name": "Debug CLI init",
 			"type": "debugpy",
 			"request": "launch",
 			"program": "${workspaceFolder}/gatpack/cli/main.py",
 			"console": "integratedTerminal",
 			"args": ["init", "manual_test"]
+		},
+		// Debug the cli application entry point
+		{
+			"name": "Debug CLI render",
+			"type": "debugpy",
+			"request": "launch",
+			"program": "${workspaceFolder}/gatpack/cli/main.py",
+			"console": "integratedTerminal",
+			"args": ["render", "./tests/test.jinja.tex", "./tests/test.tex"]
 		},
 		// Debug the currently active file
 		{
