@@ -40,6 +40,10 @@ test-build: ## Run gatpack build
 	gatpack build ./tests/test.tex ./tests/test-build.pdf
 	# cd tests && pdflatex test-build.tex -interaction=nonstopmode -halt-on-error
 
+.PHONY: test-footer
+test-footer: ## Run gatpack footer
+	gatpack footer ./tests/test-no-footer.pdf "Page n of N" ./tests/test-footer.pdf
+
 #################################################################################
 # UTILITIES                                                                     #
 #################################################################################
