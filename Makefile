@@ -32,7 +32,8 @@ test-render: ## Run gatpack render
 .PHONY: test-combine
 test-combine: ## Run gatpack render
 	# rm ./user/01_templates/cover-test.tex
-	gatpack combine ./tests/test.pdf ./tests/test.pdf ./tests/test-combine.pdf
+	# gatpack combine ./tests/test.pdf ./tests/test.pdf ./tests/test-combine.pdf
+	gatpack combine ./tests/glob/test-*.pdf ./tests/test-combine.pdf
 
 .PHONY: test-build
 test-build: ## Run gatpack build

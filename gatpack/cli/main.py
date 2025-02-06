@@ -15,14 +15,17 @@ from gatpack.cli.footer import footer
 app = typer.Typer(
     name="gatpack",
     help="A PDF and website templating tool",
-    add_completion=False,
+    add_completion=True,
+    no_args_is_help=True,
 )
 
 app.command()(init)
 app.command()(render)
 app.command()(combine)
 app.command()(build)
-app.command()(footer)
+app.command(
+    hidden=True,  # NotImplemented.
+)(footer)
 
 
 if __name__ == "__main__":
