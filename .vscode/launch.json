@@ -27,6 +27,15 @@
 			"console": "integratedTerminal",
 			"args": ["render", "./tests/test.jinja.tex", "./tests/test.tex"]
 		},
+		// Debug the cli application entry point
+		{
+			"name": "Debug CLI combine",
+			"type": "debugpy",
+			"request": "launch",
+			"program": "${workspaceFolder}/gatpack/cli/main.py",
+			"console": "integratedTerminal",
+			"args": ["combine", "./tests/test.pdf", "./tests/test.pdf", "./tests/test-combine.pdf"]
+		},
 		// Debug the currently active file
 		{
 			"name": "Debug Current File",

@@ -29,6 +29,11 @@ test-render: ## Run gatpack render
 	rm ./user/01_templates/cover-test.tex
 	gatpack render ./user/01_templates/cover-test.jinja.tex ./user/01_templates/cover-test.tex
 
+.PHONY: test-combine
+test-combine: ## Run gatpack render
+	# rm ./user/01_templates/cover-test.tex
+	gatpack combine ./tests/test.pdf ./tests/test.pdf ./tests/test-combine.pdf
+
 #################################################################################
 # UTILITIES                                                                     #
 #################################################################################

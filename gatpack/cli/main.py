@@ -7,6 +7,7 @@ import typer
 
 from gatpack.cli.init import init
 from gatpack.cli.render import render
+from gatpack.cli.combine import combine
 
 # Create Typer app instance
 app = typer.Typer(
@@ -17,6 +18,7 @@ app = typer.Typer(
 
 app.command()(init)
 app.command()(render)
+app.command()(combine)
 
 
 @app.command()

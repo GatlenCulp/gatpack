@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1738812912.0839 "/Users/gat/work/gatpack/user/01_templates/cover-test.jinja.tex" "cover-test.jinja.pdf" "cover-test.jinja" 1738812912.86786 2
+["pdflatex"] 1738813018.519 "/Users/gat/work/gatpack/user/01_templates/cover-test.jinja.tex" "cover-test.jinja.pdf" "cover-test.jinja" 1738813019.10413 2
   "../00_assets/maia-horizontal_cropped.jpeg" 1738783109.12676 86181 b1967451cfb3d5cdbb4fbb7185270be8 ""
-  "/Users/gat/work/gatpack/user/01_templates/cover-test.jinja.tex" 1738812911.0873 3836 7f67190631ffdf24c69bc91b95c4e164 ""
+  "/Users/gat/work/gatpack/user/01_templates/cover-test.jinja.tex" 1738813017.61761 3815 8e3be8bbdc5fe8263a3e53dc2e0c61f3 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm" 1136768653 4484 b828043cbd581d289d955903c1339981 ""
@@ -84,9 +84,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1727144615.65937 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727144510 8221424 01fe6597be54a99e4c081fc5d27a3de1 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "cover-test.jinja.aux" 1738812912.80798 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
-  "cover-test.jinja.out" 1738812912.64069 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cover-test.jinja.tex" 1738812911.0873 3836 7f67190631ffdf24c69bc91b95c4e164 ""
+  "cover-test.jinja.aux" 1738813019.04463 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
+  "cover-test.jinja.out" 1738813018.88053 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "cover-test.jinja.tex" 1738813017.61761 3815 8e3be8bbdc5fe8263a3e53dc2e0c61f3 ""
   (generated)
   "cover-test.jinja.aux"
   "cover-test.jinja.log"

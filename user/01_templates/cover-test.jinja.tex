@@ -14,12 +14,13 @@
 }
 
 % TODO: Instead use the cookiecutter renderer with default configs to render the LaTeX templates with jinja and custom block formation.
+% This is probably a more general and cleaner solution than what I'm currently doing.
 
 \usepackage{sectsty}        % Allows customizing section fonts
 \allsectionsfont{\sffamily} % Make section titles sans-serif
 
 % ━━━━━━━━━━━━━━━━━━━━━━━━ Define Variables ━━━━━━━━━━━━━━━━━━━━━━━━ %
-\def\logopath{../00_assets/maia-horizontal_cropped.jpeg}  % Changed to relative path
+\def\logopath{../00_assets/maia-horizontal_cropped.jpeg}
 \def\programlongname{program_long_name}
 \def\programlongname{
     {{ program_long_name }}
@@ -32,10 +33,10 @@
 }
 \def\maintitle{
     {{ title }}
-}  % Changed from \title to avoid conflict
+}
 \def\mainsubtitle{
     {{ subtitle }}
-}  % Changed from \subtitle for clarity
+}
 
 % Define custom colors from JSON
 \definecolor{primaryColor}{HTML}{B48BFF}
