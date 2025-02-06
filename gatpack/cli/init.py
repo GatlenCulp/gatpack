@@ -38,7 +38,7 @@ def init(
     #     ),
     # ],
 ) -> None:
-    """Initialize a new project with the specified template."""
+    """Initialize a new GatPack project in your specified directory."""
     output_dir = Path.cwd() if output_dir is None else output_dir
 
     try:

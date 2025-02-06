@@ -34,6 +34,12 @@ test-combine: ## Run gatpack render
 	# rm ./user/01_templates/cover-test.tex
 	gatpack combine ./tests/test.pdf ./tests/test.pdf ./tests/test-combine.pdf
 
+.PHONY: test-build
+test-build: ## Run gatpack build
+	# rm ./user/01_templates/cover-test.tex
+	gatpack build ./tests/test.tex ./tests/test-build.pdf
+	# cd tests && pdflatex test-build.tex -interaction=nonstopmode -halt-on-error
+
 #################################################################################
 # UTILITIES                                                                     #
 #################################################################################

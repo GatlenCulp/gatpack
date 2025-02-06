@@ -41,7 +41,7 @@ def render(
     #     ),
     # ],
 ) -> None:
-    """Initialize a new project with the specified template."""
+    """Render a specified LaTeX document with Jinja placeholders with provided context."""
     try:
         logger.info(f"Rendering template at {template}")
         logger.info(f"And saving to {output}")

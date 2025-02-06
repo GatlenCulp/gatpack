@@ -1,4 +1,4 @@
-"""CLI command for combining any number of PDFs into one."""
+"""CLI command for rendering a specific LaTeX document."""
 
 from pathlib import Path
 from typing import Annotated
@@ -7,25 +7,25 @@ from loguru import logger
 from rich.console import Console
 import typer
 
-from gatpack.core.combine_pdfs import combine_pdfs
+from gatpack.core.build_pdf_from_latex import build_pdf_from_latex
 
 console = Console()
 
 
-def combine(
-    pdfs: Annotated[
-        list[Path],
+def build(
+    file: Annotated[
+        Path,
         typer.Argument(
-            help="Any number of PDFs to combine",
+            help="LaTeX file to render to a PDF",
             exists=True,
             file_okay=True,
             dir_okay=False,
         ),
     ],
     output: Annotated[
-        Path,
+        Path | None,
         typer.Argument(
-            help="File to save the combined PDF into",
+            help="File to save the built PDF to",
         ),
     ],
     # **kwargs: Annotated[
@@ -35,15 +35,15 @@ def combine(
     #     ),
     # ],
 ) -> None:
-    """Combine any number of PDFs into a single PDF."""
+    """Build a LaTeX document into a PDF."""
     try:
-        logger.info(f"Merging {len(pdfs)} PDFs")
+        logger.info(f"Building LaTeX document at {file}")
         logger.info(f"And saving to {output}")
 
-        combine_pdfs(pdfs, output)
+        build_pdf_from_latex(file, output)
 
-        console.print(f"✨ Successfully merged PDFs into [bold green]{output}[/]")
+        console.print(f"✨ Successfully rendered LaTeX into [bold green]{output}[/]")
 
     except Exception as e:
-        logger.error(f"Failed to merge pdfs: {e}")
+        logger.error(f"Failed to build LaTeX to PDF: {e}")
         raise typer.Exit(1)

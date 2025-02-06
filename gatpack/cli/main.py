@@ -8,6 +8,7 @@ import typer
 from gatpack.cli.init import init
 from gatpack.cli.render import render
 from gatpack.cli.combine import combine
+from gatpack.cli.build import build
 
 # Create Typer app instance
 app = typer.Typer(
@@ -19,25 +20,7 @@ app = typer.Typer(
 app.command()(init)
 app.command()(render)
 app.command()(combine)
-
-
-@app.command()
-def main(
-    name: str = typer.Argument(..., help="Name to greet"),
-    log_file: Optional[Path] = Annotated[
-        None,
-        typer.Option(
-            "--log-file",
-            "-l",
-            help="Path to log file",
-        ),
-    ],
-) -> None:
-    """Run the gatpack CLI."""
-    if log_file:
-        logger.add(log_file)
-
-    logger.info(f"Hello {name}")
+app.command()(build)
 
 
 if __name__ == "__main__":
