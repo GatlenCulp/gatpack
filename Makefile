@@ -7,13 +7,17 @@ PYTHON_VERSION = 3.12
 PYTHON_INTERPRETER = python
 DOCS_PORT ?= 8000
 
-.PHONY: example
+.PHONY: w-example
 example: ## Run example code
 	weasyprint ./example/report.html ./example/test.pdf
 
-.PHONY: compile
+.PHONY: w-compile
 compile: ## Run compilation code
 	weasyprint ./user/02_web/cover.html ./user/03_pdf/cover-test.pdf
+
+.PHONY: gatpack
+gatpack: ## Run gatpack cli
+	echo "HELLO"
 
 
 #################################################################################
@@ -124,13 +128,23 @@ data: requirements
 # Self Documenting Commands                                                     #
 #################################################################################
 
-.DEFAULT_GOAL := help
+
+.PHONY: _print-logo
+_print-logo: ## Prints the GOTem logo
+	@echo "\033[38;5;39m   ____  ___ _____"
+	@echo "  / ___|/ _ \_   _|__ _ __ ___"
+	@echo " | |  _| | | || |/ _ \ '_ \` _ \\"
+	@echo " | |_| | |_| || |  __/ | | | | |"
+	@echo "  \____|\___/ |_|\___|_| |_| |_|\033[0m"
+
 
 .PHONY: help
-help:  ## Show this help message
+help: _print-logo  ## Show this help message
 	@echo "\n\033[1m~ Available rules: ~\033[0m\n"
 	@echo "For VSCode/Cursor, try: ⇧ ⌘ P, Tasks: Run Task\n"
 	@grep -E '^[a-zA-Z][a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[38;5;222m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: all
 all: help
+
+.DEFAULT_GOAL := all

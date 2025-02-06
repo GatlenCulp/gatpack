@@ -9,9 +9,7 @@ description = "A PDF and website templating tool"
 authors = [
   { name = "Gatlen Culp" },
 ]
-# 
-license = { file = "LICENSE" }
-# 
+license = { file = "LICENSE" } 
 readme = {file = "README.md", content-type = "text/markdown"}
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -26,7 +24,12 @@ dependencies = [
     "rich>=13.9.4", # Rich terminal output
     "numpy>=1.26.4", # Numerical computing # Load .env into environment vars
     "python-dotenv>=1.0.0",
+    "typer>=0.15.1",
+    "cookiecutter>=2.6.0",
 ]
+
+[project.scripts]
+gatpack = "gatpack.main:app"
 
 [dependency-groups]
 ai-apps = [  # AI application development packages
