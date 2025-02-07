@@ -11,7 +11,7 @@ J2_ARGS = {
     "block_end_string": "}",
     "variable_start_string": r"\VAR{",
     "variable_end_string": "}",
-    "comment_start_string": r"\#{",
+    "comment_start_string": r"\COMMENT{",
     "comment_end_string": "}",
     "line_statement_prefix": "%-",
     "line_comment_prefix": "%#",

@@ -27,8 +27,16 @@ test-init: ## Run gatpack init
 test-render: ## Run gatpack render
 	# gatpack render ./tests/test.jinja.tex ./tests/test.tex
 	# rm ./user/01_templates/cover-test.tex
-	cd ./tests/render && rm -f test-standard-jinja.tex && gatpack render test.jinja.tex test-standard-jinja.tex compose.gatpack.json
-	cd ./tests/render && rm -f test-tex-jinja.tex && gatpack render test.jinja.tex test-tex-jinja.tex compose.gatpack.json --no-use-standard-jinja
+	# Test Standard Jinja Rendering
+	cd ./tests/render && rm -f test-standard-jinja.tex && \
+		gatpack render test-standard-jinja.jinja.tex \
+		test-standard-jinja.tex \
+		compose.gatpack.json
+	# Test Special Jinja Rendering
+	cd ./tests/render && rm -f test-tex-jinja.tex && \
+		gatpack render test-tex-jinja.jinja.tex \
+		test-tex-jinja.tex compose.gatpack.json \
+		--no-use-standard-jinja
 
 .PHONY: test-combine
 test-combine: ## Run gatpack render

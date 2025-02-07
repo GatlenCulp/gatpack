@@ -40,9 +40,9 @@ GatPack is a CLI and Python API for automating LaTeX and PDF document generation
 <summary>Screenshots</summary>
 <br>
 
-|                                  CLI                                   |                          Generated Cover Page                          |
-| :--------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/gatpack-cli.png" title="Home Page" width="100%"> | <img src="docs/images/cover-page.png" title="Login Page" width="100%"> |
+|                                  CLI                                   |                          Generated Cover Page                          |                            Pre-Rendered Cover Page                             |
+| :--------------------------------------------------------------------: | :--------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
+| <img src="docs/images/gatpack-cli.png" title="Home Page" width="100%"> | <img src="docs/images/cover-page.png" title="Login Page" width="100%"> | <img src="docs/images/latex-jinja-pretty.png" title="Login Page" width="100%"> |
 
 </details>
 
@@ -89,7 +89,7 @@ Let us know if your team is using it an how!
     - [04.03 Understaind the Build Pipeline (`build.sh`)](#0403-understaind-the-build-pipeline-buildsh)
 - [Usage](#usage)
   - [01 CLI Help](#01-cli-help)
-  - [02 Jinja Modifications for LaTeX (`gatpack render`)](#02-jinja-modifications-for-latex-gatpack-render)
+  - [02 LaTeX-Modified Jinja (`gatpack render`)](#02-latex-modified-jinja-gatpack-render)
   - [03 Usage Examples](#03-usage-examples)
 - [Community & Development](#community--development)
   - [01 Roadmap](#01-roadmap)
@@ -179,7 +179,7 @@ Run the `build.sh` script. Check that `output/packet.pdf` was successfully built
 
 #### 04.01 Understand the LaTeX Templates (`*.jinja.tex`)
 
-The LaTeX template files are denoted with `*.jinja.tex`. See the instructions on writing LaTeX-Jinja templates in the [Jinja Modifications for LaTeX](#jinja-modifications-for-latex) section down below
+The LaTeX template files are denoted with `*.jinja.tex`. See the instructions on writing LaTeX-Jinja templates in the [02 LaTeX-Modified Jinja (`gatpack render`)](#02-latex-modified-jinja-gatpack-render) section down below
 
 #### 04.02 Understand the Compose File (`compose.gatpack.json`)
 
@@ -423,23 +423,55 @@ ______________________________________________________________________
 ╰───────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
-### 02 Jinja Modifications for LaTeX (`gatpack render`)
+### 02 LaTeX-Modified Jinja (`gatpack render`)
+
+The [Jinja placeholders for LaTeX were modified](https://jinja.palletsprojects.com/en/stable/templates/#line-statements) to ensure compatability and a good user experience:
+
+| Function                                                                                                             | LaTeX-Modified              | Standard                  | Usage                                    |
+| -------------------------------------------------------------------------------------------------------------------- | --------------------------- | ------------------------- | ---------------------------------------- |
+| [Expresssions & Variables](https://jinja.palletsprojects.com/en/stable/templates/#variables)                         | `\VAR{variable_name}`       | `{{ variable_name }}`     | Insert a variable value                  |
+| [Statements & Control Structures](https://jinja.palletsprojects.com/en/stable/templates/#list-of-control-structures) | `\BLOCK{for item in items}` | `{% for item in items %}` | Control structures (loops, conditionals) |
+| [Comments](https://jinja.palletsprojects.com/en/stable/templates/#comments)                                          | `\#{comment text}`          | `{# comment text #}`      | Add template comments                    |
+| [Line Statements](https://jinja.palletsprojects.com/en/stable/templates/#comments)                                   | `%-`                        | `#`                       | Single line statements                   |
+| [Line Comment](https://jinja.palletsprojects.com/en/stable/templates/#line-statements)                               | `%#`                        | `##`                      | Single line comments                     |
+
+[See the Jinja API for more information](https://jinja.palletsprojects.com/en/stable/api/). Apart from the delimeter syntax, everything should work the same.
+
+<details>
+<summary> Why this Modification is Needed </summary>
+<br />
 
 Standard Jinja placeholders: `{{ variable_name }}`, `{% for item in items %} {% endfor %}`, etc. don't play well with LaTeX. It becomes very difficult to view your LaTeX template since you run into syntax errors and some LaTeX syntax conflicts with Jinja tags, leading to errors from both systems.
 
-<img src="docs/images/latex-jinja-ugly.png" title="Ugly Latex Jinja" width="300px">
+<div style="display: flex; gap: 20px; align-items: center;">
+    <div>
+        <p><strong>Standard Jinja:</strong></p>
+        <img src="docs/images/latex-jinja-ugly.png" title="Ugly Latex Jinja" width="300px">
+    </div>
+    <div>
+        <p><strong>LaTeX-Adapted Jinja:</strong></p>
+        <img src="docs/images/latex-jinja-pretty.png" title="Pretty Latex Jinja" width="300px">
+    </div>
+</div>
 
-To fix this issue, these Jinja placeholders were changed to the following:
+The Jinja placeholders above are meant to fix this issue.
 
-| Function       | New                         | Original                  | Usage                                    |
-| -------------- | --------------------------- | ------------------------- | ---------------------------------------- |
-| Variable       | `\VAR{variable_name}`       | `{{ variable_name }}`     | Insert a variable value                  |
-| Block          | `\BLOCK{for item in items}` | `{% for item in items %}` | Control structures (loops, conditionals) |
-| Comment        | `\#{comment text}`          | `{# comment text #}`      | Add template comments                    |
-| Line Statement | `%-`                        | `#`                       | Single line statements                   |
-| Line Comment   | `%#`                        | `##`                      | Single line comments                     |
+</details>
 
-_This was based on a useful but outdated project called [latexbuild](https://pypi.org/project/latexbuild/)_
+<details>
+<summary>Get placeholder highlighting in your LaTeX document </summary>
+```tex
+% Define Jinja placeholder commands for better editor visualization
+\usepackage{xcolor}
+\definecolor{jinjaColor}{HTML}{7B68EE}  % Medium slate blue color for Jinja
+\definecolor{jinjaVarBg}{HTML}{E6E6FA}    % Light lavender for variables
+\definecolor{jinjaBlockBg}{HTML}{FFE4E1}  % Misty rose for blocks
+\definecolor{jinjaCommentBg}{HTML}{E0FFFF}  % Light cyan for comments
+\newcommand{\VAR}[1]{\colorbox{jinjaVarBg}{\detokenize{#1}}}
+\newcommand{\BLOCK}[1]{\colorbox{jinjaBlockBg}{\detokenize{#1}}}
+\newcommand{\COMMENT}[1]{\colorbox{jinjaCommentBg}{\detokenize{#1}}}
+```
+</details>
 
 ### 03 Usage Examples
 
