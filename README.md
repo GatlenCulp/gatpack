@@ -427,11 +427,17 @@ ______________________________________________________________________
 
 Standard Jinja placeholders: `{{ variable_name }}`, `{% for item in items %} {% endfor %}`, etc. don't play well with LaTeX. It becomes very difficult to view your LaTeX template since you run into syntax errors and some LaTeX syntax conflicts with Jinja tags, leading to errors from both systems.
 
+<img src="docs/images/latex-jinja-ugly.png" title="Ugly Latex Jinja" width="300px">
+
 To fix this issue, these Jinja placeholders were changed to the following:
 
-| Function | New | Original | Usage |
-| -------- | --- | -------- | ----- |
-|          |     |          |       |
+| Function       | New                         | Original                  | Usage                                    |
+| -------------- | --------------------------- | ------------------------- | ---------------------------------------- |
+| Variable       | `\VAR{variable_name}`       | `{{ variable_name }}`     | Insert a variable value                  |
+| Block          | `\BLOCK{for item in items}` | `{% for item in items %}` | Control structures (loops, conditionals) |
+| Comment        | `\#{comment text}`          | `{# comment text #}`      | Add template comments                    |
+| Line Statement | `%-`                        | `#`                       | Single line statements                   |
+| Line Comment   | `%#`                        | `##`                      | Single line comments                     |
 
 _This was based on a useful but outdated project called [latexbuild](https://pypi.org/project/latexbuild/)_
 
@@ -452,13 +458,7 @@ ______________________________________________________________________
 
 ### 01 Roadmap
 
-See the [open issues](https://github.com/GatlenCulp/gatpack/issues) for a list of proposed features (and known issues).
-
-- [Top Feature Requests](https://github.com/GatlenCulp/gatpack/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-
-- [Top Bugs](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-
-- [Newest Bugs](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+Planned features:
 
 - [ ] Change Jinja template delimiters to be LaTeX friendly (Highest priority)
 
@@ -471,6 +471,14 @@ See the [open issues](https://github.com/GatlenCulp/gatpack/issues) for a list o
 - [ ] Make it easier to chain together multiple gatpack calls
 
 - [ ] Footers
+
+See the [open issues](https://github.com/GatlenCulp/gatpack/issues) for a list of proposed features (and known issues).
+
+- [Top Feature Requests](https://github.com/GatlenCulp/gatpack/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+
+- [Top Bugs](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+
+- [Newest Bugs](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 ### 02 Support
 
@@ -570,5 +578,6 @@ See [LICENSE](LICENSE) for more information.
 - Further upstream, [Open Philanthrophy](https://www.openphilanthropy.org/) provides a lot of the funding for CBAI/MAIA
 - Other AI Safety Student groups who are doing their best to keep the world safe.
 - Thanks to [Samuel Roeca](https://github.com/pappasam) for developing [latexbuild](https://github.com/pappasam/latexbuild), from which some of the LaTeX templating code was borrowed.
+- https://github.com/mbr/latex
 
 <!-- TODO: Reach out to Samuel and let him know about this. -->

@@ -1,15 +1,12 @@
-from pathlib import Path
-from typing import Annotated, Optional
+"""CLI entrypoint."""
 
-from loguru import logger
-from rich import print
 import typer
 
+from gatpack.cli.build import build
+from gatpack.cli.combine import combine
+from gatpack.cli.footer import footer
 from gatpack.cli.init import init
 from gatpack.cli.render import render
-from gatpack.cli.combine import combine
-from gatpack.cli.build import build
-from gatpack.cli.footer import footer
 
 # Create Typer app instance
 app = typer.Typer(
