@@ -32,6 +32,10 @@ More documentation in getting-started.md of the cookiecutter repo.
 [![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 [![code with love by ](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-GatlenCulp-ff1414.svg?style=flat-square)](https://github.com/GatlenCulp)
 
+<!-- TODO: Borrow from https://pypi.org/project/latexbuild/ -->
+
+<!-- TODO: Maybe remove some of these sections, this feels a bit unnecessarily verbose. -->
+
 </div>
 
 ______________________________________________________________________
@@ -168,9 +172,11 @@ Opening `YOUR_PROJECT/compose.gatpack.json` will reveal a number of configuratio
 
 ### 05 Edit the Template
 
-The LaTeX template files are denoted with `*.jinja.tex`.
+The LaTeX template files are denoted with `*.jinja.tex`. See the instructions on writing LaTeX-Jinja templates down below.
 
 ### 06 Build your Project
+
+Run the `build.sh` script. Check that `output/packet.pdf` was successfully built.
 
 ______________________________________________________________________
 
@@ -181,22 +187,101 @@ ______________________________________________________________________
 
 ### Installation
 
-> **[?]**
-> Describe how to install and get started with the project.
+Run the following command to install globally (or install into a virtual environment and activate, whichever you prefer.):
+
+```bash
+python3 -m pip install gatpack
+```
+
+To use `gatpack build` which will convert a LaTeX document to a PDF, you will need `pdflatex` to be available on your path. You can check for this with
+
+```bash
+pdflatex --verison
+```
+
+If this command isn't found, then you need to install a LaTeX compiler to your machine.
+
+For mac you can install [MacTeX](https://www.tug.org/mactex/mactex-download.html). Using Homebrew:
+
+```bash
+brew install --cask mactex
+```
+
+_Note: Eventually this LaTeX requirement will be removed_
+
+<!-- I should take a look at this: https://pypi.org/project/pdflatex/ -->
+
+You can then run the following to confirm GatPack has been successfully installed (will not check for a valid pdflatex):
+
+```bash
+gatpack --help
+```
 
 ## Usage
 
-> **[?]**
-> How does one go about using it?
-> Provide various use cases and code examples here.
+`gatpack --help` will provide various information about how to use the tool. You can get further help with subcommands using `gatpack COMMAND --help`
+
+```bash
+
+ Usage: gatpack [OPTIONS] COMMAND [ARGS]...
+
+╭─ Options ─────────────────────────────────────────────────────────────────────────────────╮
+│ --install-completion          Install completion for the current shell.                   │
+│ --show-completion             Show completion for the current shell, to copy it or        │
+│                               customize the installation.                                 │
+│ --help                        Show this message and exit.                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ────────────────────────────────────────────────────────────────────────────────╮
+│ init      Initialize a new GatPack project in your specified directory.                   │
+│ render    Render a specified LaTeX document with Jinja placeholders with provided         │
+│           context.                                                                        │
+│ combine   Combine any number of PDFs into a single PDF.                                   │
+│ build     Build a LaTeX document into a PDF.                                              │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+### Jinja Modifications for LaTeX (`gatpack render`)
+
+Standard Jinja placeholders: `{{ variable_name }}`, `{% for item in items %} {% endfor %}`, etc. don't play well with LaTeX. It becomes very difficult to view your LaTeX template since you run into syntax errors and some LaTeX syntax conflicts with Jinja tags, leading to errors from both systems. These Jinja placeholders were changed to the following,
+
+| Function | New | Original | Usage |
+| -------- | --- | -------- | ----- |
+|          |     |          |       |
+
+_This was based on a useful but outdated project called [latexbuild](https://pypi.org/project/latexbuild/)_
+
+### Usage Examples
+
+- You want to combine multiple files into a packet: `pdfs/document1.pdf`, `pdfs/document2.pdf`, and `pdfs/document3.pdf`. This makes printing and stapling multiple copies easier: `gatpack combine pdfs/*.pdf packet.pdf`
+
+- You want to build and reuse a LaTeX template for an invoice: `invoice.jinja.tex`. To do this, render your template using Jinja placeholders into `invoice.tex` using the assignments from `compose.gatpack.json` then build your invoice to a pdf `invoice.pdf`:
+
+  ```bash
+  gatpack render invoice.jinja.tex invoice.tex compose.gatpack.json
+  gatpack build invoice.tex invoice.pdf
+  ```
 
 ## Roadmap
 
 See the [open issues](https://github.com/GatlenCulp/gatpack/issues) for a list of proposed features (and known issues).
 
 - [Top Feature Requests](https://github.com/GatlenCulp/gatpack/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+
 - [Top Bugs](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+
 - [Newest Bugs](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+
+- [ ] Change Jinja template delimiters to be LaTeX friendly (Highest priority)
+
+- [ ] Fix the actual Jinja LaTeX templates for packet making to look nice
+
+- [ ] Add a padding command that will make sure all PDFs have an even number of pages before merging (that way unrelated documents don't get printed on the front and back side of the same page)
+
+- [ ] Better syntax for the CLI
+
+- [ ] Make it easier to chain together multiple gatpack calls
+
+- [ ] Footers
 
 ## Support
 
