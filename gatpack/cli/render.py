@@ -7,6 +7,7 @@ from loguru import logger
 from rich.console import Console
 import typer
 
+from gatpack.core.load_compose import load_compose
 from gatpack.core.render_jinja import render_jinja
 
 console = Console()
@@ -28,12 +29,12 @@ def render(
             help="File to save the rendered template into",
         ),
     ],
-    context: Annotated[
-        str,
+    compose: Annotated[
+        Path,
         typer.Argument(
             help="Variable assignments to load the template with.",
         ),
-    ] = "",
+    ],
     # **kwargs: Annotated[
     #     dict[str, Any],
     #     typer.Argument(
@@ -47,15 +48,9 @@ def render(
         logger.info(f"And saving to {output}")
 
         # Define all template variables needed for cover-test.jinja.tex
-        render_context = {
-            "program_long_name": "Intro Fellowship",
-            "time_period": "Spring 2024",
-            "chron_info": "WEEK 5",
-            "title": "Model internals",
-            "subtitle": "READINGS",
-        }
+        gp_compose = load_compose(compose)
 
-        render_jinja(template, output, context=render_context)
+        render_jinja(template, output, context=gp_compose.context)
 
         console.print(f"✨ Successfully rendered project in [bold green]{output}[/]")
 

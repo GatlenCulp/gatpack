@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/GatlenCulp/gatpack/refs/heads/dev/gatpack/schema/json/GatPackCompose.schema.json",
   "title": "GatPack Compose Schema",
   "description": "Schema for GatPack composition configuration",
   "type": "object",

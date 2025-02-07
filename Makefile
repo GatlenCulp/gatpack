@@ -26,8 +26,8 @@ test-init: ## Run gatpack init
 .PHONY: test-render
 test-render: ## Run gatpack render
 	# gatpack render ./tests/test.jinja.tex ./tests/test.tex
-	rm ./user/01_templates/cover-test.tex
-	gatpack render ./user/01_templates/cover-test.jinja.tex ./user/01_templates/cover-test.tex
+	# rm ./user/01_templates/cover-test.tex
+	cd ./tests/render && rm test.tex && gatpack render test.jinja.tex test.tex compose.gatpack.json
 
 .PHONY: test-combine
 test-combine: ## Run gatpack render
