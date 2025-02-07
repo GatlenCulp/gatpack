@@ -459,7 +459,10 @@ The Jinja placeholders above are meant to fix this issue.
 </details>
 
 <details>
+
 <summary>Get placeholder highlighting in your LaTeX document </summary>
+</br>
+
 ```tex
 % Define Jinja placeholder commands for better editor visualization
 \usepackage{xcolor}
@@ -471,6 +474,7 @@ The Jinja placeholders above are meant to fix this issue.
 \newcommand{\BLOCK}[1]{\colorbox{jinjaBlockBg}{\detokenize{#1}}}
 \newcommand{\COMMENT}[1]{\colorbox{jinjaCommentBg}{\detokenize{#1}}}
 ```
+
 </details>
 
 ### 03 Usage Examples
