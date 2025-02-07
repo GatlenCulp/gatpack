@@ -1,11 +1,3 @@
-# GatPack
-
-![Uses the Cookiecutter Data Science project template, GOTem style](https://img.shields.io/badge/GOTem-Project%20Instance-328F97?logo=cookiecutter) ![PyPI - Version](https://img.shields.io/pypi/v/gatpack?style=flat) [![tests](https://github.com/GatlenCulp/gatlens-opinionated-template/actions/workflows/tests.yml/badge.svg)](https://github.com/GatlenCulp/gatpack/actions/workflows/tests.yml) [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv) ![GitHub stars](https://img.shields.io/github/stars/gatlenculp/gatpack?style=social)
-
-https://gatlenculp.github.io/gatpack
-
-More documentation in getting-started.md of the cookiecutter repo.
-
 <h1 align="center">
   <a href="https://github.com/GatlenCulp/gatpack">
     <img src="docs/images/logo.png" alt="Logo" width="100" height="100">
@@ -13,10 +5,10 @@ More documentation in getting-started.md of the cookiecutter repo.
 </h1>
 
 <div align="center">
-  GatPack
-  <br />
+  <h1> GatPack </h1>
   <a href="#about"><strong>Explore the docs »</strong></a>
   <br />
+  <img src="docs/images/gatpack-cli.png" title="Home Page" width="500px">
   <br />
   <a href="https://github.com/GatlenCulp/gatpack/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
   ·
@@ -28,9 +20,9 @@ More documentation in getting-started.md of the cookiecutter repo.
 <div align="center">
 <br />
 
-[![Project license](https://img.shields.io/github/license/GatlenCulp/gatpack?style=flat-square)](LICENSE)
-[![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-[![code with love by ](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-GatlenCulp-ff1414.svg?style=flat-square)](https://github.com/GatlenCulp)
+[![Project license](https://img.shields.io/github/license/GatlenCulp/gatpack?style=flat-square)](LICENSE) [![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/GatlenCulp/gatpack/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) [![code with love by ](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-GatlenCulp-ff1414.svg?style=flat-square)](https://github.com/GatlenCulp)
+
+![Uses the Cookiecutter Data Science project template, GOTem style](https://img.shields.io/badge/GOTem-Project%20Instance-328F97?logo=cookiecutter) ![PyPI - Version](https://img.shields.io/pypi/v/gatpack?style=flat) [![tests](https://github.com/GatlenCulp/gatlens-opinionated-template/actions/workflows/tests.yml/badge.svg)](https://github.com/GatlenCulp/gatpack/actions/workflows/tests.yml) [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv) ![GitHub stars](https://img.shields.io/github/stars/gatlenculp/gatpack?style=social)
 
 <!-- TODO: Borrow from https://pypi.org/project/latexbuild/ -->
 
@@ -42,15 +34,11 @@ ______________________________________________________________________
 
 ## About
 
-<table><tr><td>
 GatPack is a CLI and Python API for automating LaTeX and PDF document generation using [Jinja templating](https://jinja.palletsprojects.com/en/stable/api/). This was originally developed for creating professional looking packets for AI safety coursework at [MIT AI Alignment](https://aialignment.mit.edu).
 
 <details>
 <summary>Screenshots</summary>
 <br>
-
-> **[?]**
-> Please provide your screenshots here.
 
 |                                  CLI                                   |                          Generated Cover Page                          |
 | :--------------------------------------------------------------------: | :--------------------------------------------------------------------: |
@@ -58,18 +46,73 @@ GatPack is a CLI and Python API for automating LaTeX and PDF document generation
 
 </details>
 
-</td></tr></table>
-
-### Built With
+<details>
+<summary>Built With</summary>
+<br>
 
 - Typer (For the CLI)
 - LaTeX (For creating documents from text)
 - Jinja (For templating and placeholders)
 - Pydantic (For specifying the config file schema)
 
+</details>
+
+<details>
+<summary>See who is using</summary>
+<br>
+
+- [MIT AI Alignment (MAIA)](https://aialignment.mit.edu/)
+- [AI Safety Student Team (AISST)](https://haist.ai/) at Harvard
+- [Columbia AI Alignment Club (CAIAC)](https://www.cualignment.org/)
+
+Let us know if your team is using it an how!
+
+</details>
+
+<details>
+<summary>Table of Contents</summary>
+<br>
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [About](#about)
+- [Getting Started](#getting-started)
+  - [00 Requirements](#00-requirements)
+  - [01 Install GatPack](#01-install-gatpack)
+  - [02 Initialize your project (`gatpack init`)](#02-initialize-your-project-gatpack-init)
+  - [03 Build the Example Project (`build.sh`)](#03-build-the-example-project-buildsh)
+  - [04 (Optional) Learn How the Example Projects Work](#04-optional-learn-how-the-example-projects-work)
+    - [04.01 Understand the LaTeX Templates (`*.jinja.tex`)](#0401-understand-the-latex-templates-jinjatex)
+    - [04.02 Understand the Compose File (`compose.gatpack.json`)](#0402-understand-the-compose-file-composegatpackjson)
+    - [04.03 Understaind the Build Pipeline (`build.sh`)](#0403-understaind-the-build-pipeline-buildsh)
+- [Usage](#usage)
+  - [01 CLI Help](#01-cli-help)
+  - [02 Jinja Modifications for LaTeX (`gatpack render`)](#02-jinja-modifications-for-latex-gatpack-render)
+  - [03 Usage Examples](#03-usage-examples)
+- [Community & Development](#community--development)
+  - [01 Roadmap](#01-roadmap)
+  - [02 Support](#02-support)
+  - [03 Project assistance](#03-project-assistance)
+  - [04 Contributing](#04-contributing)
+  - [05 Authors & contributors](#05-authors--contributors)
+  - [06 Security](#06-security)
+  - [07 License](#07-license)
+  - [08 Acknowledgements](#08-acknowledgements)
+
+<!-- /code_chunk_output -->
+
+</details>
+
 ______________________________________________________________________
 
 ## Getting Started
+
+### 00 Requirements
+
+- Python 3.10+
+- LaTeX (`pdflatex` specifically, see more instructions on installing below)
 
 ### 01 Install GatPack
 
@@ -79,7 +122,44 @@ Run the following command to install globally:
 python3 -m pip install gatpack
 ```
 
-### 02 Initialize your project
+<details>
+<summary>Further Install Instructions</summary>
+<br />
+
+Run the following command to install globally (or install into a virtual environment and activate, whichever you prefer.):
+
+```bash
+python3 -m pip install gatpack
+```
+
+To use `gatpack build` which will convert a LaTeX document to a PDF, you will need `pdflatex` to be available on your path. You can check for this with
+
+```bash
+pdflatex --verison
+```
+
+If this command isn't found, then you need to install a LaTeX compiler to your machine.
+
+For mac you can install [MacTeX](https://www.tug.org/mactex/mactex-download.html). Using Homebrew:
+
+```bash
+brew install --cask mactex
+```
+
+_Note: Eventually this LaTeX requirement will be removed_
+
+<!-- I should take a look at this: https://pypi.org/project/pdflatex/ -->
+
+You can then run the following to confirm GatPack has been successfully installed (will not check for a valid pdflatex):
+
+```bash
+gatpack --help
+```
+
+<br />
+</details>
+
+### 02 Initialize your project (`gatpack init`)
 
 cd into the directory you would like to create your project and run
 
@@ -89,9 +169,155 @@ gatpack init
 
 Follow the set up steps to name your project.
 
-### 03 Edit the Workflow
+### 03 Build the Example Project (`build.sh`)
 
-Open the example workflow located in `YOUR_PROJECT/build.sh`. You will see a number of commands outlining the workflow. These are fairly self explanatory.
+Run the `build.sh` script. Check that `output/packet.pdf` was successfully built.
+
+### 04 (Optional) Learn How the Example Projects Work
+
+#### 04.01 Understand the LaTeX Templates (`*.jinja.tex`)
+
+The LaTeX template files are denoted with `*.jinja.tex`. See the instructions on writing LaTeX-Jinja templates in the [Jinja Modifications for LaTeX](#jinja-modifications-for-latex) section down below
+
+#### 04.02 Understand the Compose File (`compose.gatpack.json`)
+
+Opening `YOUR_PROJECT/compose.gatpack.json` will reveal a number of variable assignments. Everything in the `context` object can be used to fill in Jinja placeholders when passed as an argument to `gatpack`.
+
+<details>
+
+<summary> Intellisense Tip </summary>
+<br />
+
+The JSON schema for a gatpack.json project is specified at the top of the `compose.gatpack.json` file. If you you use an editor like VSCode, it will automatically display recommendations, raise errors, and provide other intellisense features to make sure you're developing your config correctly. At the moment, there isn't much of a schema, but this will be developed as time goes on.
+
+![docs/images/compose-intellisense.png](docs/images/compose-intellisense.png)
+
+![docs/images/compose-intellisense-2.png](docs/images/compose-intellisense-2.png)
+
+</details>
+
+<details>
+
+<summary> `compose.gatpack.json` Contents </summary>
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/GatlenCulp/gatpack/refs/heads/dev/gatpack/schema/json/GatPackCompose.schema.json",
+  "name": "test",
+  "context": {
+    "program_long_name": "Intro Fellowship",
+    "time_period": "Spring 2025",
+    "chron_info": "WEEK 0",
+    "title": "Introduction to machine learning",
+    "subtitle": "READINGS",
+    "primary_color": "0B0D63",
+    "primary_color_faded": "789BD6",
+    "core_readings": [
+      {
+        "title": "Neural Networks",
+        "read_on_device": true,
+        "subsection": "Chapters 1-6",
+        "author": "3Blue1Brown",
+        "year": 2024,
+        "url": "https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&feature=shared",
+        "thumbnail_path": ""
+      }
+    ],
+    "further_readings": [
+      {
+        "title": "A short introduction to machine learning",
+        "subsection": "",
+        "author": "Ngo",
+        "year": 2021,
+        "url": "https://www.alignmentforum.org/posts/qE73pqxAZmeACsAdF/a-short-introduction-to-machine-learning",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "Machine Learning for Humans, Part 2.1: Supervised Learning",
+        "subsection": "",
+        "author": "Maini and Sabri",
+        "year": 2017,
+        "url": "https://medium.com/@v_maini/supervised-learning-740383a2feab",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "What is self-supervised learning?",
+        "subsection": "",
+        "author": "CodeBasics",
+        "year": 2021,
+        "url": "https://youtu.be/sJzuNAisXHA",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "Introduction to reinforcement learning",
+        "subsection": "",
+        "author": "von Hasselt",
+        "year": 2021,
+        "url": "https://www.youtube.com/watch?v=TCCjZe0y4Qc&t=2m0s",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "The spelled-out intro to neural networks and backpropagation: building micrograd",
+        "subsection": "",
+        "author": "Karpathy",
+        "year": 2022,
+        "url": "https://youtu.be/VMj-3S1tku0",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "Transformers from scratch",
+        "subsection": "",
+        "author": "Rohrer",
+        "year": 2021,
+        "url": "https://e2eml.school/transformers.html",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "Machine learning for humans",
+        "subsection": "",
+        "author": "Maini and Sabri",
+        "year": 2017,
+        "url": "https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "Machine learning glossary",
+        "subsection": "",
+        "author": "Google",
+        "year": 2017,
+        "url": "https://developers.google.com/machine-learning/glossary",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "Spinning up deep RL: part 1 and part 2",
+        "subsection": "",
+        "author": "OpenAI",
+        "year": 2018,
+        "url": "https://spinningup.openai.com/en/latest/spinningup/rl_intro.html",
+        "thumbnail_path": ""
+      },
+      {
+        "title": "A (long) peek into reinforcement learning",
+        "subsection": "",
+        "author": "Weng",
+        "year": 2018,
+        "url": "https://lilianweng.github.io/posts/2018-02-19-rl-overview/",
+        "thumbnail_path": ""
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+#### 04.03 Understaind the Build Pipeline (`build.sh`)
+
+Open the example build pipeline located in `YOUR_PROJECT/build.sh`. You will see a number of commands outlining the pipeline. These are fairly self explanatory, but if you need additional assistance, you can learn more about these commands with `gatpack COMMAND --help`
+
+<details>
+
+<summary> `build.sh` Contents </summary>
 
 ```bash
 #!/bin/bash
@@ -166,58 +392,13 @@ gatpack combine \
 open $OUTPUT_PDF
 ```
 
-### 04 Edit the Compose File
-
-Opening `YOUR_PROJECT/compose.gatpack.json` will reveal a number of configuration files. Everything in the `context` object can be used to fill in Jinja placeholders when passed as an argument to `gatpack`.
-
-### 05 Edit the Template
-
-The LaTeX template files are denoted with `*.jinja.tex`. See the instructions on writing LaTeX-Jinja templates down below.
-
-### 06 Build your Project
-
-Run the `build.sh` script. Check that `output/packet.pdf` was successfully built.
+</details>
 
 ______________________________________________________________________
 
-### Prerequisites
-
-- Python 3.10+
-- LaTeX
-
-### Installation
-
-Run the following command to install globally (or install into a virtual environment and activate, whichever you prefer.):
-
-```bash
-python3 -m pip install gatpack
-```
-
-To use `gatpack build` which will convert a LaTeX document to a PDF, you will need `pdflatex` to be available on your path. You can check for this with
-
-```bash
-pdflatex --verison
-```
-
-If this command isn't found, then you need to install a LaTeX compiler to your machine.
-
-For mac you can install [MacTeX](https://www.tug.org/mactex/mactex-download.html). Using Homebrew:
-
-```bash
-brew install --cask mactex
-```
-
-_Note: Eventually this LaTeX requirement will be removed_
-
-<!-- I should take a look at this: https://pypi.org/project/pdflatex/ -->
-
-You can then run the following to confirm GatPack has been successfully installed (will not check for a valid pdflatex):
-
-```bash
-gatpack --help
-```
-
 ## Usage
+
+### 01 CLI Help
 
 `gatpack --help` will provide various information about how to use the tool. You can get further help with subcommands using `gatpack COMMAND --help`
 
@@ -240,9 +421,11 @@ gatpack --help
 ╰───────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
-### Jinja Modifications for LaTeX (`gatpack render`)
+### 02 Jinja Modifications for LaTeX (`gatpack render`)
 
-Standard Jinja placeholders: `{{ variable_name }}`, `{% for item in items %} {% endfor %}`, etc. don't play well with LaTeX. It becomes very difficult to view your LaTeX template since you run into syntax errors and some LaTeX syntax conflicts with Jinja tags, leading to errors from both systems. These Jinja placeholders were changed to the following,
+Standard Jinja placeholders: `{{ variable_name }}`, `{% for item in items %} {% endfor %}`, etc. don't play well with LaTeX. It becomes very difficult to view your LaTeX template since you run into syntax errors and some LaTeX syntax conflicts with Jinja tags, leading to errors from both systems.
+
+To fix this issue, these Jinja placeholders were changed to the following:
 
 | Function | New | Original | Usage |
 | -------- | --- | -------- | ----- |
@@ -250,7 +433,7 @@ Standard Jinja placeholders: `{{ variable_name }}`, `{% for item in items %} {% 
 
 _This was based on a useful but outdated project called [latexbuild](https://pypi.org/project/latexbuild/)_
 
-### Usage Examples
+### 03 Usage Examples
 
 - You want to combine multiple files into a packet: `pdfs/document1.pdf`, `pdfs/document2.pdf`, and `pdfs/document3.pdf`. This makes printing and stapling multiple copies easier: `gatpack combine pdfs/*.pdf packet.pdf`
 
@@ -261,7 +444,11 @@ _This was based on a useful but outdated project called [latexbuild](https://pyp
   gatpack build invoice.tex invoice.pdf
   ```
 
-## Roadmap
+______________________________________________________________________
+
+## Community & Development
+
+### 01 Roadmap
 
 See the [open issues](https://github.com/GatlenCulp/gatpack/issues) for a list of proposed features (and known issues).
 
@@ -283,17 +470,14 @@ See the [open issues](https://github.com/GatlenCulp/gatpack/issues) for a list o
 
 - [ ] Footers
 
-## Support
-
-> **[?]**
-> Provide additional ways to contact the project maintainer/maintainers.
+### 02 Support
 
 Reach out to the maintainer at one of the following places:
 
 - [GitHub issues](https://github.com/GatlenCulp/gatpack/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+)
 - Contact options listed on [this GitHub profile](https://github.com/GatlenCulp)
 
-## Project assistance
+### 03 Project assistance
 
 If you want to say **thank you** or/and support active development of GatPack:
 
@@ -303,40 +487,16 @@ If you want to say **thank you** or/and support active development of GatPack:
 
 Together, we can make GatPack **better**!
 
-## Contributing
+### 04 Contributing
 
 First off, thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody else and are **greatly appreciated**.
 
 Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you for being involved!
 
-## Authors & contributors
+<details>
 
-The original setup of this repository is by [](https://github.com/GatlenCulp).
-
-For a full list of all authors and contributors, see [the contributors page](https://github.com/GatlenCulp/gatpack/contributors).
-
-## Security
-
-GatPack follows good practices of security, but 100% security cannot be assured.
-GatPack is provided **"as is"** without any **warranty**. Use at your own risk.
-
-_For more information and to report security issues, please refer to our [security documentation](docs/SECURITY.md)._
-
-## License
-
-This project is licensed under the **MIT**.
-
-See [LICENSE](LICENSE) for more information.
-
-## Acknowledgements
-
-> **[?]**
-> If your work was funded by any organization or institution, acknowledge their support here.
-> In addition, if your work relies on other software libraries, or was inspired by looking at other work, it is appropriate to acknowledge this intellectual debt too.
-
-## Project Organization
-
-<details><summary>Project Organization</summary>
+<summary>Project Organization</summary>
+<br />
 
 ```
 📁 .
@@ -382,3 +542,30 @@ See [LICENSE](LICENSE) for more information.
 ```
 
 </details>
+
+### 05 Authors & contributors
+
+The original setup of this repository is by [Gatlen Culp](https://github.com/GatlenCulp).
+
+For a full list of all authors and contributors, see [the contributors page](https://github.com/GatlenCulp/gatpack/contributors).
+
+### 06 Security
+
+GatPack follows good practices of security, but 100% security cannot be assured.
+GatPack is provided **"as is"** without any **warranty**. Use at your own risk.
+
+_For more information and to report security issues, please refer to our [security documentation](docs/SECURITY.md)._
+
+### 07 License
+
+This project is licensed under the **MIT**.
+
+See [LICENSE](LICENSE) for more information.
+
+### 08 Acknowledgements
+
+- [Cambridge-Boston Alignment Initiative](https://www.cbai.ai/) + [MIT AI Alignment](https://aialignment.mit.edu/) for employing me to work on program logistics which lead me to develop and share this project as a consequence
+- Further upstream, [Open Philanthrophy](https://www.openphilanthropy.org/) provides a lot of the funding for CBAI/MAIA
+- Thanks to [Samuel Roeca](https://github.com/pappasam) for developing [latexbuild](https://github.com/pappasam/latexbuild), from which some of the LaTeX templating code was borrowed.
+
+<!-- TODO: Reach out to Samuel and let him know about this. -->
