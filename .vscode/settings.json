@@ -11,8 +11,9 @@
 
 	// Excluded Files Won't Show in Sidebar
 	"files.exclude": {
+		"**/.cache": true,
 		// Version Control
-		"**/.git": false,
+		"**/.git": true,
 		"**/.gitattributes": false,
 		"**/.github": false,
 		"**/.gitignore": false,
@@ -37,17 +38,17 @@
 		"**/.ipynb_checkpoints": false,
 		"**/.mypy_cache": false,
 		"**/.prettierrc": false,
-		"**/.pytest_cache": false,
+		"**/.pytest_cache": true,
 		"**/.python-version": false,
 		"**/.ruff_cache": false,
 		"**/.ruby-lsp": false,
-		"**/.venv": false,
+		"**/.venv": true,
 		"**/.vscode": false,
 		"**/*.sublime-*": false,
 		"**/venv": false,
 		// Build and Distribution
 		"**/build": false,
-		"**/dist": false,
+		"**/dist": true,
 		"**/*.egg-info": false,
 		"**/wheels": false,
 		"**/downloads": false,

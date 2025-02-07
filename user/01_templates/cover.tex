@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}  % Required for including images
+\usepackage[scaled]{helvet} % Helvetica font package
+\renewcommand{\familydefault}{\sfdefault} % Make Helvetica the default font
+\usepackage{array}  % Add this line near the other usepackage statements
+\usepackage{xcolor}  % Add this line near the other usepackage statements
+
+\usepackage{sectsty}        % Allows customizing section fonts
+\allsectionsfont{\sffamily} % Make section titles sans-serif
+
+\begin{document}
+
+\thispagestyle{empty} % Remove page numbering
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Header ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{../00_assets/maia-horizontal_cropped.jpeg}\\
+    \vspace{0.5em}
+    {\Large \textcolor[HTML]{333333}{Intro Fellowship}}\\
+    \vspace{0.5em}
+    {\textcolor[HTML]{333333}{Spring 2024}}
+\end{center}
+
+\vspace{8em}
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━ Main Title ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+    [ WEEK 5 ]\\
+    \vspace{0.7em}
+    {\Huge \textbf{Model internals}}\\
+    \vspace{0.7em}
+    READINGS
+\end{center}
+
+\vfill  % This will push the following content to the bottom
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Readings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+    \begin{tabular}{>{\centering\arraybackslash\footnotesize\color[HTML]{82A2AA}}p{0.3\textwidth}>{\centering\arraybackslash\footnotesize\color[HTML]{82A2AA}}p{0.3\textwidth}>{\centering\arraybackslash\footnotesize\color[HTML]{82A2AA}}p{0.3\textwidth}}
+        Locating and Editing Factual Associations in GPT: Companion blog post \newline \emph{(Meng et al., YEAR)}&
+        Discovering latent knowledge in language models without supervision (Pages 1--5) \newline \emph{(Burns et al., 2022)}&
+        Inference-Time Intervention: Eliciting Truthful Answers from a Language Model (\S1--3) \newline \emph{(Li et al., 2022)}
+    \end{tabular}
+\end{center}
+
+\vspace{2em}  % Add some space at the bottom margin
+
+\end{document}

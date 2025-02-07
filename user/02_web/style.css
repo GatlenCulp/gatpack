@@ -1,0 +1,128 @@
+/* Uses WeasyPrint */
+
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url(../00_assets/Futura.ttc);
+}
+
+body {
+  font-family: "Futura", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: black;
+  background-color: #fff;
+}
+
+/* Cover article wrapper */
+#cover {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 40px; /* Increased top/bottom padding */
+}
+
+/* Logo and header section */
+#logo {
+  height: 60px; /* Reduced logo size */
+  margin-bottom: 10px;
+}
+
+#program-long-name {
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+}
+
+#time-period {
+  font-size: 1rem;
+  margin-bottom: 4rem; /* Add space after header section */
+}
+
+/* Middle content */
+#chron-info {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+#title {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+#subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+/* Readings section */
+#readings {
+  display: flex;
+  flex-direction: column; /* Stack readings vertically */
+  gap: 1rem;
+  width: 90%;
+  max-width: 600px; /* Limit width for better readability */
+  margin: auto 0; /* Center vertically in remaining space */
+}
+
+#readings div {
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* Bottom references row */
+#references {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 80%;
+  max-width: 900px;
+  margin-top: auto; /* This ensures it stays at bottom */
+  padding-bottom: 20px; /* Add some bottom padding */
+}
+#references div {
+  flex: 1 1 300px;
+  text-align: center;
+  margin: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Add a wrapper for the middle content if needed */
+.middle-content {
+  flex-grow: 1; /* Takes up available space, pushing readings down */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Add these new styles */
+article {
+    break-before: page;  /* Forces a page break before this element */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cover-backside {
+    break-before: page;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;  /* Changed from center to flex-end */
+    padding-bottom: 40px;   /* Add some space from bottom edge */
+}

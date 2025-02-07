@@ -1,0 +1,21 @@
+# Fdb version 4
+["pdflatex"] 1738811773.69596 "/Users/gat/work/gatpack/tests/cover.jinja.tex" "cover.jinja.pdf" "cover.jinja" 1738811773.93356 0
+  "/Users/gat/work/gatpack/tests/cover.jinja.tex" 1738811773.04921 80 15699dfdf55893fea481eab4a1585a5f ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
+  "/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty" 1644112042 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
+  "/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty" 1572645307 1057 525c2192b5febbd8c1f662c9468335bb ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls" 1705352648 20144 147463a6a579f4597269ef9565205cfe ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/base/size12.clo" 1705352648 8449 f07039d8e4e89f21078d9b5137579bfc ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty" 1578002852 41601 9cf6c5257b1bc7af01a58859749dd37a ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty" 1654720880 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
+  "/usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf" 1708706663 41649 5d6ae549fbbcb850a863f69aa41f3d10 ""
+  "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727144510 8221424 01fe6597be54a99e4c081fc5d27a3de1 ""
+  "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
+  "cover.jinja.aux" 1738811773.69538 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "cover.jinja.tex" 1738811773.04921 80 15699dfdf55893fea481eab4a1585a5f ""
+  (generated)
+  "cover.jinja.aux"
+  "cover.jinja.log"
+  "cover.jinja.pdf"
+  (rewritten before read)

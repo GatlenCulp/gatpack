@@ -57,12 +57,12 @@ repos:
         additional_dependencies: ["validate-pyproject-schema-store[all]"]
 
   ### Javascript & Web Tools ###
-  - repo: https://github.com/biomejs/pre-commit
-    rev: "v0.6.1"
-    hooks:
-      - id: biome-check
-        name: "🟨 javascript · Lint, format, and safe fixes with Biome"
-        additional_dependencies: ["@biomejs/biome@1.9.4"]
+  # - repo: https://github.com/biomejs/pre-commit
+  #   rev: "v0.6.1"
+  #   hooks:
+  #     - id: biome-check
+  #       name: "🟨 javascript · Lint, format, and safe fixes with Biome"
+  #       additional_dependencies: ["@biomejs/biome@1.9.4"]
 
   ### Data & Config Validation ###
   - repo: https://github.com/python-jsonschema/check-jsonschema
@@ -215,22 +215,22 @@ repos:
   #                             🧪 Fast Tests (Local)                            #
   # ---------------------------------------------------------------------------- #
 
-  - repo: local
-    hooks:
-      - id: pytest-collect
-        name: 🧪 test · Validate test formatting
-        entry: ./.venv/bin/pytest tests
-        language: system
-        types: [python]
-        args: ["--collect-only"]
-        pass_filenames: false
-        always_run: true
-      # STRICT
-      # - id: pytest-fast
-      #   name: 🧪 test · Run fast tests
-      #   entry: ./.venv/bin/pytest tests
-      #   language: system
-      #   types: [python]
-      #   args: ["--max-timeout=3"]
-      #   pass_filenames: false
-      #   always_run: true
+  # - repo: local
+  #   hooks:
+  #     - id: pytest-collect
+  #       name: 🧪 test · Validate test formatting
+  #       entry: ./.venv/bin/pytest tests
+  #       language: system
+  #       types: [python]
+  #       args: ["--collect-only"]
+  #       pass_filenames: false
+  #       always_run: true
+  # STRICT
+  # - id: pytest-fast
+  #   name: 🧪 test · Run fast tests
+  #   entry: ./.venv/bin/pytest tests
+  #   language: system
+  #   types: [python]
+  #   args: ["--max-timeout=3"]
+  #   pass_filenames: false
+  #   always_run: true

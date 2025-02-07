@@ -7,6 +7,53 @@ PYTHON_VERSION = 3.12
 PYTHON_INTERPRETER = python
 DOCS_PORT ?= 8000
 
+.PHONY: w-example
+example: ## Run example code
+	weasyprint ./example/report.html ./example/test.pdf
+
+.PHONY: w-compile
+compile: ## Run compilation code
+	weasyprint ./user/02_web/cover.html ./user/03_pdf/cover-test.pdf
+
+.PHONY: gatpack
+gatpack: ## Run gatpack cli
+	echo "HELLO"
+
+.PHONY: test-init
+test-init: ## Run gatpack init
+	cookiecutter "https://github.com/GatlenCulp/cookiecutter-gatpack" --checkout "dev"
+
+.PHONY: test-render
+test-render: ## Run gatpack render
+	# gatpack render ./tests/test.jinja.tex ./tests/test.tex
+	# rm ./user/01_templates/cover-test.tex
+	# Test Standard Jinja Rendering
+	cd ./tests/render && rm -f test-standard-jinja.tex && \
+		gatpack render test-standard-jinja.jinja.tex \
+		test-standard-jinja.tex \
+		compose.gatpack.json
+	# Test Special Jinja Rendering
+	cd ./tests/render && rm -f test-tex-jinja.tex && \
+		gatpack render test-tex-jinja.jinja.tex \
+		test-tex-jinja.tex compose.gatpack.json \
+		--no-use-standard-jinja
+
+.PHONY: test-combine
+test-combine: ## Run gatpack render
+	# rm ./user/01_templates/cover-test.tex
+	# gatpack combine ./tests/test.pdf ./tests/test.pdf ./tests/test-combine.pdf
+	gatpack combine ./tests/combine/glob/test-*.pdf ./tests/combine/glob/test-glob-combine.pdf
+
+.PHONY: test-build
+test-build: ## Run gatpack build
+	# rm ./user/01_templates/cover-test.tex
+	gatpack build ./tests/test.tex ./tests/test-build.pdf
+	# cd tests && pdflatex test-build.tex -interaction=nonstopmode -halt-on-error
+
+.PHONY: test-footer
+test-footer: ## Run gatpack footer
+	gatpack footer ./tests/test-no-footer.pdf "Page n of N" ./tests/test-footer.pdf
+
 #################################################################################
 # UTILITIES                                                                     #
 #################################################################################
@@ -115,18 +162,23 @@ data: requirements
 # Self Documenting Commands                                                     #
 #################################################################################
 
-.DEFAULT_GOAL := help
 
-.PHONY: help
-help:  ## Show this help message
-	@echo "\033[38;5;39m   ____  ___ _____              "
-	@echo "  / ___|/ _ \_   _|__ _ __ ___  "
-	@echo " | |  _| | | || |/ _ \ '_ \` _ \ "
+.PHONY: _print-logo
+_print-logo: ## Prints the GOTem logo
+	@echo "\033[38;5;39m   ____  ___ _____"
+	@echo "  / ___|/ _ \_   _|__ _ __ ___"
+	@echo " | |  _| | | || |/ _ \ '_ \` _ \\"
 	@echo " | |_| | |_| || |  __/ | | | | |"
 	@echo "  \____|\___/ |_|\___|_| |_| |_|\033[0m"
+
+
+.PHONY: help
+help: _print-logo  ## Show this help message
 	@echo "\n\033[1m~ Available rules: ~\033[0m\n"
 	@echo "For VSCode/Cursor, try: ⇧ ⌘ P, Tasks: Run Task\n"
 	@grep -E '^[a-zA-Z][a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[38;5;222m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: all
 all: help
+
+.DEFAULT_GOAL := all
