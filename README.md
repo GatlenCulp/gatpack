@@ -79,8 +79,8 @@ Let us know if your team is using it an how!
 
 - [About](#about)
 - [Getting Started](#getting-started)
-  - [00 Requirements](#00-requirements)
-  - [01 Install GatPack](#01-install-gatpack)
+  - [00 Requirements (Python & LaTeX)](#00-requirements-python--latex)
+  - [01 Install GatPack (`pip install gatpack`)](#01-install-gatpack-pip-install-gatpack)
   - [02 Initialize your project (`gatpack init`)](#02-initialize-your-project-gatpack-init)
   - [03 Build the Example Project (`build.sh`)](#03-build-the-example-project-buildsh)
   - [04 (Optional) Learn How the Example Projects Work](#04-optional-learn-how-the-example-projects-work)
@@ -109,12 +109,12 @@ ______________________________________________________________________
 
 ## Getting Started
 
-### 00 Requirements
+### 00 Requirements (Python & LaTeX)
 
 - Python 3.10+
 - LaTeX (`pdflatex` specifically, see more instructions on installing below)
 
-### 01 Install GatPack
+### 01 Install GatPack (`pip install gatpack`)
 
 Run the following command to install globally:
 
@@ -168,6 +168,8 @@ gatpack init
 ```
 
 Follow the set up steps to name your project.
+
+_Source code for the project template can be found [here](https://github.com/GatlenCulp/cookiecutter-gatpack)_
 
 ### 03 Build the Example Project (`build.sh`)
 
@@ -566,6 +568,7 @@ See [LICENSE](LICENSE) for more information.
 
 - [Cambridge-Boston Alignment Initiative](https://www.cbai.ai/) + [MIT AI Alignment](https://aialignment.mit.edu/) for employing me to work on program logistics which lead me to develop and share this project as a consequence
 - Further upstream, [Open Philanthrophy](https://www.openphilanthropy.org/) provides a lot of the funding for CBAI/MAIA
+- Other AI Safety Student groups who are doing their best to keep the world safe.
 - Thanks to [Samuel Roeca](https://github.com/pappasam) for developing [latexbuild](https://github.com/pappasam/latexbuild), from which some of the LaTeX templating code was borrowed.
 
 <!-- TODO: Reach out to Samuel and let him know about this. -->
