@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GatPack Compose Schema",
+  "description": "Schema for GatPack composition configuration",
+  "type": "object",
+  "properties": {
+      "name": {
+          "type": "string",
+          "description": "Optional name for the configuration file",
+          "default": "",
+          "examples": ["Intro Fellowship Reading Packet"]
+      },
+      "context": {
+          "type": "object",
+          "description": "Context assigning values to variable names",
+          "default": {},
+          "additionalProperties": true,
+          "examples": [{
+              "program_long_name": "Intro Fellowship",
+              "time_period": "Spring 2024",
+              "chron_info": "WEEK 5",
+              "title": "Model internals",
+              "subtitle": "READINGS"
+          }]
+      }
+  },
+  "additionalProperties": false
+}
