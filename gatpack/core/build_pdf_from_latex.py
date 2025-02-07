@@ -59,7 +59,6 @@ def build_pdf_from_latex(
             "pdflatex",
             "-interaction=nonstopmode",  # Don't stop for errors
             "-halt-on-error",  # But do exit if there are errors
-            "-job-name",
             file.name,  # Just the filename since we're in the working dir
         ],
         cwd=file.parent,
