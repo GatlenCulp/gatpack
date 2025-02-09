@@ -42,7 +42,7 @@ def render(
             "{% for item in items %}, etc.)"
             r"instead of custom LaTeX Jinja Tags (\VAR{ var } \BLOCK{}, etc.)",
         ),
-    ] = True,
+    ] = False,
     # **kwargs: Annotated[
     #     dict[str, Any],
     #     typer.Argument(

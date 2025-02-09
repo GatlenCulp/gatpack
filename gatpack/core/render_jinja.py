@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Any
 from rich import print
-from jinja2 import Environment, Template, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader
 
 # TODO: look at this https://stackoverflow.com/questions/46652984/python-jinja2-latex-table
 
