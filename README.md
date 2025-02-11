@@ -496,13 +496,19 @@ ______________________________________________________________________
 
 Planned features:
 
-- [ ] Change Jinja template delimiters to be LaTeX friendly (Highest priority)
+- [x] Change Jinja template delimiters to be LaTeX friendly (Highest priority)
 
-- [ ] Fix the actual Jinja LaTeX templates for packet making to look nice
+- [x] Fix the actual Jinja LaTeX templates for packet making to look nice
 
 - [ ] Add a padding command that will make sure all PDFs have an even number of pages before merging (that way unrelated documents don't get printed on the front and back side of the same page)
 
-- [ ] Better syntax for the CLI
+- [ ] Better syntax for the CLI (`--from file --to output` syntax is probably a good call. Check out Pandoc and compare)
+
+- [ ] Automatically detect `compose.gatpack.json` file and use it as input
+
+- [ ] Allow for building workflows within the `compose.gatpack.json` file
+
+- [ ] Allow GatPack to pull from the AirTable readings database automatically to generate both compose file and
 
 - [ ] Make it easier to chain together multiple gatpack calls
 

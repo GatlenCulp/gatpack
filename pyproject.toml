@@ -15,7 +15,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 
 dependencies = [
     "loguru>=0.7.3", # Better logging
@@ -131,7 +131,9 @@ line-length = 100
 [tool.ruff.lint]
 # TODO: Different groups of linting styles depending on code use.
 select = ["ALL"]
-ignore = [] # Add ignores as needed
+ignore = [
+    "UP007"
+] # Add ignores as needed
 
 
 [tool.ruff.lint.isort]

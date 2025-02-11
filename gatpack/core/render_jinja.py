@@ -3,8 +3,6 @@ from typing import Any
 from rich import print
 from jinja2 import Environment, FileSystemLoader
 
-# TODO: look at this https://stackoverflow.com/questions/46652984/python-jinja2-latex-table
-
 # Borrowed from Marc Brinkmann's latex repository (mbr/latex on github)
 J2_ARGS = {
     "block_start_string": r"\BLOCK{",
