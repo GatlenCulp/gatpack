@@ -6,13 +6,13 @@ from gatpack.core.load_compose import GatPackCompose, load_compose
 from gatpack.core.render_jinja import render_jinja
 
 
-def infer_compose() -> GatPackCompose:
+def infer_compose(search_dir: Path) -> GatPackCompose:
     """Infers the compose file to use."""
-    found_compose_files = list(Path.glob("*.compose.yaml"))
+    found_compose_files = list(search_dir.glob("*.gatpack.json"))
     if len(found_compose_files) == 0:
         err_msg = (
             "The operation you're looking for requires a Gatpack Compose file "
-            "and none were found in your current directory."
+            f"and none were found in the directory {search_dir.resolve()}."
         )
         raise FileNotFoundError(err_msg)
     if len(found_compose_files) == 1:
@@ -41,15 +41,18 @@ def infer_file_type(file: Path) -> Literal["tex", "jinja-tex", "pdf"]:
 
 def infer_and_run_command(file: Path, output: Path) -> None:
     """Infers the command that needs to be run based on arguments."""
+    # TODO: Perhaps in the future, search for a command path from the
+    # input file to the output file. Encorporate pandoc in this.
     input_type = infer_file_type(file)
-    output_type = infer_file_type(file)
+    output_type = infer_file_type(output)
     if input_type == "jinja-tex" and output_type == "tex":
-        compose = infer_compose()
+        compose = infer_compose(file.parent)
         render_jinja(file, output, context=compose.context)
         return
     if input_type == "tex" and output_type == "pdf":
         build_pdf_from_latex(file, output)
         return
+
     err_msg = (
         f"Unable to infer command to run with input of {input_type} to output of {output_type}"
     )
