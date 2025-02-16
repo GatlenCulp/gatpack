@@ -34,7 +34,7 @@ def infer(
         ),
     ] = False,
 ) -> None:
-    """CLI command at root, inferring the file formats from the file type and performing the needed operation."""
+    """[DEFAULT] Infers file formats from the file type and performs the needed operations."""
     try:
         logger.info(f"Inferring needed operation and processing file at {file}")
         logger.info(f"And saving to {output}")

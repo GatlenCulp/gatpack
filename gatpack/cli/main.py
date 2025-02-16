@@ -8,17 +8,16 @@ import typer
 
 from gatpack.cli.build import build
 from gatpack.cli.combine import combine
+from gatpack.cli.examples import examples
 from gatpack.cli.footer import footer
+from gatpack.cli.infer import infer
 from gatpack.cli.init import init
 from gatpack.cli.render import render
-from gatpack.cli.infer import infer
 
 # Create Typer app instance
 app = typer.Typer(
     name="gatpack",
-    help="A PDF and website templating tool",
-    add_completion=True,
-    no_args_is_help=True,
+    help="A LaTeX Template to PDF rendering tool.",
 )
 
 
@@ -40,11 +39,11 @@ def root(
     ),
     to_output: Optional[str] = typer.Option(
         None,
-        "--output",
-        "-o",
+        "--to",
+        "-t",
         help="Output file path",
     ),
-    overwrite: bool = typer.Option(  # noqa: ARG001
+    overwrite: bool = typer.Option(
         False,
         "--overwrite",
         help="Whether to overwrite output files if they already exist",
@@ -75,13 +74,14 @@ def root(
 
 
 app.command()(init)
-app.command()(render)
-app.command()(combine)
-app.command()(build)
-app.command()(infer)
+app.command(hidden=True)(render)
+app.command(hidden=True)(combine)
+app.command(hidden=True)(build)
+app.command(hidden=True)(infer)
 app.command(
     hidden=True,  # NotImplemented.
 )(footer)
+app.command()(examples)
 
 if __name__ == "__main__":
     app()
