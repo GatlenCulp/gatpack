@@ -58,9 +58,13 @@ def root(
     ctx.obj["from_file"] = from_file
     ctx.obj["to_output"] = to_output
 
-    # If no subcommand was invoked but both files are provided
+    # If no subcommand and no flags, show help
+    if ctx.invoked_subcommand is None and not (from_file or to_output):
+        typer.echo(ctx.get_help())
+        raise typer.Exit
+
+    # If no subcommand but both files are provided
     if ctx.invoked_subcommand is None and from_file and to_output:
-        # Call render with the provided parameters
         ctx.invoke(infer)
 
 
