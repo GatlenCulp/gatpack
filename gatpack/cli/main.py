@@ -11,7 +11,7 @@ from gatpack.cli.combine import combine
 from gatpack.cli.footer import footer
 from gatpack.cli.init import init
 from gatpack.cli.render import render
-from gatpack.cli.infer_and_process import infer
+from gatpack.cli.infer import infer
 
 # Create Typer app instance
 app = typer.Typer(

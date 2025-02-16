@@ -1,15 +1,14 @@
 """CLI command at root, inferring the file formats from the file type and performing the needed operation."""
 
+from __future__ import annotations
+
 from pathlib import Path
 from typing import Annotated
 
 from loguru import logger
-from rich.console import Console
 import typer
 
-from gatpack.core.build_pdf_from_latex import build_pdf_from_latex
-
-console = Console()
+from gatpack.core.infer_and_run_command import infer_and_run_command
 
 
 def infer(
@@ -32,12 +31,7 @@ def infer(
     try:
         logger.info(f"Inferring needed operation and processing file at {file}")
         logger.info(f"And saving to {output}")
-
-        breakpoint()
-        build_pdf_from_latex(file, output)
-
-        console.print(f"✨ Successfully rendered LaTeX into [bold green]{output}[/]")
-
+        infer_and_run_command(file, output)
     except Exception as e:
-        logger.error(f"Failed to build LaTeX to PDF: {e}")
+        logger.error(f"Failed to merge pdfs: {e}")
         raise typer.Exit(1)

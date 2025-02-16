@@ -7,13 +7,13 @@ PYTHON_VERSION = 3.12
 PYTHON_INTERPRETER = python
 DOCS_PORT ?= 8000
 
-.PHONY: w-example
-example: ## Run example code
-	weasyprint ./example/report.html ./example/test.pdf
+# .PHONY: w-example
+# example: ## Run example code
+# 	weasyprint ./example/report.html ./example/test.pdf
 
-.PHONY: w-compile
-compile: ## Run compilation code
-	weasyprint ./user/02_web/cover.html ./user/03_pdf/cover-test.pdf
+# .PHONY: w-compile
+# compile: ## Run compilation code
+	# weasyprint ./user/02_web/cover.html ./user/03_pdf/cover-test.pdf
 
 .PHONY: gatpack
 gatpack: ## Run gatpack cli
@@ -62,8 +62,8 @@ test-footer: ## Run gatpack footer
 .PHONY: test-infer
 test-infer: ## Run gatpack infer
 	gatpack infer \
-	./tests/infer/test-tex-jinja.jinja.tex \
-	./tests/infer/test-standard-jinja.tex.pdf	
+	./tests/infer/test.jinja.tex \
+	./tests/infer/test.tex	
 
 #################################################################################
 # UTILITIES                                                                     #
