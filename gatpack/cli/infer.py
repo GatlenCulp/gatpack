@@ -33,5 +33,5 @@ def infer(
         logger.info(f"And saving to {output}")
         infer_and_run_command(file, output)
     except Exception as e:
-        logger.error(f"Failed to merge pdfs: {e}")
+        logger.error(f"Failed to infer and run command: {e}")
         raise typer.Exit(1)

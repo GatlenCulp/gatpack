@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import Literal
+import tempfile
 
 from gatpack.core.build_pdf_from_latex import build_pdf_from_latex
 from gatpack.core.load_compose import GatPackCompose, load_compose
@@ -52,7 +53,14 @@ def infer_and_run_command(file: Path, output: Path) -> None:
     if input_type == "tex" and output_type == "pdf":
         build_pdf_from_latex(file, output)
         return
-
+    if input_type == "jinja-tex" and output_type == "pdf":
+        compose = infer_compose(file.parent)
+        with tempfile.NamedTemporaryFile(suffix=".tex", delete=False) as tmp:
+            intermediate_path = Path(tmp.name)
+            render_jinja(file, intermediate_path, context=compose.context)
+            build_pdf_from_latex(intermediate_path, output)
+            intermediate_path.unlink()  # Clean up the temporary file
+        return
     err_msg = (
         f"Unable to infer command to run with input of {input_type} to output of {output_type}"
     )
