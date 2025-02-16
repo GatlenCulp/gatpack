@@ -74,8 +74,8 @@ def root(
 
 
 app.command()(init)
+app.command()(combine)
 app.command(hidden=True)(render)
-app.command(hidden=True)(combine)
 app.command(hidden=True)(build)
 app.command(hidden=True)(infer)
 app.command(
