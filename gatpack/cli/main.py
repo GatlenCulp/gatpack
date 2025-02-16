@@ -44,6 +44,11 @@ def root(
         "-o",
         help="Output file path",
     ),
+    overwrite: bool = typer.Option(  # noqa: ARG001
+        False,
+        "--overwrite",
+        help="Whether to overwrite output files if they already exist",
+    ),
     version: Optional[bool] = typer.Option(  # noqa: ARG001
         None,
         "--version",
@@ -57,6 +62,7 @@ def root(
     ctx.ensure_object(dict)
     ctx.obj["from_file"] = from_file
     ctx.obj["to_output"] = to_output
+    ctx.obj["overwrite"] = overwrite
 
     # If no subcommand and no flags, show help
     if ctx.invoked_subcommand is None and not (from_file or to_output):

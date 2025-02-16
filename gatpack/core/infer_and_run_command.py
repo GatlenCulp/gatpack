@@ -1,6 +1,5 @@
 from pathlib import Path
 from typing import Literal
-import tempfile
 
 from gatpack.core.build_pdf_from_latex import build_pdf_from_latex
 from gatpack.core.load_compose import GatPackCompose, load_compose
@@ -40,7 +39,7 @@ def infer_file_type(file: Path) -> Literal["tex", "jinja-tex", "pdf"]:
     raise Exception(err_msg)
 
 
-def infer_and_run_command(file: Path, output: Path) -> None:
+def infer_and_run_command(file: Path, output: Path, overwrite=False) -> None:
     """Infers the command that needs to be run based on arguments."""
     # TODO: Perhaps in the future, search for a command path from the
     # input file to the output file. Encorporate pandoc in this.
@@ -55,11 +54,13 @@ def infer_and_run_command(file: Path, output: Path) -> None:
         return
     if input_type == "jinja-tex" and output_type == "pdf":
         compose = infer_compose(file.parent)
-        with tempfile.NamedTemporaryFile(suffix=".tex", delete=False) as tmp:
-            intermediate_path = Path(tmp.name)
-            render_jinja(file, intermediate_path, context=compose.context)
-            build_pdf_from_latex(intermediate_path, output)
-            intermediate_path.unlink()  # Clean up the temporary file
+        # with tempfile.NamedTemporaryFile(suffix=".tex", delete=False) as tmp:
+        # intermediate_path = Path(tmp.name)
+        intermediate_path = file.with_name(file.name.split(".")[0] + ".tex")
+        render_jinja(file, intermediate_path, context=compose.context, overwrite=overwrite)
+        print("Render Successful")
+        build_pdf_from_latex(intermediate_path, output, overwrite=overwrite)
+        # intermediate_path.unlink()
         return
     err_msg = (
         f"Unable to infer command to run with input of {input_type} to output of {output_type}"

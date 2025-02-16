@@ -43,6 +43,12 @@ def render(
             r"instead of custom LaTeX Jinja Tags (\VAR{ var } \BLOCK{}, etc.)",
         ),
     ] = False,
+    overwrite: Annotated[
+        bool,
+        typer.Option(
+            help="Whether to overwrite the output file if it already exists",
+        ),
+    ] = False,
     # **kwargs: Annotated[
     #     dict[str, Any],
     #     typer.Argument(
@@ -63,6 +69,7 @@ def render(
             output,
             context=gp_compose.context,
             use_standard_jinja=use_standard_jinja,
+            overwrite=overwrite,
         )
 
         console.print(f"✨ Successfully rendered project in [bold green]{output}[/]")

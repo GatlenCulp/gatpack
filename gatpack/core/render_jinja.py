@@ -22,12 +22,21 @@ def render_jinja(
     output: Path,
     context: dict[str, Any],
     use_standard_jinja: bool = False,
+    overwrite: bool = False,
 ) -> None:
-    """Renders Jinja from the provided input file into the output file."""
+    """Renders Jinja from the provided input file into the output file.
+
+    Args:
+        template: Path to the template file
+        output: Path where the rendered file should be written
+        context: Dictionary of variables to be rendered in the template
+        use_standard_jinja: Whether to use standard Jinja delimiters instead of LaTeX-safe ones
+        overwrite: Whether to overwrite the output file if it already exists
+    """
     if not template.exists():
         err_msg = f"File at {template} does not exist."
         raise FileNotFoundError(err_msg)
-    if output.exists():
+    if output.exists() and not overwrite:
         err_msg = f"There already exists a file at {output}"
         raise FileExistsError(err_msg)
 

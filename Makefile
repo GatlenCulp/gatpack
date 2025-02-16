@@ -61,10 +61,10 @@ test-footer: ## Run gatpack footer
 
 .PHONY: test-infer
 test-infer: ## Run gatpack infer
-	rm ./tests/infer/test.tex
-	gatpack infer \
+	rm -f ./tests/infer/test.tex
+	gatpack infer --overwrite \
 	./tests/infer/test.jinja.tex \
-	./tests/infer/test.tex	
+	./tests/infer/test.pdf
 
 #################################################################################
 # UTILITIES                                                                     #

@@ -26,12 +26,24 @@ def infer(
         Path | None,
         typer.Argument(help="Where to save the resulting files"),
     ],
+    overwrite: Annotated[
+        bool,
+        typer.Option(
+            "--overwrite",
+            help="Overwrite existing output files if they exist",
+        ),
+    ] = False,
 ) -> None:
     """CLI command at root, inferring the file formats from the file type and performing the needed operation."""
     try:
         logger.info(f"Inferring needed operation and processing file at {file}")
         logger.info(f"And saving to {output}")
-        infer_and_run_command(file, output)
+
+        if output and output.exists() and not overwrite:
+            logger.error(f"Output path {output} already exists. Use --overwrite to force.")
+            raise typer.Exit(1)
+
+        infer_and_run_command(file, output, overwrite=overwrite)
     except Exception as e:
         logger.error(f"Failed to infer and run command: {e}")
         raise typer.Exit(1)
