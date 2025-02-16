@@ -488,6 +488,10 @@ The Jinja placeholders above are meant to fix this issue.
   gatpack build invoice.tex invoice.pdf
   ```
 
+### 04 Going Beyond LaTeX & PDFs
+
+If you need more than just LaTeX and PDFs, it's recommended that you check out [pandoc](https://pandoc.org/index.html) -- a software that can convert most files from one format to another (Ex: LaTeX to Markdown, HTML, etc.). It of course doesn't work quite as well as natively writing the document in that language, but I generally recommend it.
+
 ______________________________________________________________________
 
 ## Community & Development
@@ -513,6 +517,10 @@ Planned features:
 - [ ] Make it easier to chain together multiple gatpack calls
 
 - [ ] Footers
+
+Things which won't be implemented but which might be cool:
+
+- [ ] Create a [Custom Pandoc Reader/Writer](https://pandoc.org/custom-readers.html)
 
 See the [open issues](https://github.com/GatlenCulp/gatpack/issues) for a list of proposed features (and known issues).
 

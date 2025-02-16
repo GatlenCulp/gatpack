@@ -11,6 +11,7 @@ from gatpack.cli.combine import combine
 from gatpack.cli.footer import footer
 from gatpack.cli.init import init
 from gatpack.cli.render import render
+from gatpack.cli.infer_and_process import infer
 
 # Create Typer app instance
 app = typer.Typer(
@@ -60,13 +61,14 @@ def root(
     # If no subcommand was invoked but both files are provided
     if ctx.invoked_subcommand is None and from_file and to_output:
         # Call render with the provided parameters
-        ctx.invoke(render)
+        ctx.invoke(infer)
 
 
 app.command()(init)
 app.command()(render)
 app.command()(combine)
 app.command()(build)
+app.command()(infer)
 app.command(
     hidden=True,  # NotImplemented.
 )(footer)

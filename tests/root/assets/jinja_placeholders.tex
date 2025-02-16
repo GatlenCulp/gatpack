@@ -1,0 +1,25 @@
+% This file defines LaTeX commands for Jinja template visualization in editors
+% These commands provide visual highlighting for Jinja template syntax while maintaining
+% LaTeX compatibility. The commands use colored backgrounds to distinguish different
+% template elements:
+%   - \VAR: Light lavender background for variables (e.g., \VAR{user_name})
+%   - \BLOCK: Misty rose background for control structures (e.g., \BLOCK{for item in items})
+%   - \COMMENT: Light cyan background for comments
+%
+% These commands work in conjunction with the modified Jinja syntax for LaTeX templates
+% to provide better editor support and syntax highlighting while preventing conflicts
+% with LaTeX's curly brace syntax.
+%
+% Example usage:
+%   \VAR{student_name}           % For variables
+%   \BLOCK{for i in range(10)}   % For control structures
+%   \COMMENT{TODO: Add more examples}  % For comments
+
+\usepackage{xcolor}
+\definecolor{jinjaColor}{HTML}{7B68EE}  % Medium slate blue color for Jinja
+\definecolor{jinjaVarBg}{HTML}{E6E6FA}    % Light lavender for variables
+\definecolor{jinjaBlockBg}{HTML}{FFE4E1}  % Misty rose for blocks
+\definecolor{jinjaCommentBg}{HTML}{E0FFFF}  % Light cyan for comments
+\newcommand{\VAR}[1]{\colorbox{jinjaVarBg}{\detokenize{#1}}}
+\newcommand{\BLOCK}[1]{\colorbox{jinjaBlockBg}{\detokenize{#1}}}
+\newcommand{\COMMENT}[1]{\colorbox{jinjaCommentBg}{\detokenize{#1}}} 

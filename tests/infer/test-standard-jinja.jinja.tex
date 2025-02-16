@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}  % Required for including images
+\usepackage[scaled]{helvet} % Helvetica font package
+\renewcommand{\familydefault}{\sfdefault} % Make Helvetica the default font
+\usepackage{array}  % For table formatting
+\usepackage{xcolor}  % For custom colors
+\usepackage{hyperref}  % Add this with other packages
+\hypersetup{
+    colorlinks=false,  % Disable colored links
+    pdfborder={0 0 0} % Remove link borders
+}
+
+\usepackage{sectsty}        % Allows customizing section fonts
+\allsectionsfont{\sffamily} % Make section titles sans-serif
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━ Define Variables ━━━━━━━━━━━━━━━━━━━━━━━━ %
+\def\logopath{maia-horizontal_cropped.jpeg}  % Changed to relative path
+\def\programlongname{program_long_name}
+\def\programlongname{
+    {{ program_long_name }}
+}
+\def\timeperiod{
+    {{ time_period }}
+}
+\def\chroninfo{
+    {{ chron_info }}
+}
+\def\maintitle{
+    {{ title }}
+}  % Changed from \title to avoid conflict
+\def\mainsubtitle{
+    {{ subtitle }}
+}  % Changed from \subtitle for clarity
+
+% Define custom colors from JSON
+\definecolor{primaryColor}{HTML}{B48BFF}
+\definecolor{primaryFaded}{HTML}{AEA3CA}
+
+% Define core readings array with URLs
+\def\firstReading{\href{https://www.anthropic.com/index/anthropics-responsible-scaling-policy}{Anthropic's responsible scaling policy \newline \emph{(Anthropic, 2023)}}}
+\def\secondReading{\href{https://www.lesswrong.com/posts/vgHPAXWBkjBgaHe4P/scaling-ai-safely-can-preparedness-frameworks-pull-their}{Scaling AI Safely: Can Preparedness Frameworks Pull Their Weight? \newline \emph{(Jack Titus, 2024)}}}
+\def\thirdReading{\href{https://www.anthropic.com/index/the-long-term-benefit-trust}{The Long-Term Benefit Trust \newline \emph{(Anthropic, 2023)}}}
+\def\fourthReading{\href{https://hbr.org/2023/12/ai-is-testing-the-limits-of-corporate-governance}{AI is Testing the Limits of Corporate Governance \newline \emph{(Tallarita, 2023)}}}
+
+% ━━━━━━━━━━━━━━━━━━━━━━ Document Begins Here ━━━━━━━━━━━━━━━━━━━━━━ %
+\begin{document}
+
+\thispagestyle{empty} % Remove page numbering
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Header ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{\logopath}\\
+    \vspace{0.5em}
+    {\Large \textcolor[HTML]{333333}{\programlongname}}\\
+    \vspace{0.5em}
+    {\textcolor[HTML]{333333}{\timeperiod}}
+\end{center}
+
+\vspace{8em}
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━ Main Title ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+    [ \chroninfo ]\\
+    \vspace{0.7em}
+    {\Huge \textbf{\maintitle}}\\
+    \vspace{0.7em}
+    \uppercase{\mainsubtitle}
+\end{center}
+
+\vfill  % Push the following content to the bottom
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Readings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+    \begin{tabular}{>{\centering\arraybackslash\footnotesize\color{primaryFaded}}p{0.45\textwidth}>{\centering\arraybackslash\footnotesize\color{primaryFaded}}p{0.45\textwidth}}
+        \firstReading & \secondReading \\
+        \thirdReading & \fourthReading
+    \end{tabular}
+\end{center}
+
+\vspace{2em}  % Add some space at the bottom margin
+
+\end{document}

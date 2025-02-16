@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/GatlenCulp/gatpack/refs/heads/dev/gatpack/schema/json/GatPackCompose.schema.json",
+  "name": "test",
+  "context": {
+    "program_long_name": "Intro Fellowship",
+    "time_period": "Spring 2024",
+    "chron_info": "WEEK 5",
+    "title": "Model internals",
+    "subtitle": "READINGS"
+  }
+}

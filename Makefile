@@ -19,6 +19,11 @@ compile: ## Run compilation code
 gatpack: ## Run gatpack cli
 	echo "HELLO"
 
+.PHONY: test-root
+test-root: ## Tests the gatpack root functionality (infer)
+	gatpack --from ./tests/root/test-tex-jinja.jinja.tex \
+	-o ./tests/root/test-tex-jinja.tex
+
 .PHONY: test-init
 test-init: ## Run gatpack init
 	cookiecutter "https://github.com/GatlenCulp/cookiecutter-gatpack" --checkout "dev"
@@ -53,6 +58,12 @@ test-build: ## Run gatpack build
 .PHONY: test-footer
 test-footer: ## Run gatpack footer
 	gatpack footer ./tests/test-no-footer.pdf "Page n of N" ./tests/test-footer.pdf
+
+.PHONY: test-infer
+test-infer: ## Run gatpack infer
+	gatpack infer \
+	./tests/infer/test-tex-jinja.jinja.tex \
+	./tests/infer/test-standard-jinja.tex.pdf	
 
 #################################################################################
 # UTILITIES                                                                     #
