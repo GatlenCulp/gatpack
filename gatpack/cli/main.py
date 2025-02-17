@@ -9,6 +9,7 @@ import typer
 
 from gatpack.cli.build import build
 from gatpack.cli.combine import combine
+from gatpack.cli.compose import compose
 from gatpack.cli.examples import examples
 from gatpack.cli.footer import footer
 from gatpack.cli.infer import infer
@@ -45,7 +46,9 @@ def root(
         help="Output file path",
     ),
     compose_file: Optional[Path] = typer.Option(
-        None, "--compose", help="The compose.gatpack.json file to use for templating operations."
+        None,
+        "--compose",
+        help="The compose.gatpack.json file to use for templating operations.",
     ),
     overwrite: bool = typer.Option(
         False,
@@ -85,6 +88,7 @@ def root(
 
 app.command()(init)
 app.command()(combine)
+app.command()(compose)
 app.command(hidden=True)(render)
 app.command(hidden=True)(build)
 app.command(hidden=True)(infer)

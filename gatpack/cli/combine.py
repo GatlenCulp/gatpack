@@ -7,7 +7,7 @@ from loguru import logger
 from rich.console import Console
 import typer
 
-from gatpack.core.combine_pdfs import combine_pdfs
+from gatpack.core.combine_pdfs import combine_pdfs, resolve_globs
 
 console = Console()
 
@@ -44,25 +44,7 @@ def combine(
 ) -> None:
     """Combine any number of PDFs into a single PDF."""
     try:
-        resolved_pdfs = []
-        # Deal with globbing
-        for pdf in pdfs:
-            glob = list(
-                Path.glob(
-                    Path.cwd(),
-                    pdf,
-                ),
-            )
-            if not glob:
-                err_msg = "Glob picked up no files: {pdf}"
-                raise Exception(err_msg)
-            invalid_selected_files = [pdf for pdf in glob if not pdf.is_file()]
-            if invalid_selected_files:
-                err_msg = "Glob picked up the following invalid files:\n" + "\n".join(
-                    invalid_selected_files,
-                )
-                raise Exception(err_msg)
-            resolved_pdfs.extend(glob)
+        resolved_pdfs = resolve_globs(pdfs)
         logger.info(f"Merging {len(resolved_pdfs)} PDFs")
         logger.info(f"And saving to {output}")
 

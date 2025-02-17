@@ -1,7 +1,8 @@
 from pathlib import Path
 from typing import Any
-from rich import print
+
 from jinja2 import Environment, FileSystemLoader
+from loguru import logger
 
 # Borrowed from Marc Brinkmann's latex repository (mbr/latex on github)
 J2_ARGS = {
@@ -50,4 +51,4 @@ def render_jinja(
     j2_template = j2_env.get_template(template.name)
     render = j2_template.render(context)
     output.write_text(render)
-    print(f"✨ Template successfully rendered, see your result at {output}")
+    logger.info(f"Template successfully rendered, see result at {output}")
