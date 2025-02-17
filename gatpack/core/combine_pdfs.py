@@ -12,6 +12,7 @@ TEMPLATE_URLS = {
 
 
 def resolve_globs(pdfs: list[str]) -> list[Path]:
+    """Transforms a list of strings containing globs into a list of paths."""
     resolved_pdfs = []
     # Deal with globbing
     for pdf in pdfs:
@@ -23,7 +24,7 @@ def resolve_globs(pdfs: list[str]) -> list[Path]:
         )
         if not glob:
             err_msg = "Glob picked up no files: {pdf}"
-            raise Exception(err_msg)
+            raise FileNotFoundError(err_msg)
         invalid_selected_files = [pdf for pdf in glob if not pdf.is_file()]
         if invalid_selected_files:
             err_msg = "Glob picked up the following invalid files:\n" + "\n".join(
@@ -31,7 +32,6 @@ def resolve_globs(pdfs: list[str]) -> list[Path]:
             )
             raise Exception(err_msg)
         resolved_pdfs.extend(glob)
-    # import ipdb; ipdb.set_trace()
     return resolved_pdfs
 
 
@@ -39,10 +39,8 @@ def combine_pdfs(
     pdfs: list[Path],
     output: Path,
     overwrite: bool,
-    **kwargs: dict[str, Any],
 ) -> None:
     """Combines any number of provided pdfs into a single one."""
-    # from IPython import embed; embed()
     non_existent_pdfs = [pdf for pdf in pdfs if not pdf.exists()]
     if non_existent_pdfs:
         err_msg = "The following pdfs do not exist:\n" + "\n".join(non_existent_pdfs)

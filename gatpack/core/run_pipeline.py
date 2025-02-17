@@ -5,19 +5,20 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Optional
 
-from loguru import logger
+from rich.console import Console
+from rich.panel import Panel
+from rich.progress import track
 
 from gatpack.core.combine_pdfs import combine_pdfs, resolve_globs
 from gatpack.core.infer_and_run_command import infer_and_run_command, infer_compose, load_compose
 from gatpack.schema.GatPackCompose import CombineStep, RenderStep, Step
 
-import ipdb
+console = Console()
 
 
 def _run_step(step: Step, overwrite: bool = False) -> None:
     """Runs a given step."""
     if isinstance(step, RenderStep):
-        # ipdb.set_trace()
         infer_and_run_command(Path(step.from_), Path(step.to), overwrite=overwrite)
         return
     if isinstance(step, CombineStep):
@@ -46,9 +47,17 @@ def run_pipeline(
     except Exception:
         err_msg = f"pipeline id {pipeline_id} not detected in compose file."
         raise Exception(err_msg)
-    # ipdb.set_trace()
-    logger.info(f"Found and now running {pipeline_id}")
-    for step in pipeline.steps:
-        print(step.name)
+
+    console.print(f"\n[bold blue]Running Pipeline:[/] [green]{pipeline_id}[/]")
+
+    for step in track(pipeline.steps, description="Processing steps"):
+        console.print(
+            Panel(
+                f"[bold]{step.name}[/]",
+                border_style="cyan",
+                padding=(0, 2),
+            ),
+        )
         _run_step(step, overwrite=overwrite)
-    logger.info("Pipeline ran successfully.")
+
+    console.print("\n[bold green]✨ Pipeline ran successfully![/]")
