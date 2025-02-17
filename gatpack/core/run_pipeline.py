@@ -5,7 +5,26 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Optional
 
-from gatpack.core.infer_and_run_command import infer_compose, load_compose
+from loguru import logger
+
+from gatpack.core.combine_pdfs import combine_pdfs
+from gatpack.core.infer_and_run_command import infer_and_run_command, infer_compose, load_compose
+from gatpack.schema.GatPackCompose import CombineStep, RenderStep, Step
+
+import ipdb
+
+
+def _run_step(step: Step, overwrite: bool = False) -> None:
+    """Runs a given step."""
+    if isinstance(step, RenderStep):
+        ipdb.set_trace()
+        infer_and_run_command(Path(step.from_), Path(step.to), overwrite=overwrite)
+        return
+    if isinstance(step, CombineStep):
+        combine_pdfs(step.combine, step.to, overwrite=overwrite)
+        return
+    err_msg = f"Unknown step type {type(step)} for step:\n{step}"
+    raise Exception(err_msg)
 
 
 def run_pipeline(
@@ -26,4 +45,9 @@ def run_pipeline(
     except Exception:
         err_msg = f"pipeline id {pipeline_id} not detected in compose file."
         raise Exception(err_msg)
-    breakpoint()
+    # ipdb.set_trace()
+    logger.info(f"Found and now running {pipeline_id}")
+    for step in pipeline.steps:
+        print(step.name)
+        _run_step(step, overwrite=overwrite)
+    logger.info("Pipeline ran successfully.")

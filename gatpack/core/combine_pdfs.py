@@ -4,12 +4,34 @@ from pathlib import Path
 from typing import Any, Literal
 
 from pypdf import PdfWriter
-from loguru import logger
 
 TemplateType = Literal["default"]  # Add more template types as needed
 TEMPLATE_URLS = {
     "default": "https://github.com/GatlenCulp/cookiecutter-gatpack.git",
 }
+
+
+def resolve_globs(pdfs: list[str]) -> Path:
+    resolved_pdfs = []
+    # Deal with globbing
+    for pdf in pdfs:
+        glob = list(
+            Path.glob(
+                Path.cwd(),
+                pdf,
+            ),
+        )
+        if not glob:
+            err_msg = "Glob picked up no files: {pdf}"
+            raise Exception(err_msg)
+        invalid_selected_files = [pdf for pdf in glob if not pdf.is_file()]
+        if invalid_selected_files:
+            err_msg = "Glob picked up the following invalid files:\n" + "\n".join(
+                invalid_selected_files,
+            )
+            raise Exception(err_msg)
+        resolved_pdfs.extend(glob)
+    return resolved_pdfs
 
 
 def combine_pdfs(
