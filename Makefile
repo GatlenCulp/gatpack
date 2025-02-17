@@ -52,7 +52,7 @@ test-build: ## Run gatpack build
 
 .PHONY: test-footer
 test-footer: ## Run gatpack footer
-	gatpack footer ./tests/test-no-footer.pdf "Page n of N" ./tests/test-footer.pdf
+	gatpack footer ./tests/footer/test-no-footer.pdf "Page n of N" ./tests/footer/test-footer.pdf
 
 #################################################################################
 # UTILITIES                                                                     #

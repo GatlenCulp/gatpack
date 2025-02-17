@@ -15,4 +15,6 @@ ruff
 scikit-learn
 tqdm
 typer
+pypdf
+reportlab
 -e .
