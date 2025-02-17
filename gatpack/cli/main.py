@@ -21,7 +21,7 @@ app.command()(render)
 app.command()(combine)
 app.command()(build)
 app.command(
-    hidden=True,  # NotImplemented.
+    # hidden=True,  # NotImplemented.
 )(footer)
 
 

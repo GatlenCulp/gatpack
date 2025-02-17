@@ -3,8 +3,10 @@
 from pathlib import Path
 from typing import Any, Literal
 
-from pypdf import PdfWriter
+from pypdf import PdfWriter, PdfReader
 from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+import io
 
 
 def add_footer_to_pdf(
@@ -21,7 +23,7 @@ def add_footer_to_pdf(
         err_msg = f"There already exists a file at {output}"
         raise FileExistsError(err_msg)
 
-    raise NotImplementedError("add_footer_to_pdf has yet to be implemented.")
+    add_page_numbers(file, output)
 
     # pdf = io.BytesIO()
     # c = canvas.Canvas(packet, pagesize=letter)
@@ -40,3 +42,25 @@ def add_footer_to_pdf(
     # c.save()
     # packet.seek(0)
     # return PdfReader(packet)
+
+
+def add_page_numbers(input_pdf_path, output_pdf_path):
+    reader = PdfReader(input_pdf_path)
+    writer = PdfWriter()
+
+    for page_num in range(len(reader.pages)):
+        page = reader.pages[page_num]
+        packet = io.BytesIO()
+        can = canvas.Canvas(packet, pagesize=letter)
+        can.setFont('Helvetica', 10)
+        can.drawString(297.5, 15, f"{page_num + 1} / {len(reader.pages)}")
+        can.save()
+        packet.seek(0)
+        page_num_pdf = PdfReader(packet)
+
+        numbered_page = page_num_pdf.pages[0]
+        page.merge_page(numbered_page)
+        writer.add_page(page)
+
+    with open(output_pdf_path, "wb") as output_pdf:
+        writer.write(output_pdf)
