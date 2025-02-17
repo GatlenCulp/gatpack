@@ -36,7 +36,6 @@ def run_pipeline(
 ) -> None:
     """Run the specified pipeline."""
     compose = load_compose(compose_file) if compose_file else infer_compose()
-    # Find first pipeline matching this id
     try:
         pipeline = next(
             filter(
@@ -48,9 +47,17 @@ def run_pipeline(
         err_msg = f"pipeline id {pipeline_id} not detected in compose file."
         raise Exception(err_msg)
 
-    console.print(f"\n[bold blue]Running Pipeline:[/] [green]{pipeline_id}[/]")
+    console.print(
+        f"\n[bold blue]Running Pipeline:[/]\n"
+        f"[green]{pipeline_id}[/] "
+        f"[dark_green]{pipeline.description}[/]",
+    )
 
-    for step in track(pipeline.steps, description="Processing steps"):
+    for step in track(
+        pipeline.steps,
+        description="Processing steps",
+        console=console,
+    ):
         console.print(
             Panel(
                 f"[bold]{step.name}[/]",

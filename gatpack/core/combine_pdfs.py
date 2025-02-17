@@ -1,8 +1,9 @@
 """Combines PDFs from any list of files."""
 
 from pathlib import Path
-from typing import Any, Literal
+from typing import Literal
 
+from loguru import logger
 from pypdf import PdfWriter
 
 TemplateType = Literal["default"]  # Add more template types as needed
@@ -54,4 +55,4 @@ def combine_pdfs(
         pdf_writer.append(pdf)
     pdf_writer.write(output)
     pdf_writer.close()
-    print(f"{len(pdfs)} pdfs have been combined into {output}")
+    logger.info(f"{len(pdfs)} pdfs have been combined into {output}")
