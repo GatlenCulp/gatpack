@@ -7,7 +7,7 @@ from typing import Optional
 
 from loguru import logger
 
-from gatpack.core.combine_pdfs import combine_pdfs
+from gatpack.core.combine_pdfs import combine_pdfs, resolve_globs
 from gatpack.core.infer_and_run_command import infer_and_run_command, infer_compose, load_compose
 from gatpack.schema.GatPackCompose import CombineStep, RenderStep, Step
 
@@ -17,11 +17,12 @@ import ipdb
 def _run_step(step: Step, overwrite: bool = False) -> None:
     """Runs a given step."""
     if isinstance(step, RenderStep):
-        ipdb.set_trace()
+        # ipdb.set_trace()
         infer_and_run_command(Path(step.from_), Path(step.to), overwrite=overwrite)
         return
     if isinstance(step, CombineStep):
-        combine_pdfs(step.combine, step.to, overwrite=overwrite)
+        pdfs = resolve_globs(step.combine)
+        combine_pdfs(pdfs, Path(step.to), overwrite=overwrite)
         return
     err_msg = f"Unknown step type {type(step)} for step:\n{step}"
     raise Exception(err_msg)

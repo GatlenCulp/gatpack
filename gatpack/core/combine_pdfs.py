@@ -11,7 +11,7 @@ TEMPLATE_URLS = {
 }
 
 
-def resolve_globs(pdfs: list[str]) -> Path:
+def resolve_globs(pdfs: list[str]) -> list[Path]:
     resolved_pdfs = []
     # Deal with globbing
     for pdf in pdfs:
@@ -31,6 +31,7 @@ def resolve_globs(pdfs: list[str]) -> Path:
             )
             raise Exception(err_msg)
         resolved_pdfs.extend(glob)
+    # import ipdb; ipdb.set_trace()
     return resolved_pdfs
 
 
@@ -41,6 +42,7 @@ def combine_pdfs(
     **kwargs: dict[str, Any],
 ) -> None:
     """Combines any number of provided pdfs into a single one."""
+    # from IPython import embed; embed()
     non_existent_pdfs = [pdf for pdf in pdfs if not pdf.exists()]
     if non_existent_pdfs:
         err_msg = "The following pdfs do not exist:\n" + "\n".join(non_existent_pdfs)
