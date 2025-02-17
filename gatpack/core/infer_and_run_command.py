@@ -23,9 +23,9 @@ def _search_for_compose(search_dir: Path) -> GatPackCompose | None:
     return load_compose(inferred_compose)
 
 
-def _infer_compose(search_dir: Optional[Path]) -> GatPackCompose:
+def infer_compose(search_dir: Optional[Path] = None) -> GatPackCompose:
     """Infers the compose file to use. Order: cwd, then input file dir."""
-    search_order = [Path.cwd(), search_dir]
+    search_order = [Path.cwd(), search_dir] if search_dir else [Path.cwd()]
     for target_dir in search_order:
         compose = _search_for_compose(target_dir)
         if compose:
@@ -62,14 +62,14 @@ def infer_and_run_command(
     input_type = _infer_file_type(file)
     output_type = _infer_file_type(output)
     if input_type == "jinja-tex" and output_type == "tex":
-        compose = load_compose(compose_file) if compose_file else _infer_compose(file.parent)
+        compose = load_compose(compose_file) if compose_file else infer_compose(file.parent)
         render_jinja(file, output, context=compose.context)
         return
     if input_type == "tex" and output_type == "pdf":
         build_pdf_from_latex(file, output)
         return
     if input_type == "jinja-tex" and output_type == "pdf":
-        compose = load_compose(compose_file) if compose_file else _infer_compose(file.parent)
+        compose = load_compose(compose_file) if compose_file else infer_compose(file.parent)
         intermediate_path = file.with_name(file.name.split(".")[0] + ".tex")
         render_jinja(file, intermediate_path, context=compose.context, overwrite=overwrite)
         build_pdf_from_latex(intermediate_path, output, overwrite=overwrite)
