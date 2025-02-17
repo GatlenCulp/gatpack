@@ -49,8 +49,8 @@ def run_pipeline(
 
     console.print(
         f"\n[bold blue]Running Pipeline:[/]\n"
-        f"[green]{pipeline_id}[/] "
-        f"[dark_green]{pipeline.description}[/]",
+        f"[cyan]{pipeline_id}[/] "
+        f"[green]{pipeline.description}[/]",
     )
 
     for step in track(
