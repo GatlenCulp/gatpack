@@ -66,6 +66,13 @@ test-infer: ## Run gatpack infer
 	./tests/infer/test.jinja.tex \
 	./tests/infer/test.pdf
 
+.PHONY: test-root
+test-root: ## Run gatpack with no subcommand (ie: infer)
+	rm -f ./tests/infer/test.tex
+	gatpack --overwrite \
+	--from ./tests/infer/test.jinja.tex \
+	--to ./tests/infer/test.pdf
+
 #################################################################################
 # UTILITIES                                                                     #
 #################################################################################

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Optional
 
 import typer
@@ -43,6 +44,9 @@ def root(
         "-t",
         help="Output file path",
     ),
+    compose_file: Optional[Path] = typer.Option(
+        None, "--compose", help="The compose.gatpack.json file to use for templating operations."
+    ),
     overwrite: bool = typer.Option(
         False,
         "--overwrite",
@@ -59,8 +63,8 @@ def root(
 ) -> None:
     """Common parameters for all commands."""
     ctx.ensure_object(dict)
-    ctx.obj["from_file"] = from_file
-    ctx.obj["to_output"] = to_output
+    ctx.obj["file"] = from_file
+    ctx.obj["output"] = to_output
     ctx.obj["overwrite"] = overwrite
 
     # If no subcommand and no flags, show help
@@ -70,7 +74,13 @@ def root(
 
     # If no subcommand but both files are provided
     if ctx.invoked_subcommand is None and from_file and to_output:
-        ctx.invoke(infer)
+        ctx.invoke(
+            infer,
+            file=Path(from_file),
+            output=Path(to_output),
+            overwrite=overwrite,
+            compose_file=compose_file,
+        )
 
 
 app.command()(init)

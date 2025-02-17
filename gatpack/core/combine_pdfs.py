@@ -15,6 +15,7 @@ TEMPLATE_URLS = {
 def combine_pdfs(
     pdfs: list[Path],
     output: Path,
+    overwrite: bool,
     **kwargs: dict[str, Any],
 ) -> None:
     """Combines any number of provided pdfs into a single one."""
@@ -22,7 +23,7 @@ def combine_pdfs(
     if non_existent_pdfs:
         err_msg = "The following pdfs do not exist:\n" + "\n".join(non_existent_pdfs)
         raise FileNotFoundError(err_msg)
-    if output.exists():
+    if output.exists() and not overwrite:
         err_msg = f"There already exists a file at {output}"
         raise FileExistsError(err_msg)
 
