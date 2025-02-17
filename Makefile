@@ -19,6 +19,10 @@ DOCS_PORT ?= 8000
 gatpack: ## Run gatpack cli
 	echo "HELLO"
 
+.PHONY: schema
+schema: ## Generate GatPackCompose JSON schema
+	python ./gatpack/schema/generate_json_schema.py
+
 .PHONY: test-root
 test-root: ## Tests the gatpack root functionality (infer)
 	gatpack --from ./tests/root/test-tex-jinja.jinja.tex \

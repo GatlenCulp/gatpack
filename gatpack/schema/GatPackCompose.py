@@ -1,67 +1,61 @@
+"""Model schema for a compose.gatpack.json file."""
+
+from __future__ import annotations
+
+from typing import Any, Optional, Union
+
 from pydantic import BaseModel, Field
-from typing import Any
 
 
-## Inspiration from GitHub Actions?
-# name: "Setup Python Environment"
-# description: "Set up Python environment for the given Python version"
+class RenderStep(BaseModel):
+    """Step for rendering a single file using a template."""
 
-# inputs:
-#   python-version:
-#     description: "Python version to use"
-#     required: true
-#     default: "3.12"
-#   uv-version:
-#     description: "uv version to use"
-#     required: true
-#     default: "0.4.6"
-
-# runs:
-#   using: "composite"
-#   steps:
-#     - uses: actions/setup-python@v5
-#       with:
-#         python-version: ${{inputs.python-version}}
-
-#     - name: Install uv
-#       uses: astral-sh/setup-uv@v2
-#       with:
-#         version: ${{inputs.uv-version}}
-#         enable-cache: "true"
-#         cache-suffix: ${{matrix.python-version}}
-
-#     - name: Install Python dependencies
-#       run: uv sync --frozen
-#       shell: bash
+    name: str = Field(..., description="Name of the rendering step")
+    from_: str = Field(
+        ...,
+        alias="from",
+        description="Source template file path",
+    )
+    to: str = Field(..., description="Output file path")
 
 
-## Inspirations from Docker Compose?
-# include:
-#    - infra.yaml
-# services:
-#   web:
-#     build: .
-#     ports:
-#       - "8000:5000"
-#     develop:
-#       watch:
-#         - action: sync
-#           path: .
-#           target: /code
+class CombineStep(BaseModel):
+    """Step for combining multiple PDF files."""
+
+    name: str = Field(..., description="Name of the combination step")
+    combine: list[str] = Field(..., description="List of PDF files to combine")
+    to: str = Field(..., description="Output combined PDF path")
+
+
+Step = Union[RenderStep, CombineStep]
+
+
+class Pipeline(BaseModel):
+    """Represents a single pipeline of steps to produce files."""
+
+    id: str = Field(..., description="Unique identifier for the pipeline")
+    description: Optional[str] = Field(..., description="Description of what the pipeline does")
+    steps: list[Step] = Field(..., description="Ordered list of steps to execute")
 
 
 class GatPackCompose(BaseModel):
     """Class representing the GatPack Compose file."""
 
-    # Is this even necessary?
-    name: str = Field(
-        "",
-        description="Optional name for the configuration file",
-        examples=[
-            "Intro Fellowship Reading Packet",
-        ],
+    version: str = Field(
+        "1.0",
+        description="Schema version for compatibility checking",
     )
-    context: dict[str, Any] = Field(
+    name: Optional[str] = Field(
+        "",
+        description="Optional name for the configuration file.",
+        examples=["Intro Fellowship Reading Packet"],
+    )
+    description: Optional[str] = Field(
+        "",
+        description="Optional description for the compose file.",
+        examples=["Packet for CAIAC's Spring 2025 Intro Fellowship"],
+    )
+    context: Optional[dict[str, Any]] = Field(
         {},
         description="Context assigning values to variable names",
         examples=[
@@ -72,5 +66,43 @@ class GatPackCompose(BaseModel):
                 "title": "Model internals",
                 "subtitle": "READINGS",
             },
+        ],
+    )
+    pipelines: list[Pipeline] = Field(
+        [],
+        description="Step-by-step pipelines to produce files.",
+        examples=[
+            [
+                {
+                    "id": "reading-packet",
+                    "description": "Create the full reading packet.",
+                    "steps": [
+                        {
+                            "name": "Render cover page",
+                            "from": "cover/cover.jinja.tex",
+                            "to": "cover/cover.pdf",
+                        },
+                        {
+                            "name": "Render device readings page",
+                            "from": "device_readings/device_readings.jinja.tex",
+                            "to": "device_readings/device_readings.pdf",
+                        },
+                        {
+                            "name": "Render further readings page",
+                            "from": "further_readings/further_readings.jinja.tex",
+                            "to": "further_readings/further_readings.pdf",
+                        },
+                        {
+                            "name": "Combine all readings into packet.pdf",
+                            "combine": [
+                                "cover/cover.pdf",
+                                "device_readings/device_readings.pdf",
+                                "further_readings/further_readings.pdf",
+                            ],
+                            "to": "output/packet.pdf",
+                        },
+                    ],
+                },
+            ],
         ],
     )

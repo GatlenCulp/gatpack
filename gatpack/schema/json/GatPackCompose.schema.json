@@ -1,29 +1,213 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/GatlenCulp/gatpack/refs/heads/dev/gatpack/schema/json/GatPackCompose.schema.json",
-  "title": "GatPack Compose Schema",
-  "description": "Schema for GatPack composition configuration",
-  "type": "object",
-  "properties": {
-      "name": {
-          "type": "string",
-          "description": "Optional name for the configuration file",
-          "default": "",
-          "examples": ["Intro Fellowship Reading Packet"]
+  "$defs": {
+    "CombineStep": {
+      "description": "Step for combining multiple PDF files.",
+      "properties": {
+        "name": {
+          "description": "Name of the combination step",
+          "title": "Name",
+          "type": "string"
+        },
+        "combine": {
+          "description": "List of PDF files to combine",
+          "items": {
+            "type": "string"
+          },
+          "title": "Combine",
+          "type": "array"
+        },
+        "to": {
+          "description": "Output combined PDF path",
+          "title": "To",
+          "type": "string"
+        }
       },
-      "context": {
-          "type": "object",
-          "description": "Context assigning values to variable names",
-          "default": {},
-          "additionalProperties": true,
-          "examples": [{
-              "program_long_name": "Intro Fellowship",
-              "time_period": "Spring 2024",
-              "chron_info": "WEEK 5",
-              "title": "Model internals",
-              "subtitle": "READINGS"
-          }]
-      }
+      "required": [
+        "name",
+        "combine",
+        "to"
+      ],
+      "title": "CombineStep",
+      "type": "object"
+    },
+    "Pipeline": {
+      "description": "Represents a single pipeline of steps to produce files.",
+      "properties": {
+        "id": {
+          "description": "Unique identifier for the pipeline",
+          "title": "Id",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Description of what the pipeline does",
+          "title": "Description"
+        },
+        "steps": {
+          "description": "Ordered list of steps to execute",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/RenderStep"
+              },
+              {
+                "$ref": "#/$defs/CombineStep"
+              }
+            ]
+          },
+          "title": "Steps",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "steps"
+      ],
+      "title": "Pipeline",
+      "type": "object"
+    },
+    "RenderStep": {
+      "description": "Step for rendering a single file using a template.",
+      "properties": {
+        "name": {
+          "description": "Name of the rendering step",
+          "title": "Name",
+          "type": "string"
+        },
+        "from": {
+          "description": "Source template file path",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Output file path",
+          "title": "To",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "from",
+        "to"
+      ],
+      "title": "RenderStep",
+      "type": "object"
+    }
   },
-  "additionalProperties": false
+  "description": "Class representing the GatPack Compose file.",
+  "properties": {
+    "version": {
+      "default": "1.0",
+      "description": "Schema version for compatibility checking",
+      "title": "Version",
+      "type": "string"
+    },
+    "name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "",
+      "description": "Optional name for the configuration file.",
+      "examples": [
+        "Intro Fellowship Reading Packet"
+      ],
+      "title": "Name"
+    },
+    "description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "",
+      "description": "Optional description for the compose file.",
+      "examples": [
+        "Packet for CAIAC's Spring 2025 Intro Fellowship"
+      ],
+      "title": "Description"
+    },
+    "context": {
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": {},
+      "description": "Context assigning values to variable names",
+      "examples": [
+        {
+          "chron_info": "WEEK 5",
+          "program_long_name": "Intro Fellowship",
+          "subtitle": "READINGS",
+          "time_period": "Spring 2024",
+          "title": "Model internals"
+        }
+      ],
+      "title": "Context"
+    },
+    "pipelines": {
+      "default": [],
+      "description": "Step-by-step pipelines to produce files.",
+      "examples": [
+        [
+          {
+            "description": "Create the full reading packet.",
+            "id": "reading-packet",
+            "steps": [
+              {
+                "from": "cover/cover.jinja.tex",
+                "name": "Render cover page",
+                "to": "cover/cover.pdf"
+              },
+              {
+                "from": "device_readings/device_readings.jinja.tex",
+                "name": "Render device readings page",
+                "to": "device_readings/device_readings.pdf"
+              },
+              {
+                "from": "further_readings/further_readings.jinja.tex",
+                "name": "Render further readings page",
+                "to": "further_readings/further_readings.pdf"
+              },
+              {
+                "combine": [
+                  "cover/cover.pdf",
+                  "device_readings/device_readings.pdf",
+                  "further_readings/further_readings.pdf"
+                ],
+                "name": "Combine all readings into packet.pdf",
+                "to": "output/packet.pdf"
+              }
+            ]
+          }
+        ]
+      ],
+      "items": {
+        "$ref": "#/$defs/Pipeline"
+      },
+      "title": "Pipelines",
+      "type": "array"
+    }
+  },
+  "title": "GatPackCompose",
+  "type": "object"
 }
