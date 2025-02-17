@@ -91,7 +91,7 @@ app.command()(combine)
 app.command()(compose)
 app.command(hidden=True)(render)
 app.command(hidden=True)(build)
-app.command(hidden=True)(infer)
+app.command()(infer)
 app.command(
     hidden=True,  # NotImplemented.
 )(footer)
