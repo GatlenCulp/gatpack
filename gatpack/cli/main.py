@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 
@@ -15,6 +15,7 @@ from gatpack.cli.footer import footer
 from gatpack.cli.infer import infer
 from gatpack.cli.init import init
 from gatpack.cli.render import render
+from gatpack.config import VERSION
 
 # Create Typer app instance
 app = typer.Typer(
@@ -63,7 +64,7 @@ OutputOption = Annotated[
 def version_callback(value: bool) -> None:  # noqa: FBT001
     """Print version and exit."""
     if value:
-        typer.echo("gatpack version: 0.0.6")
+        typer.echo(f"gatpack version: {VERSION}")
         raise typer.Exit()
 
 
