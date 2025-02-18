@@ -51,20 +51,40 @@ def root(
         ctx.invoke(infer)
 
 
-app.command()(init)
-app.command()(combine)
-app.command()(compose)
+app.command(
+    name="init",
+    help="Use CookieCutter to initialize a new GatPack project in your specified directory.",
+    short_help="Initialize a new GatPack project in your specified directory.",
+)(init)
+
+app.command(
+    name="combine",
+    help="Combine PDFs (files or globs) and save them to the specified output file.",
+    short_help="Combine PDFs into a single file.",
+)(combine)
+
+app.command(
+    name="compose",
+    help="Run the specified pipleine ID as defined in the GatPack compose file.",
+    short_help="Run the specified pipleine ID from the compose file.",
+)(compose)
+
 app.command(
     name="infer",
     help="Infers and run needed operations to transform one file format to another.",
     short_help="Automatically transform one file format to another.",
 )(infer)
+
+app.command(
+    name="show-examples",
+    help="Show examples GatPack's common uses.",
+    short_help="Show examples GatPack's common uses.",
+)(examples)
+
 app.command(hidden=True)(render)
 app.command(hidden=True)(build)
-app.command(
-    hidden=True,  # NotImplemented.
-)(footer)
-app.command()(examples)
+app.command(hidden=True)(footer)  # NotImplemented.
+
 
 if __name__ == "__main__":
     app()
