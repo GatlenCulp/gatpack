@@ -49,6 +49,13 @@ OutputOption = Annotated[
     ),
 ]
 
+OutputArgument = Annotated[
+    Path,
+    typer.Argument(
+        help="Output file path",
+    ),
+]
+
 VersionOption = Annotated[
     bool,
     typer.Option(
@@ -60,7 +67,7 @@ VersionOption = Annotated[
     ),
 ]
 
-InputGlobsOption = Annotated[
+InputGlobsArgument = Annotated[
     list[str],
     typer.Argument(
         help="Any number of files. Globs accepted",

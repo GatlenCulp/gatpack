@@ -4,15 +4,15 @@ from loguru import logger
 from rich.console import Console
 import typer
 
-from gatpack.cli.options import InputGlobsOption, OutputOption, OverwriteOption
+from gatpack.cli.options import InputGlobsArgument, OutputArgument, OverwriteOption
 from gatpack.core.combine_pdfs import combine_pdfs, resolve_globs
 
 console = Console()
 
 
 def combine(
-    pdfs: InputGlobsOption,
-    output: OutputOption,
+    pdfs: InputGlobsArgument,
+    output: OutputArgument,
     overwrite: OverwriteOption = False,
 ) -> None:
     """Combine any number of PDFs into a single PDF."""
