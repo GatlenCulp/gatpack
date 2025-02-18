@@ -31,12 +31,6 @@ def init(
             help="Template to use for initialization",
         ),
     ] = "default",
-    # **kwargs: Annotated[
-    #     dict[str, Any],
-    #     typer.Argument(
-    #         help="Additional arguments to pass to CookieCutter.",
-    #     ),
-    # ],
 ) -> None:
     """Initialize a new GatPack project in your specified directory."""
     output_dir = Path.cwd() if output_dir is None else output_dir
