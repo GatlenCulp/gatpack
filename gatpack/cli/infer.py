@@ -8,6 +8,7 @@ from typing import Annotated, Optional
 from loguru import logger
 import typer
 
+from gatpack.cli.options import ComposeFileOption, OverwriteOption
 from gatpack.core.infer_and_run_command import infer_and_run_command
 
 
@@ -23,19 +24,11 @@ def infer(
         ),
     ],
     output: Annotated[
-        Path | None,
+        Optional[Path],
         typer.Argument(help="Where to save the resulting files"),
     ],
-    compose_file: Optional[Path] = typer.Option(
-        None, "--compose", help="The compose.gatpack.json file to use for templating operations."
-    ),
-    overwrite: Annotated[
-        bool,
-        typer.Option(
-            "--overwrite",
-            help="Overwrite existing output files if they exist",
-        ),
-    ] = False,
+    compose_file: ComposeFileOption = None,
+    overwrite: OverwriteOption = False,
 ) -> None:
     """[DEFAULT] Infers file formats from the file type and performs the needed operations."""
     try:

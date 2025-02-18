@@ -1,5 +1,7 @@
+"""Typer CLI options to import and reuse across project."""
+
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Optional
 
 import typer
 
@@ -71,5 +73,25 @@ InputGlobsArgument = Annotated[
     list[str],
     typer.Argument(
         help="Any number of files. Globs accepted",
+    ),
+]
+
+OutputDirArgument = Annotated[
+    Optional[Path],
+    typer.Argument(
+        help="Directory to initialize the project in",
+        exists=False,
+        file_okay=False,
+        dir_okay=True,
+        writable=True,
+    ),
+]
+
+TemplateOption = Annotated[
+    str,
+    typer.Option(
+        "--template",
+        "-t",
+        help="Template to use for initialization",
     ),
 ]

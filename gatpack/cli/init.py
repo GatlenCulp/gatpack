@@ -1,36 +1,20 @@
 """CLI command for project initialization."""
 
 from pathlib import Path
-from typing import Annotated
 
 from loguru import logger
 from rich.console import Console
 import typer
 
+from gatpack.cli.options import OutputDirArgument, TemplateOption
 from gatpack.core.initialize_project import initialize_project
 
 console = Console()
 
 
 def init(
-    output_dir: Annotated[
-        Path | None,
-        typer.Argument(
-            help="Directory to initialize the project in",
-            exists=False,
-            file_okay=False,
-            dir_okay=True,
-            writable=True,
-        ),
-    ] = None,
-    template: Annotated[
-        str,
-        typer.Option(
-            "--template",
-            "-t",
-            help="Template to use for initialization",
-        ),
-    ] = "default",
+    output_dir: OutputDirArgument = None,
+    template: TemplateOption = "default",
 ) -> None:
     """Initialize a new GatPack project in your specified directory."""
     output_dir = Path.cwd() if output_dir is None else output_dir

@@ -83,16 +83,12 @@ Let us know if your team is using it an how!
   - [01 Install GatPack (`pip install gatpack`)](#01-install-gatpack-pip-install-gatpack)
   - [02 Initialize your project (`gatpack init`)](#02-initialize-your-project-gatpack-init)
   - [03 Build the Example project](#03-build-the-example-project)
-  - [04 (Optional) Learn How the Example Projects Work](#04-optional-learn-how-the-example-projects-work)
-    - [04.01 Understand the LaTeX Templates (`*.jinja.tex`)](#0401-understand-the-latex-templates-jinjatex)
-    - [04.02 Understand the Compose File (`compose.gatpack.json`)](#0402-understand-the-compose-file-composegatpackjson)
-- [Exit on any error](#exit-on-any-error)
-- [Exit on any undefined variable](#exit-on-any-undefined-variable)
-- [Exit if any command in a pipe fails](#exit-if-any-command-in-a-pipe-fails)
-- [Build Cover Page](#build-cover-page)
-- [Build Device Readings Page](#build-device-readings-page)
-- [Build Further Readings Page](#build-further-readings-page)
-- [Combine all readings into "packet.pdf"](#combine-all-readings-into-packetpdf)
+- [Usage](#usage)
+  - [01 CLI Help](#01-cli-help)
+  - [02 LaTeX-Modified Jinja (`gatpack render`)](#02-latex-modified-jinja-gatpack-render)
+  - [03 Usage Examples](#03-usage-examples)
+  - [04 Going Beyond LaTeX & PDFs](#04-going-beyond-latex--pdfs)
+    - [05 Understand the Compose File (`compose.gatpack.json`)](#05-understand-the-compose-file-composegatpackjson)
 
 <!-- /code_chunk_output -->
 
@@ -170,111 +166,13 @@ Run the `build.sh` script. Check that `output/packet.pdf` was successfully built
 
 ### 03 Build the Example project
 
+The example compose file comes with one preset pipeline called `reading-packet` which contains the instructions to build a packet with a cover, readings, and a final page with additional readings.
+
 ```bash
 gatpack compose reading-packet --overwrite
 ```
 
-The example compose file comes with one preset pipeline called `reading-packet` which contains the instructions to build a packet with a cover, readings, and a final page with additional readings.
-
-### 04 (Optional) Learn How the Example Projects Work
-
-#### 04.01 Understand the LaTeX Templates (`*.jinja.tex`)
-
-The LaTeX template files are denoted with `*.jinja.tex`. See the instructions on writing LaTeX-Jinja templates in the [02 LaTeX-Modified Jinja (`gatpack render`)](#02-latex-modified-jinja-gatpack-render) section down below
-
-#### 04.02 Understand the Compose File (`compose.gatpack.json`)
-
-Open your `YOUR_PROJECT/compose.gatpack.json`.
-
-- The `context` object is are variable assignments used to fill in Jinja placeholders.
-
-````
-- The `pipelines` list contains sequential steps
-
-Additionally, `pipelines` defines a single `pipeline`: a sequential set of steps to perform for some operation.
-
-<!-- #### 04.03 Understaind the Build Pipeline (`build.sh`)
-
-Open the example build pipeline located in `YOUR_PROJECT/build.sh`. You will see a number of commands outlining the pipeline. These are fairly self explanatory, but if you need additional assistance, you can learn more about these commands with `gatpack COMMAND --help`
-
-<details>
-
-<summary> `build.sh` Contents </summary>
-
-```bash
-#!/bin/bash
-
-# Exit on any error
-set -e
-# Exit on any undefined variable
-set -u
-# Exit if any command in a pipe fails
-set -o pipefail
-
-COMPOSE=compose.gatpack.json
-
-COVER_LATEX_TEMPLATE=cover/cover.jinja.tex
-COVER_LATEX=cover/cover.tex
-COVER_PDF=cover/cover.pdf
-
-DEVICE_READINGS_LATEX_TEMPLATE=device_readings/device_readings.jinja.tex
-DEVICE_READINGS_LATEX=device_readings/device_readings.tex
-DEVICE_READINGS_PDF=device_readings/device_readings.pdf
-
-READINGS_PDFS=readings/*.pdf
-
-FURTHER_READINGS_LATEX_TEMPLATE=further_readings/further_readings.jinja.tex
-FURTHER_READINGS_LATEX=further_readings/further_readings.tex
-FURTHER_READINGS_PDF=further_readings/further_readings.pdf
-
-OUTPUT_PDF=output/packet.pdf
-
-# Build Cover Page
-rm -f $COVER_LATEX
-rm -f $COVER_PDF
-gatpack render \
-    $COVER_LATEX_TEMPLATE \
-    $COVER_LATEX \
-    $COMPOSE
-gatpack build \
-    $COVER_LATEX \
-    $COVER_PDF
-
-# Build Device Readings Page
-rm -f $DEVICE_READINGS_LATEX
-rm -f $DEVICE_READINGS_PDF
-gatpack render \
-    $DEVICE_READINGS_LATEX_TEMPLATE \
-    $DEVICE_READINGS_LATEX \
-    $COMPOSE
-gatpack build \
-    $DEVICE_READINGS_LATEX \
-    $DEVICE_READINGS_PDF
-
-# Build Further Readings Page
-rm -f $FURTHER_READINGS_LATEX
-rm -f $FURTHER_READINGS_PDF
-gatpack render \
-    $FURTHER_READINGS_LATEX_TEMPLATE \
-    $FURTHER_READINGS_LATEX \
-    $COMPOSE
-gatpack build \
-    $FURTHER_READINGS_LATEX \
-    $FURTHER_READINGS_PDF
-
-# Combine all readings into "packet.pdf"
-rm -f $OUTPUT_PDF
-gatpack combine \
-    $COVER_PDF \
-    $DEVICE_READINGS_PDF\
-    $FURTHER_READINGS_PDF \
-    $OUTPUT_PDF
-    # $READINGS_PDFS \
-
-open $OUTPUT_PDF
-````
-
-</details> -->
+When finished, you should have an `output/output.pdf` file.
 
 ______________________________________________________________________
 
@@ -391,3 +289,51 @@ The Jinja placeholders above are meant to fix this issue.
 ### 04 Going Beyond LaTeX & PDFs
 
 If you need more than just LaTeX and PDFs, it's recommended that you check out [pandoc](https://pandoc.org/index.html) -- a software that can convert most files from one format to another (Ex: LaTeX to Markdown, HTML, etc.). It of course doesn't work quite as well as natively writing the document in that language, but I generally recommend it.
+
+#### 05 Understand the Compose File (`compose.gatpack.json`)
+
+Open your `YOUR_PROJECT/compose.gatpack.json`.
+
+- The `context` object is are variable assignments used to fill in Jinja placeholders.
+
+```json
+"context": {
+  "program_long_name": "Intro Fellowship",
+  "time_period": "Spring 2025",
+  "chron_info": "WEEK 0",
+  "title": "Introduction to machine learning",
+  "subtitle": "READINGS",
+  "primary_color": "0B0D63",
+  "primary_color_faded": "789BD6",
+}
+```
+
+- The `pipelines` list contains sequential steps
+
+```json
+"pipelines": [
+  {
+    "description": "Create the full reading packet.",
+    "id": "reading-packet",
+    "steps": [
+      {
+        "name": "Render cover page",
+        "from": "cover/cover.jinja.tex",
+        "to": "cover/cover.pdf"
+      },
+      //...,
+      {
+        "name": "Combine all readings into packet.pdf",
+        "combine": [
+          "cover/cover.pdf",
+          "device_readings/device_readings.pdf",
+          "further_readings/further_readings.pdf"
+        ],
+        "to": "output/packet.pdf"
+      }
+    ]
+  }
+]
+```
+
+Additionally, `pipelines` defines a single `pipeline`: a sequential set of steps to perform for some operation.
