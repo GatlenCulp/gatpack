@@ -48,7 +48,7 @@ PipelineIdArgument = Annotated[
 
 def compose(
     pipeline_id: PipelineIdArgument = None,
-    compose_file: Optional[ComposeFileOption] = None,
+    compose_file: ComposeFileOption = None,
     overwrite: OverwriteOption = False,
 ) -> None:
     """Runs the specified pipleine id from the compose file."""

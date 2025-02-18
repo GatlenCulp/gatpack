@@ -8,6 +8,11 @@ import typer
 from gatpack.config import VERSION
 
 
+def version() -> None:
+    """Print version and exit."""
+    typer.echo(f"gatpack version: {VERSION}")
+
+
 def version_callback(value: bool) -> None:  # noqa: FBT001
     """Print version and exit."""
     if value:
@@ -25,10 +30,15 @@ OverwriteOption = Annotated[
 ]
 
 ComposeFileOption = Annotated[
-    Path,
+    Optional[Path],
     typer.Option(
         "--compose",
-        help="The compose.gatpack.json file to use for templating operations.",
+        help="The gatpack compose file to use for templating operations.",
+        show_default="./*gatpack.json",
+        exists=True,
+        file_okay=True,
+        dir_okay=False,
+        writable=True,
     ),
 ]
 
@@ -48,6 +58,10 @@ OutputOption = Annotated[
         "--to",
         "-t",
         help="Output file path",
+        exists=True,
+        file_okay=True,
+        dir_okay=False,
+        writable=True,
     ),
 ]
 
@@ -55,6 +69,10 @@ OutputArgument = Annotated[
     Path,
     typer.Argument(
         help="Output file path",
+        exists=True,
+        file_okay=True,
+        dir_okay=False,
+        writable=True,
     ),
 ]
 
@@ -72,7 +90,7 @@ VersionOption = Annotated[
 InputGlobsArgument = Annotated[
     list[str],
     typer.Argument(
-        help="Any number of files. Globs accepted",
+        help="Any squence of files or globs",
     ),
 ]
 

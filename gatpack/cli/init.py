@@ -3,13 +3,11 @@
 from pathlib import Path
 
 from loguru import logger
-from rich.console import Console
 import typer
 
 from gatpack.cli.options import OutputDirArgument, TemplateOption
+from gatpack.config import console
 from gatpack.core.initialize_project import initialize_project
-
-console = Console()
 
 
 def init(
