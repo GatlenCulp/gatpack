@@ -1,5 +1,7 @@
 """CLI command for rendering a specific LaTeX document."""
 
+from __future__ import annotations
+
 from pathlib import Path
 from typing import Annotated
 
@@ -28,12 +30,6 @@ def build(
             help="File to save the built PDF to",
         ),
     ],
-    # **kwargs: Annotated[
-    #     dict[str, Any],
-    #     typer.Argument(
-    #         help="Additional arguments to pass to CookieCutter.",
-    #     ),
-    # ],
 ) -> None:
     """Build a LaTeX document into a PDF."""
     try:

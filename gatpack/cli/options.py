@@ -59,3 +59,10 @@ VersionOption = Annotated[
         help="Show version and exit",
     ),
 ]
+
+InputGlobsOption = Annotated[
+    list[str],
+    typer.Argument(
+        help="Any number of files. Globs accepted",
+    ),
+]

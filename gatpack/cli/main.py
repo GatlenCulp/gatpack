@@ -33,8 +33,8 @@ def root(
     ctx: typer.Context,
     file: FileOption = None,
     output: OutputOption = None,
-    overwrite: OverwriteOption = False,
     compose_file: ComposeFileOption = None,
+    overwrite: OverwriteOption = False,
     version: VersionOption = False,
 ) -> None:
     """Establish infer as the root command."""
