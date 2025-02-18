@@ -31,21 +31,13 @@ app = typer.Typer(
 @app.callback(invoke_without_command=True)
 def root(
     ctx: typer.Context,
-    file: FileOption,
-    output: OutputOption,
-    overwrite: OverwriteOption,
-    compose_file: ComposeFileOption,
+    file: FileOption = None,
+    output: OutputOption = None,
+    overwrite: OverwriteOption = False,
+    compose_file: ComposeFileOption = None,
     version: VersionOption = False,
 ) -> None:
-    """Common parameters for all commands."""
-    ctx.ensure_object(dict)
-
-    # Store options directly
-    ctx.obj["file"] = file
-    ctx.obj["output"] = output
-    ctx.obj["overwrite"] = overwrite
-    ctx.obj["compose_file"] = compose_file
-
+    """Establish infer as the root command."""
     # If no subcommand but both files are provided
     if ctx.invoked_subcommand is None and file and output:
         ctx.invoke(infer)
