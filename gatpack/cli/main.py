@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Annotated
-
 import typer
 
 from gatpack.cli.build import build
@@ -14,8 +11,14 @@ from gatpack.cli.examples import examples
 from gatpack.cli.footer import footer
 from gatpack.cli.infer import infer
 from gatpack.cli.init import init
+from gatpack.cli.options import (
+    ComposeFileOption,
+    FileOption,
+    OutputOption,
+    OverwriteOption,
+    VersionOption,
+)
 from gatpack.cli.render import render
-from gatpack.config import VERSION
 
 # Create Typer app instance
 app = typer.Typer(
@@ -23,61 +26,6 @@ app = typer.Typer(
     help="A LaTeX Template to PDF rendering tool.",
     no_args_is_help=True,
 )
-
-# Define type aliases for common options
-OverwriteOption = Annotated[
-    bool,
-    typer.Option(
-        "--overwrite",
-        help="Whether to overwrite output files if they already exist",
-    ),
-]
-
-ComposeFileOption = Annotated[
-    Path,
-    typer.Option(
-        "--compose",
-        help="The compose.gatpack.json file to use for templating operations.",
-    ),
-]
-
-# Input/Output specific options
-FileOption = Annotated[
-    Path,
-    typer.Option(
-        "--from",
-        "-f",
-        help="Input file path",
-    ),
-]
-
-OutputOption = Annotated[
-    Path,
-    typer.Option(
-        "--to",
-        "-t",
-        help="Output file path",
-    ),
-]
-
-
-def version_callback(value: bool) -> None:  # noqa: FBT001
-    """Print version and exit."""
-    if value:
-        typer.echo(f"gatpack version: {VERSION}")
-        raise typer.Exit()
-
-
-VERSION_OPTION = Annotated[
-    bool,
-    typer.Option(
-        "--version",
-        "-v",
-        callback=version_callback,
-        is_eager=True,
-        help="Show version and exit",
-    ),
-]
 
 
 @app.callback(invoke_without_command=True)
@@ -87,7 +35,7 @@ def root(
     output: OutputOption,
     overwrite: OverwriteOption,
     compose_file: ComposeFileOption,
-    version: VERSION_OPTION,
+    version: VersionOption = False,
 ) -> None:
     """Common parameters for all commands."""
     ctx.ensure_object(dict)
@@ -98,11 +46,6 @@ def root(
     ctx.obj["overwrite"] = overwrite
     ctx.obj["compose_file"] = compose_file
 
-    # If no subcommand and no flags, show help
-    if ctx.invoked_subcommand is None and not (file or output):
-        typer.echo(ctx.get_help())
-        raise typer.Exit
-
     # If no subcommand but both files are provided
     if ctx.invoked_subcommand is None and file and output:
         ctx.invoke(infer)
@@ -111,9 +54,13 @@ def root(
 app.command()(init)
 app.command()(combine)
 app.command()(compose)
+app.command(
+    name="infer",
+    help="Infers and run needed operations to transform one file format to another.",
+    short_help="Automatically transform one file format to another.",
+)(infer)
 app.command(hidden=True)(render)
 app.command(hidden=True)(build)
-app.command()(infer)
 app.command(
     hidden=True,  # NotImplemented.
 )(footer)
