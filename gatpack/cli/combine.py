@@ -1,13 +1,11 @@
 """CLI command for combining any number of PDFs into one."""
 
 from loguru import logger
-from rich.console import Console
 import typer
 
 from gatpack.cli.options import InputGlobsArgument, OutputArgument, OverwriteOption
+from gatpack.config import console
 from gatpack.core.combine_pdfs import combine_pdfs, resolve_globs
-
-console = Console()
 
 
 def combine(
