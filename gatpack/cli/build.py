@@ -6,12 +6,10 @@ from pathlib import Path
 from typing import Annotated
 
 from loguru import logger
-from rich.console import Console
 import typer
 
+from gatpack.config import console
 from gatpack.core.build_pdf_from_latex import build_pdf_from_latex
-
-console = Console()
 
 
 def build(
