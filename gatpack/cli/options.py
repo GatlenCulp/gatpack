@@ -58,7 +58,6 @@ OutputOption = Annotated[
         "--to",
         "-t",
         help="Output file path",
-        exists=True,
         file_okay=True,
         dir_okay=False,
         writable=True,
@@ -69,7 +68,6 @@ OutputArgument = Annotated[
     Path,
     typer.Argument(
         help="Output file path",
-        exists=True,
         file_okay=True,
         dir_okay=False,
         writable=True,
