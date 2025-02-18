@@ -86,11 +86,13 @@ Let us know if your team is using it an how!
   - [04 (Optional) Learn How the Example Projects Work](#04-optional-learn-how-the-example-projects-work)
     - [04.01 Understand the LaTeX Templates (`*.jinja.tex`)](#0401-understand-the-latex-templates-jinjatex)
     - [04.02 Understand the Compose File (`compose.gatpack.json`)](#0402-understand-the-compose-file-composegatpackjson)
-- [Usage](#usage)
-  - [01 CLI Help](#01-cli-help)
-  - [02 LaTeX-Modified Jinja (`gatpack render`)](#02-latex-modified-jinja-gatpack-render)
-  - [03 Usage Examples](#03-usage-examples)
-  - [04 Going Beyond LaTeX & PDFs](#04-going-beyond-latex--pdfs)
+- [Exit on any error](#exit-on-any-error)
+- [Exit on any undefined variable](#exit-on-any-undefined-variable)
+- [Exit if any command in a pipe fails](#exit-if-any-command-in-a-pipe-fails)
+- [Build Cover Page](#build-cover-page)
+- [Build Device Readings Page](#build-device-readings-page)
+- [Build Further Readings Page](#build-further-readings-page)
+- [Combine all readings into "packet.pdf"](#combine-all-readings-into-packetpdf)
 
 <!-- /code_chunk_output -->
 
@@ -172,6 +174,8 @@ Run the `build.sh` script. Check that `output/packet.pdf` was successfully built
 gatpack compose reading-packet --overwrite
 ```
 
+The example compose file comes with one preset pipeline called `reading-packet` which contains the instructions to build a packet with a cover, readings, and a final page with additional readings.
+
 ### 04 (Optional) Learn How the Example Projects Work
 
 #### 04.01 Understand the LaTeX Templates (`*.jinja.tex`)
@@ -180,7 +184,12 @@ The LaTeX template files are denoted with `*.jinja.tex`. See the instructions on
 
 #### 04.02 Understand the Compose File (`compose.gatpack.json`)
 
-Opening `YOUR_PROJECT/compose.gatpack.json` will reveal a number of variable assignments. Everything in the `context` object can be used to fill in Jinja placeholders when passed as an argument to `gatpack`.
+Open your `YOUR_PROJECT/compose.gatpack.json`.
+
+- The `context` object is are variable assignments used to fill in Jinja placeholders.
+
+````
+- The `pipelines` list contains sequential steps
 
 Additionally, `pipelines` defines a single `pipeline`: a sequential set of steps to perform for some operation.
 
@@ -263,7 +272,7 @@ gatpack combine \
     # $READINGS_PDFS \
 
 open $OUTPUT_PDF
-```
+````
 
 </details> -->
 

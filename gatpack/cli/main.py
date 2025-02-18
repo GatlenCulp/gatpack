@@ -22,6 +22,33 @@ app = typer.Typer(
     help="A LaTeX Template to PDF rendering tool.",
 )
 
+# Define options at module level
+FROM_FILE_OPTION = typer.Option(
+    None,
+    "--from",
+    "-f",
+    help="Input file path",
+)
+
+TO_OUTPUT_OPTION = typer.Option(
+    None,
+    "--to",
+    "-t",
+    help="Output file path",
+)
+
+COMPOSE_FILE_OPTION = typer.Option(
+    None,
+    "--compose",
+    help="The compose.gatpack.json file to use for templating operations.",
+)
+
+OVERWRITE_OPTION = typer.Option(
+    False,
+    "--overwrite",
+    help="Whether to overwrite output files if they already exist",
+)
+
 
 def version_callback(value: bool) -> None:  # noqa: FBT001
     """Print version and exit."""
@@ -30,39 +57,24 @@ def version_callback(value: bool) -> None:  # noqa: FBT001
         raise typer.Exit
 
 
+VERSION_OPTION = typer.Option(
+    None,
+    "--version",
+    "-v",
+    callback=version_callback,
+    is_eager=True,
+    help="Show version and exit",
+)
+
+
 @app.callback(invoke_without_command=True)
 def root(
     ctx: typer.Context,
-    from_file: Optional[str] = typer.Option(
-        None,
-        "--from",
-        "-f",
-        help="Input file path",
-    ),
-    to_output: Optional[str] = typer.Option(
-        None,
-        "--to",
-        "-t",
-        help="Output file path",
-    ),
-    compose_file: Optional[Path] = typer.Option(
-        None,
-        "--compose",
-        help="The compose.gatpack.json file to use for templating operations.",
-    ),
-    overwrite: bool = typer.Option(
-        False,
-        "--overwrite",
-        help="Whether to overwrite output files if they already exist",
-    ),
-    version: Optional[bool] = typer.Option(  # noqa: ARG001
-        None,
-        "--version",
-        "-v",
-        callback=version_callback,
-        is_eager=True,
-        help="Show version and exit",
-    ),
+    from_file: Optional[str] = FROM_FILE_OPTION,
+    to_output: Optional[str] = TO_OUTPUT_OPTION,
+    compose_file: Optional[Path] = COMPOSE_FILE_OPTION,
+    overwrite: bool = OVERWRITE_OPTION,
+    version: Optional[bool] = VERSION_OPTION,
 ) -> None:
     """Common parameters for all commands."""
     ctx.ensure_object(dict)

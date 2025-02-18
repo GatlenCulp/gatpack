@@ -16,6 +16,9 @@ from loguru import logger
 # Load environment variables from .env file if it exists
 load_dotenv()
 
+# Version
+VERSION = "0.1.0"
+
 # Paths
 PROJ_ROOT = Path(__file__).resolve().parents[1]
 LOG_PATH = PROJ_ROOT / "logs" / "gatpack.log"
