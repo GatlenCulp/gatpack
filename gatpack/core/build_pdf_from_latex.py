@@ -25,6 +25,7 @@ def _check_latex_installed() -> bool:
 def build_pdf_from_latex(
     file: Path,
     output: Path,
+    overwrite: bool = False,
     **kwargs: dict[str, Any],
 ) -> None:
     """Build a PDF from a LaTeX source document using pdflatex.
@@ -32,11 +33,12 @@ def build_pdf_from_latex(
     Args:
         file: Path to the LaTeX source file
         output: Desired output path for the PDF
+        overwrite: Whether to overwrite the output file if it already exists
         **kwargs: Additional arguments to pass to pdflatex
 
     Raises:
         FileNotFoundError: If the input file doesn't exist
-        FileExistsError: If the output file already exists
+        FileExistsError: If the output file already exists and overwrite=False
         RuntimeError: If the PDF compilation fails
     """
     if not _check_latex_installed():
@@ -45,7 +47,7 @@ def build_pdf_from_latex(
     if not file.exists():
         err_msg = f"The following LaTeX document does not exist: {file}"
         raise FileNotFoundError(err_msg)
-    if output.exists():
+    if output.exists() and not overwrite:
         err_msg = f"There already exists a file at {output}"
         raise FileExistsError(err_msg)
 
@@ -77,5 +79,7 @@ def build_pdf_from_latex(
     temp_pdf = working_dir / file.with_suffix(".pdf").name
 
     # Move to desired output location
+    # if output.exists() and overwrite:
+    # output.unlink()  # Remove existing file if overwriting
     temp_pdf.rename(output)
     logger.success(f"Successfully created PDF at {output}")

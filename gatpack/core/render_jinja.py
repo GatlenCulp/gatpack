@@ -1,9 +1,8 @@
 from pathlib import Path
 from typing import Any
-from rich import print
-from jinja2 import Environment, Template, FileSystemLoader
 
-# TODO: look at this https://stackoverflow.com/questions/46652984/python-jinja2-latex-table
+from jinja2 import Environment, FileSystemLoader
+from loguru import logger
 
 # Borrowed from Marc Brinkmann's latex repository (mbr/latex on github)
 J2_ARGS = {
@@ -24,12 +23,21 @@ def render_jinja(
     output: Path,
     context: dict[str, Any],
     use_standard_jinja: bool = False,
+    overwrite: bool = False,
 ) -> None:
-    """Renders Jinja from the provided input file into the output file."""
+    """Renders Jinja from the provided input file into the output file.
+
+    Args:
+        template: Path to the template file
+        output: Path where the rendered file should be written
+        context: Dictionary of variables to be rendered in the template
+        use_standard_jinja: Whether to use standard Jinja delimiters instead of LaTeX-safe ones
+        overwrite: Whether to overwrite the output file if it already exists
+    """
     if not template.exists():
         err_msg = f"File at {template} does not exist."
         raise FileNotFoundError(err_msg)
-    if output.exists():
+    if output.exists() and not overwrite:
         err_msg = f"There already exists a file at {output}"
         raise FileExistsError(err_msg)
 
@@ -43,4 +51,4 @@ def render_jinja(
     j2_template = j2_env.get_template(template.name)
     render = j2_template.render(context)
     output.write_text(render)
-    print(f"✨ Template successfully rendered, see your result at {output}")
+    logger.info(f"Template successfully rendered, see result at {output}")

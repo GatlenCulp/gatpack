@@ -7,17 +7,26 @@ PYTHON_VERSION = 3.12
 PYTHON_INTERPRETER = python
 DOCS_PORT ?= 8000
 
-.PHONY: w-example
-example: ## Run example code
-	weasyprint ./example/report.html ./example/test.pdf
+# .PHONY: w-example
+# example: ## Run example code
+# 	weasyprint ./example/report.html ./example/test.pdf
 
-.PHONY: w-compile
-compile: ## Run compilation code
-	weasyprint ./user/02_web/cover.html ./user/03_pdf/cover-test.pdf
+# .PHONY: w-compile
+# compile: ## Run compilation code
+	# weasyprint ./user/02_web/cover.html ./user/03_pdf/cover-test.pdf
 
 .PHONY: gatpack
 gatpack: ## Run gatpack cli
 	echo "HELLO"
+
+.PHONY: schema
+schema: ## Generate GatPackCompose JSON schema
+	python ./gatpack/schema/generate_json_schema.py
+
+.PHONY: test-root
+test-root: ## Tests the gatpack root functionality (infer)
+	gatpack --from ./tests/root/test-tex-jinja.jinja.tex \
+	-o ./tests/root/test-tex-jinja.tex
 
 .PHONY: test-init
 test-init: ## Run gatpack init
@@ -53,6 +62,20 @@ test-build: ## Run gatpack build
 .PHONY: test-footer
 test-footer: ## Run gatpack footer
 	gatpack footer ./tests/test-no-footer.pdf "Page n of N" ./tests/test-footer.pdf
+
+.PHONY: test-infer
+test-infer: ## Run gatpack infer
+	rm -f ./tests/infer/test.tex
+	gatpack infer --overwrite \
+	./tests/infer/test.jinja.tex \
+	./tests/infer/test.pdf
+
+.PHONY: test-root
+test-root: ## Run gatpack with no subcommand (ie: infer)
+	rm -f ./tests/infer/test.tex
+	gatpack --overwrite \
+	--from ./tests/infer/test.jinja.tex \
+	--to ./tests/infer/test.pdf
 
 #################################################################################
 # UTILITIES                                                                     #
