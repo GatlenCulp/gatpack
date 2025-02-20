@@ -85,10 +85,11 @@ Let us know if your team is using it an how!
   - [03 Build the Example project](#03-build-the-example-project)
 - [Usage](#usage)
   - [01 CLI Help](#01-cli-help)
-  - [02 LaTeX-Modified Jinja (`gatpack render`)](#02-latex-modified-jinja-gatpack-render)
-  - [03 Usage Examples](#03-usage-examples)
+  - [02 LaTeX-Modified Jinja](#02-latex-modified-jinja)
   - [04 Going Beyond LaTeX & PDFs](#04-going-beyond-latex--pdfs)
-    - [05 Understand the Compose File (`compose.gatpack.json`)](#05-understand-the-compose-file-composegatpackjson)
+  - [05 Understand the Compose File (`compose.gatpack.json`)](#05-understand-the-compose-file-composegatpackjson)
+    - [05.01 The `context` object](#0501-the-context-object)
+    - [05.02 The `pipelines` list](#0502-the-pipelines-list)
 
 <!-- /code_chunk_output -->
 
@@ -180,49 +181,13 @@ ______________________________________________________________________
 
 ### 01 CLI Help
 
-`gatpack --help` will provide various information about how to use the tool. You can get further help with subcommands using `gatpack COMMAND --help`
+The CLI commands are NOT documented in any dedicated page. Instead commands are documented from within the CLI itself. `gatpack --help` will provide usage information. `gatpack COMMAND --help` will provide usage information on subcommands.
 
-```bash
+![GatPack CLI](docs/images/gatpack-cli.png)
 
- Usage: gatpack [OPTIONS] COMMAND [ARGS]...
+<!-- <img src="docs/images/gatpack-cli.png" title="Home Page" width="500px"> -->
 
-ng tool.
-
-╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --from                -f      TEXT  Input file path [default: None]                                              │
-│ --to                  -t      TEXT  Output file path [default: None]                                             │
-│ --compose                     PATH  The compose.gatpack.json file to use for templating operations.              │
-│                                     [default: None]                                                              │
-│ --overwrite                         Whether to overwrite output files if they already exist                      │
-│ --version             -v            Show version and exit                                                        │
-│ --install-completion                Install completion for the current shell.                                    │
-│ --show-completion                   Show completion for the current shell, to copy it or customize the           │
-│                                     installation.                                                                │
-│ --help                              Show this message and exit.                                                  │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ───────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ init       Initialize a new GatPack project in your specified directory.                                         │
-│ combine    Combine any number of PDFs into a single PDF.                                                         │
-│ compose    Runs the specified pipleine id from the compose file.                                                 │
-│ infer      [DEFAULT] Infers file formats from the file type and performs the needed operations.                  │
-│ examples   Show usage examples with rich-click's standard formatting.                                            │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-
-
-```
-
-The main command you will use is the root command (infer) which uses `--from` and `--to`. Ex:
-
-```bash
-gatpack \
-    --from template.jinja.tex \
-    --to output.pdf \
-    --overwrite
-```
-
-This will automatically render your template LaTeX file using the variable assignments from your automatically detected `gatpack.compose.json` file.
-
-### 02 LaTeX-Modified Jinja (`gatpack render`)
+### 02 LaTeX-Modified Jinja
 
 The [Jinja placeholders for LaTeX were modified](https://jinja.palletsprojects.com/en/stable/templates/#line-statements) to ensure compatability and a good user experience:
 
@@ -234,7 +199,7 @@ The [Jinja placeholders for LaTeX were modified](https://jinja.palletsprojects.c
 | [Line Statements](https://jinja.palletsprojects.com/en/stable/templates/#comments)                                   | `%-`                        | `#`                       | Single line statements                   |
 | [Line Comment](https://jinja.palletsprojects.com/en/stable/templates/#line-statements)                               | `%#`                        | `##`                      | Single line comments                     |
 
-[See the Jinja API for more information](https://jinja.palletsprojects.com/en/stable/api/). Apart from the delimeter syntax, everything should work the same.
+[See the Jinja API for more information](https://jinja.palletsprojects.com/en/stable/api/). Apart from the delimeter syntax, everything should work the same. These placeholders will be filled in with variable assignments made from your `compose.gatpack.json`'s `context` object when you run `gatpack infer` (ex: `gatpack infer --from example.jinja.tex --to example.tex`).
 
 <details>
 <summary> Why this Modification is Needed </summary>
@@ -276,7 +241,7 @@ The Jinja placeholders above are meant to fix this issue.
 
 </details>
 
-### 03 Usage Examples
+<!-- ### 03 Usage Examples
 
 - You want to combine multiple files into a packet: `pdfs/document1.pdf`, `pdfs/document2.pdf`, and `pdfs/document3.pdf`. This makes printing and stapling multiple copies easier: `gatpack combine pdfs/*.pdf packet.pdf`
 
@@ -284,17 +249,91 @@ The Jinja placeholders above are meant to fix this issue.
 
   ```bash
   gatpack --from invoice.jinja.tex --to invoice.pdf
-  ```
+  ``` -->
 
 ### 04 Going Beyond LaTeX & PDFs
 
 If you need more than just LaTeX and PDFs, it's recommended that you check out [pandoc](https://pandoc.org/index.html) -- a software that can convert most files from one format to another (Ex: LaTeX to Markdown, HTML, etc.). It of course doesn't work quite as well as natively writing the document in that language, but I generally recommend it.
 
-#### 05 Understand the Compose File (`compose.gatpack.json`)
+### 05 Understand the Compose File (`compose.gatpack.json`)
 
-Open your `YOUR_PROJECT/compose.gatpack.json`.
+Here is the `compose.gatpack.json` file that comes with the sample `gatpack init` project:
 
-- The `context` object is are variable assignments used to fill in Jinja placeholders.
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/GatlenCulp/gatpack/refs/heads/feature/compose-actions/gatpack/schema/json/GatPackCompose.schema.json",
+  "name": "Intro Fellowship Reading Packet",
+  "description": "Packet for CAIAC's Spring 2025 Intro Fellowship",
+  "version": "1.0",
+  "context": {
+    "program_long_name": "Intro Fellowship",
+    "time_period": "Spring 2025",
+    "chron_info": "WEEK 0",
+    "title": "Introduction to machine learning",
+    "subtitle": "READINGS",
+    "primary_color": "0B0D63",
+    "primary_color_faded": "789BD6",
+    "core_readings": [
+      {
+        "title": "Neural Networks",
+        "read_on_device": true,
+        "subsection": "Chapters 1-6",
+        "author": "3Blue1Brown",
+        "year": 2024,
+        "url": "https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&feature=shared",
+        "thumbnail_path": ""
+      }
+    ],
+    "further_readings": [
+      {
+        "title": "A short introduction to machine learning",
+        "subsection": "",
+        "author": "Ngo",
+        "year": 2021,
+        "url": "https://www.alignmentforum.org/posts/qE73pqxAZmeACsAdF/a-short-introduction-to-machine-learning",
+        "thumbnail_path": ""
+      },
+      // ... More readings
+      {
+        "title": "A (long) peek into reinforcement learning",
+        "subsection": "",
+        "author": "Weng",
+        "year": 2018,
+        "url": "https://lilianweng.github.io/posts/2018-02-19-rl-overview/",
+        "thumbnail_path": ""
+      }
+    ]
+  },
+  "pipelines":[
+    {
+      "description": "Create the full reading packet.",
+      "id": "reading-packet",
+      "steps": [
+        {
+          "name": "Render cover page",
+          "from": "cover/cover.jinja.tex",
+          "to": "cover/cover.pdf"
+        },
+        // ... More Steps ...
+        {
+          "name": "Combine all readings into packet.pdf",
+          "combine": [
+            "cover/cover.pdf",
+            "device_readings/device_readings.pdf",
+            "further_readings/further_readings.pdf"
+          ],
+          "to": "output/packet.pdf"
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+#### 05.01 The `context` object
+
+The `context` object contains variable assignments used to fill in Jinja placeholders.
 
 ```json
 "context": {
@@ -305,23 +344,29 @@ Open your `YOUR_PROJECT/compose.gatpack.json`.
   "subtitle": "READINGS",
   "primary_color": "0B0D63",
   "primary_color_faded": "789BD6",
+  // ...
 }
 ```
 
-- The `pipelines` list contains sequential steps
+#### 05.02 The `pipelines` list
+
+The `pipelines` list contains sequential steps. Each `pipeline` requires and is referred to by an `id` key
 
 ```json
 "pipelines": [
   {
-    "description": "Create the full reading packet.",
+    // Required ID to refer to the pipeline
     "id": "reading-packet",
+    // Optional description
+    "description": "Create the full reading packet.",
+    // Steps that define the pipeline operations
     "steps": [
       {
         "name": "Render cover page",
         "from": "cover/cover.jinja.tex",
         "to": "cover/cover.pdf"
       },
-      //...,
+      //... More pipeline steps ...,
       {
         "name": "Combine all readings into packet.pdf",
         "combine": [
@@ -336,4 +381,32 @@ Open your `YOUR_PROJECT/compose.gatpack.json`.
 ]
 ```
 
-Additionally, `pipelines` defines a single `pipeline`: a sequential set of steps to perform for some operation.
+Additionally, `pipelines` defines a single `pipeline`: a sequential set of steps to perform for some operation. Running `gatpack compose` in the same directory as your `compose.gatpack.json` file will show all available pipelines.
+
+Each step in a pipeline must contain a `name` key. The only two operations supported in steps now are: `gatpack infer` and `gatpack combine`
+
+```json
+// Gatpack Infer Example Step
+{
+  "name": "Render cover page",
+  // File to convert (*.tex or *.jinja.tex file)
+  "from": "cover/cover.jinja.tex",
+  // File to save to
+  "to": "cover/cover.pdf"
+}
+```
+
+```json
+// Gatpack Combine Example Step
+{
+  "name": "Combine all readings into packet.pdf",
+  // List of PDFs to combine
+  "combine": [
+    "cover/cover.pdf",
+    "device_readings/device_readings.pdf",
+    "further_readings/further_readings.pdf"
+  ],
+  // Location to save combined PDF to
+  "to": "output/packet.pdf"
+}
+```

@@ -29,7 +29,7 @@ def build(
         ),
     ],
 ) -> None:
-    """Build a LaTeX document into a PDF."""
+    """Build a LaTeX document into a PDF. (Replaced w/ `infer`)"""
     try:
         logger.info(f"Building LaTeX document at {file}")
         logger.info(f"And saving to {output}")

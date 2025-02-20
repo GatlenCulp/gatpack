@@ -49,7 +49,10 @@ app.command(
 
 app.command(
     name="infer",
-    help="Infers and run needed operations to transform one file format to another.",
+    help=(
+        "Infer and run needed operations to transform one file format to another. "
+        "Automatically renders Jinja and builds PDFs."
+    ),
     short_help="Automatically transform one file format to another.",
     rich_help_panel=OPERATIONS_PANEL,
 )(infer)
@@ -69,8 +72,8 @@ app.command(
 )(version)
 
 # Outdated Commands
-app.command(hidden=True)(render)
-app.command(hidden=True)(build)
+app.command(deprecated=True, rich_help_panel=OPERATIONS_PANEL)(render)
+app.command(deprecated=True, rich_help_panel=OPERATIONS_PANEL)(build)
 
 # Upcoming Commands
 app.command(hidden=True)(footer)

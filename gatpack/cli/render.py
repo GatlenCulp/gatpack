@@ -39,7 +39,7 @@ def render(
     ] = False,
     overwrite: OverwriteOption = False,
 ) -> None:
-    """Render a specified LaTeX document with Jinja placeholders with provided context."""
+    """Render a LaTeX document with Jinja placeholders using provided context. (Replaced w/ `infer`)"""
     try:
         logger.info(f"Rendering template at {template}")
         logger.info(f"And saving to {output}")
