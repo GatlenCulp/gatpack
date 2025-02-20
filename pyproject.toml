@@ -66,6 +66,7 @@ dev = [ # Development tools
     "tox>=4.23.2", # Test automation
     "uv>=0.5.7", # Fast pip replacement
     "ipdb>=0.13.13",
+    "pyinstaller>=6.12.0",
 ]
 dev-doc = [  # Documentation tools
     "mdformat>=0.7.19",        # Markdown formatter

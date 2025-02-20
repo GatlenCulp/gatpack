@@ -30,7 +30,7 @@ def infer_compose(search_dir: Optional[Path] = None) -> GatPackCompose:
         compose = _search_for_compose(target_dir)
         if compose:
             return compose
-    err_msg = f"Could not infer compose from cwd or {search_dir}."
+    err_msg = f"Could not infer compose from {search_order}."
     raise Exception(err_msg)
 
 
