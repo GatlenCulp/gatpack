@@ -1,7 +1,10 @@
-from rich.console import Console
+"""Show usage examples with rich-click's standard formatting."""
+
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
+
+from gatpack.config import console
 
 # These are the proper style constants from rich-click
 STYLE_USAGE = "yellow"
@@ -12,7 +15,6 @@ STYLE_HELPTEXT = "dim"
 
 def examples() -> None:
     """Show usage examples with rich-click's standard formatting."""
-    console = Console()
 
     table = Table(
         show_header=False,
@@ -31,14 +33,14 @@ def examples() -> None:
             "# Render a template to PDF\n"
             f"[{STYLE_USAGE}]gatpack[/] "
             f"[{STYLE_OPTION}]-f[/] [{STYLE_METAVAR}]template.tex[/] "
-            f"[{STYLE_OPTION}]-t[/] [{STYLE_METAVAR}]output.pdf[/]\n"  # Added newline
+            f"[{STYLE_OPTION}]-t[/] [{STYLE_METAVAR}]output.pdf[/]\n"
         ),
         (
             "# Combine multiple PDFs\n"
             f"[{STYLE_USAGE}]gatpack[/] "
             f"[{STYLE_OPTION}]combine[/] "
             f"[{STYLE_METAVAR}]input1.pdf input2.pdf[/] "
-            f"[{STYLE_METAVAR}]combined.pdf[/]\n"  # Added newline
+            f"[{STYLE_METAVAR}]combined.pdf[/]\n"
         ),
     ]
 
@@ -68,6 +70,3 @@ def examples() -> None:
         Text("Flag", style=STYLE_OPTION),
         Text("Value", style=STYLE_METAVAR),
     )
-
-    # console.print("\n")
-    # console.print(panel(legend, border_style="white", title="Color Guide"))

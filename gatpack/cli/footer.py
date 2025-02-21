@@ -4,12 +4,10 @@ from pathlib import Path
 from typing import Annotated
 
 from loguru import logger
-from rich.console import Console
 import typer
 
+from gatpack.config import console
 from gatpack.core.add_footer_to_pdf import add_footer_to_pdf
-
-console = Console()
 
 
 def footer(
@@ -34,12 +32,6 @@ def footer(
             help="Location to save the new PDF with footer to.",
         ),
     ],
-    # **kwargs: Annotated[
-    #     dict[str, Any],
-    #     typer.Argument(
-    #         help="Additional arguments to pass to CookieCutter.",
-    #     ),
-    # ],
 ) -> None:
     """Add a footer to every page of a PDF (Currently Not-Implemented)."""
     try:

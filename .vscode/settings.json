@@ -44,7 +44,7 @@
 		"**/*.sublime-*": false,
 		"**/venv": false,
 		"**/build": false,
-		"**/dist": true,
+		"**/dist": false,
 		"**/*.egg-info": false,
 		"**/wheels": false,
 		"**/downloads": false,

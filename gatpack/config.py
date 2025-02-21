@@ -12,13 +12,38 @@ from typing import Union
 
 from dotenv import load_dotenv
 from loguru import logger
+from rich.console import Console
+from rich.theme import Theme
 
 # Load environment variables from .env file if it exists
 load_dotenv()
 
+# Version
+VERSION = "0.1.0"
+
 # Paths
 PROJ_ROOT = Path(__file__).resolve().parents[1]
 LOG_PATH = PROJ_ROOT / "logs" / "gatpack.log"
+
+# Custom theme for Rich
+custom_theme = Theme(
+    {
+        "info": "cyan",
+        "warning": "yellow",
+        "error": "red bold",
+        "success": "green bold",
+        "path": "blue underline",
+    }
+)
+
+# Create console instance with custom settings
+console = Console(
+    theme=custom_theme,
+    highlight=True,
+    log_path=LOG_PATH,
+    log_time=True,
+    log_time_format="[%X]",
+)
 
 
 # Configure logging

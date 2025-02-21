@@ -15,6 +15,14 @@ DOCS_PORT ?= 8000
 # compile: ## Run compilation code
 	# weasyprint ./user/02_web/cover.html ./user/03_pdf/cover-test.pdf
 
+.PHONY: build
+build: clean ## Builds the python project into a binary with pyinstaller.
+	pyinstaller gatpack/main.py \
+	--name GatPack \
+	--add-data "$(shell python -c 'import cookiecutter; from pathlib import Path; print(Path(cookiecutter.__file__).parent/"VERSION.txt")')":cookiecutter/ \
+	--icon=docs/images/icon.icns \
+	--console
+
 .PHONY: gatpack
 gatpack: ## Run gatpack cli
 	echo "HELLO"

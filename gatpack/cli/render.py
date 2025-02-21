@@ -4,13 +4,12 @@ from pathlib import Path
 from typing import Annotated
 
 from loguru import logger
-from rich.console import Console
 import typer
 
+from gatpack.cli.options import ComposeFileOption, OverwriteOption
+from gatpack.config import console
 from gatpack.core.load_compose import load_compose
 from gatpack.core.render_jinja import render_jinja
-
-console = Console()
 
 
 def render(
@@ -29,12 +28,7 @@ def render(
             help="File to save the rendered template into",
         ),
     ],
-    compose: Annotated[
-        Path,
-        typer.Argument(
-            help="Variable assignments to load the template with.",
-        ),
-    ],
+    compose: ComposeFileOption,
     use_standard_jinja: Annotated[
         bool,
         typer.Option(
@@ -43,20 +37,9 @@ def render(
             r"instead of custom LaTeX Jinja Tags (\VAR{ var } \BLOCK{}, etc.)",
         ),
     ] = False,
-    overwrite: Annotated[
-        bool,
-        typer.Option(
-            help="Whether to overwrite the output file if it already exists",
-        ),
-    ] = False,
-    # **kwargs: Annotated[
-    #     dict[str, Any],
-    #     typer.Argument(
-    #         help="Additional arguments to pass to CookieCutter.",
-    #     ),
-    # ],
+    overwrite: OverwriteOption = False,
 ) -> None:
-    """Render a specified LaTeX document with Jinja placeholders with provided context."""
+    """Render a LaTeX document with Jinja placeholders using provided context. (Replaced w/ `infer`)"""
     try:
         logger.info(f"Rendering template at {template}")
         logger.info(f"And saving to {output}")

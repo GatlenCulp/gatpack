@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "gatpack"
-version = "0.0.5"
+version = "0.1.0"
 description = "A PDF and website templating tool"
 authors = [
   { name = "Gatlen Culp", email = "GatlenCulp@gmail.com" },
@@ -19,10 +19,10 @@ requires-python = ">=3.9"
 
 dependencies = [
     "loguru>=0.7.3", # Better logging
-    "plotly>=5.24.1", # Interactive plotting
+    # "plotly>=5.24.1", # Interactive plotting
     "pydantic>=2.10.3", # Data validation
     "rich>=13.9.4", # Rich terminal output
-    "numpy>=1.26.4", # Numerical computing # Load .env into environment vars
+    # "numpy>=1.26.4", # Numerical computing # Load .env into environment vars
     "python-dotenv>=1.0.0",
     "typer>=0.15.1",
     "cookiecutter>=2.6.0",
@@ -67,6 +67,7 @@ dev = [ # Development tools
     "tox>=4.23.2", # Test automation
     "uv>=0.5.7", # Fast pip replacement
     "ipdb>=0.13.13",
+    "pyinstaller>=6.12.0",
 ]
 dev-doc = [  # Documentation tools
     "mdformat>=0.7.19",        # Markdown formatter
