@@ -19,7 +19,7 @@ from rich.theme import Theme
 load_dotenv()
 
 # Version
-VERSION = "0.1.1"
+VERSION = "0.1.2"
 
 # Paths
 PROJ_ROOT = Path(__file__).resolve().parents[1]
