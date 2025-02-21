@@ -6,11 +6,9 @@ build-backend = "hatchling.build"
 name = "gatpack"
 version = "0.1.0"
 description = "A PDF and website templating tool"
-authors = [
-  { name = "Gatlen Culp", email = "GatlenCulp@gmail.com" },
-]
-license = { file = "LICENSE" } 
-readme = {file = "README.md", content-type = "text/markdown"}
+authors = [{ name = "Gatlen Culp", email = "GatlenCulp@gmail.com" }]
+license = { file = "LICENSE" }
+readme = { file = "README.md", content-type = "text/markdown" }
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -21,7 +19,7 @@ dependencies = [
     "loguru>=0.7.3", # Better logging
     # "plotly>=5.24.1", # Interactive plotting
     "pydantic>=2.10.3", # Data validation
-    "rich>=13.9.4", # Rich terminal output
+    "rich>=13.9.4",     # Rich terminal output
     # "numpy>=1.26.4", # Numerical computing # Load .env into environment vars
     "python-dotenv>=1.0.0",
     "typer>=0.15.1",
@@ -30,7 +28,6 @@ dependencies = [
     "pypdf>=5.1.0",
     "reportlab>=4.2.5",
     "orjson>=3.10.15",
-    "pyoxidizer>=0.24.0",
 ]
 
 [project.scripts]
@@ -40,36 +37,36 @@ gatpack = "gatpack.cli:app"
 
 dev = [ # Development tools
     "better-exceptions>=0.3.3", # Improved error messages
-    "commitizen>=4.1.1", # Standardized commit messages
-    "cruft>=2.15.0", # Project template management
-    "faker>=33.1.0", # Fake data generation
-    "hypothesis>=6.122.3", # Property-based testing
-    "pip>=24.3.1", # Package installer
-    "pre-commit>=4.1.0", # Git pre-commit hooks
-    "polyfactory>=2.18.1", # Test data factory
-    "pyinstrument>=5.0.0", # Profiler
+    "commitizen>=4.1.1",        # Standardized commit messages
+    "cruft>=2.15.0",            # Project template management
+    "faker>=33.1.0",            # Fake data generation
+    "hypothesis>=6.122.3",      # Property-based testing
+    "pip>=24.3.1",              # Package installer
+    "pre-commit>=4.1.0",        # Git pre-commit hooks
+    "polyfactory>=2.18.1",      # Test data factory
+    "pyinstrument>=5.0.0",      # Profiler
     # "pyprojectsort>=0.3.0",  # pyproject.toml sorter (TODO: Find replacement)
-    "pyright>=1.1.390", # Static type checker
-    "pytest-cases>=3.8.6", # Parametrized testing
-    "pytest-cov>=6.0.0", # Coverage reporting
-    "pytest-icdiff>=0.9", # Improved diffs
-    "pytest-mock>=3.14.0", # Mocking
-    "pytest-playwright>=0.6.2", # Browser testing
-    "pytest-profiling>=1.8.1", # Test profiling
+    "pyright>=1.1.390",           # Static type checker
+    "pytest-cases>=3.8.6",        # Parametrized testing
+    "pytest-cov>=6.0.0",          # Coverage reporting
+    "pytest-icdiff>=0.9",         # Improved diffs
+    "pytest-mock>=3.14.0",        # Mocking
+    "pytest-playwright>=0.6.2",   # Browser testing
+    "pytest-profiling>=1.8.1",    # Test profiling
     "pytest-random-order>=1.1.1", # Randomized test order
-    "pytest-shutil>=1.8.1", # File system testing
-    "pytest-split>=0.10.0", # Parallel testing
-    "pytest-sugar>=1.0.0", # Test progress visualization
-    "pytest-timeout>=2.3.1", # Test timeouts
-    "pytest>=8.3.4", # Testing framework
-    "ruff>=0.8.3", # Fast Python linter
+    "pytest-shutil>=1.8.1",       # File system testing
+    "pytest-split>=0.10.0",       # Parallel testing
+    "pytest-sugar>=1.0.0",        # Test progress visualization
+    "pytest-timeout>=2.3.1",      # Test timeouts
+    "pytest>=8.3.4",              # Testing framework
+    "ruff>=0.8.3",                # Fast Python linter
     # "taplo>=0.9.3",            # TOML toolkit (Requires Rust)
-    "tox>=4.23.2", # Test automation
-    "uv>=0.5.7", # Fast pip replacement
+    "tox>=4.23.2",         # Test automation
+    "uv>=0.5.7",           # Fast pip replacement
     "ipdb>=0.13.13",
     "pyinstaller>=6.12.0",
 ]
-dev-doc = [  # Documentation tools
+dev-doc = [ # Documentation tools
     "mdformat>=0.7.19",        # Markdown formatter
     "mkdocs-material>=9.5.48", # Documentation theme
     "mkdocs>=1.6.1",           # Documentation generator
@@ -77,9 +74,7 @@ dev-doc = [  # Documentation tools
 
 
 [project.urls]
-# Homepage = "https://.github.io/GatPack/"
 Repository = "https://github.com/GatlenCulp/GatPack"
-# Documentation = "https://.github.io/GatPack/"
 
 [tool.ruff]
 cache-dir = ".cache/ruff"
@@ -87,9 +82,7 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = [
-    "UP007"
-]
+ignore = ["UP007"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["gatpack"]
