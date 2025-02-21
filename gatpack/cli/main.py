@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from trogon.typer import init_tui
+# from trogon.typer import init_tui
 import typer
 
 from gatpack.cli.build import build
@@ -24,7 +24,7 @@ app = typer.Typer(
     add_completion=False,
 )
 
-init_tui(app)
+# init_tui(app)
 
 PROJECT_PANEL = "📦 Project Operations"
 OPERATIONS_PANEL = "🛠️ Basic Operations"

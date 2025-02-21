@@ -27,7 +27,6 @@ python3Packages.buildPythonApplication rec {
     pypdf
     reportlab
     orjson
-    trogon
   ];
 
   meta = with lib; {

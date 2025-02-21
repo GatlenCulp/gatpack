@@ -27,10 +27,9 @@ dependencies = [
     "typer>=0.15.1",
     "cookiecutter>=2.6.0",
     "jinja2>=3.1.5",
-    "pypdf>=5.2.0",
-    "reportlab>=4.3.0",
+    "pypdf>=5.1.0",
+    "reportlab>=4.2.5",
     "orjson>=3.10.15",
-    "trogon>=0.6.0",
 ]
 
 [project.scripts]
@@ -75,10 +74,6 @@ dev-doc = [  # Documentation tools
     "mkdocs>=1.6.1",           # Documentation generator
 ]
 
-[tool.uv]
-default-groups = [
-    "dev"
-]
 
 [project.urls]
 # Homepage = "https://.github.io/GatPack/"
