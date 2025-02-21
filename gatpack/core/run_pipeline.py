@@ -9,9 +9,10 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.progress import track
 
+from gatpack.core.add_footer_to_pdf import add_footer_to_pdf
 from gatpack.core.combine_pdfs import combine_pdfs, resolve_globs
 from gatpack.core.infer_and_run_command import infer_and_run_command, infer_compose, load_compose
-from gatpack.schema.GatPackCompose import CombineStep, RenderStep, Step
+from gatpack.schema.GatPackCompose import CombineStep, FooterStep, RenderStep, Step
 
 console = Console()
 
@@ -24,6 +25,9 @@ def _run_step(step: Step, overwrite: bool = False) -> None:
     if isinstance(step, CombineStep):
         pdfs = resolve_globs(step.combine)
         combine_pdfs(pdfs, Path(step.to), overwrite=overwrite)
+        return
+    if isinstance(step, FooterStep):
+        add_footer_to_pdf(Path(step.from_), Path(step.to), step.text, overwrite=overwrite)
         return
     err_msg = f"Unknown step type {type(step)} for step:\n{step}"
     raise Exception(err_msg)

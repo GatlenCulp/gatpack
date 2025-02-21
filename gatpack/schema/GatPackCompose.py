@@ -27,7 +27,24 @@ class CombineStep(BaseModel):
     to: str = Field(..., description="Output combined PDF path")
 
 
-Step = Union[RenderStep, CombineStep]
+class FooterStep(BaseModel):
+    """Step for adding footers and page numbers to PDFs."""
+
+    name: str = Field(..., description="Name of the footer step")
+    from_: str = Field(
+        ...,
+        alias="from",
+        description="PDF to add footer to",
+    )
+    to: str = Field(..., description="Path to save rendered footer")
+    text: str = Field(
+        "{n} of {N}",
+        description="Text to use for the footer, using Python templating "
+        "(n is current page number, N is total pages).",
+    )
+
+
+Step = Union[RenderStep, CombineStep, FooterStep]
 
 
 class Pipeline(BaseModel):

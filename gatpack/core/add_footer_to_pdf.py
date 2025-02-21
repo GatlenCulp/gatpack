@@ -51,7 +51,7 @@ def _add_page_numbers(
     for page_num in range(len(reader.pages)):
         page = reader.pages[page_num]
         footer_text = text.format(
-            n=page_num,
+            n=page_num + 1,
             N=len(reader.pages),
         )
         packet = io.BytesIO()
