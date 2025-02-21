@@ -1,5 +1,5 @@
 {
-  description = "A PDF and website templating tool";
+  description = "A PDF and website templating tool (Note: Flake may not be functional)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -8,10 +8,11 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , flake-utils
-    , nix-bundle
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      nix-bundle,
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
