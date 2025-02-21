@@ -12,6 +12,7 @@ from gatpack.cli.examples import examples
 from gatpack.cli.footer import footer
 from gatpack.cli.infer import infer
 from gatpack.cli.init import init
+from gatpack.cli.interactive import interactive_mode
 from gatpack.cli.options import version
 from gatpack.cli.render import render
 
@@ -81,6 +82,13 @@ app.command(deprecated=True, rich_help_panel=OPERATIONS_PANEL)(build)
 # Upcoming Commands
 app.command(hidden=True)(footer)
 
+# Add the interactive command
+app.command(
+    name="interactive",
+    help="Start an interactive session with GatPack",
+    short_help="Start an interactive session",
+    rich_help_panel=HELP_PANEL,
+)(lambda: interactive_mode(app))
 
 if __name__ == "__main__":
     app()
