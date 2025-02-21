@@ -1,7 +1,9 @@
 """Core functionality for project initialization."""
 
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any, Dict, Literal, Optional
 
 from cookiecutter.main import cookiecutter
 
@@ -14,7 +16,8 @@ TEMPLATE_URLS = {
 def initialize_project(
     output_dir: Path,
     template: TemplateType = "default",
-    **kwargs: dict[str, Any],
+    checkout: Optional[str] = None,
+    **kwargs: Dict[str, Any],
 ) -> None:
     """Initialize a new project using cookiecutter.
 
@@ -27,4 +30,7 @@ def initialize_project(
         err_msg = f"Unknown template: {template}"
         raise ValueError(err_msg)
 
-    cookiecutter(TEMPLATE_URLS[template], output_dir=output_dir, checkout="dev", **kwargs)
+    if checkout:
+        cookiecutter(TEMPLATE_URLS[template], output_dir=output_dir, checkout=checkout, **kwargs)
+        return
+    cookiecutter(TEMPLATE_URLS[template], output_dir=output_dir, **kwargs)
