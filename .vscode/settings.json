@@ -11,24 +11,22 @@
 
 	// Excluded Files Won't Show in Sidebar
 	"files.exclude": {
-		"**/.cache": true,
-		// Version Control
 		"**/.git": true,
+		"**/.svn": false,
+		"**/.hg": false,
+		"**/CVS": false,
+		"**/.DS_Store": false,
+		"**/Thumbs.db": false,
+		"**/.ruby-lsp": false,
+		"**/.cache": true,
 		"**/.gitattributes": false,
 		"**/.github": false,
 		"**/.gitignore": false,
-		"**/.hg": false,
-		"**/.svn": false,
-		"**/CVS": false,
-		// System Files
-		"**/.DS_Store": false,
-		"**/Thumbs.db": false,
 		"**/*.bak": false,
 		"**/*.sav": false,
 		"**/*.backup": false,
 		"**/.*.swp": false,
 		"**/*~[0-9]*": false,
-		// Development Environment
 		"**/__pycache__": false,
 		"**/*.py[cod]": false,
 		"**/*$py.class": false,
@@ -37,22 +35,19 @@
 		"**/.idea": false,
 		"**/.ipynb_checkpoints": false,
 		"**/.mypy_cache": false,
-		"**/.prettierrc": false,
+		"**/.prettierrc": true,
 		"**/.pytest_cache": true,
 		"**/.python-version": false,
 		"**/.ruff_cache": false,
-		"**/.ruby-lsp": false,
 		"**/.venv": true,
 		"**/.vscode": false,
 		"**/*.sublime-*": false,
 		"**/venv": false,
-		// Build and Distribution
 		"**/build": false,
-		"**/dist": true,
+		"**/dist": false,
 		"**/*.egg-info": false,
 		"**/wheels": false,
 		"**/downloads": false,
-		// Project Files
 		"**/logs": false,
 		"**/scripts": false,
 		"**/tests": false,
@@ -60,18 +55,14 @@
 		"LICENSE.md": false,
 		"MANIFEST": false,
 		"requirements.txt": false,
-		// Documentation
 		"**/docs/_build": false,
 		"**/site": false,
-		// Testing and Coverage
 		"**/.coverage": false,
 		"**/.coverage.*": false,
 		"**/htmlcov": false,
 		"**/coverage.xml": false,
 		"**/*.cover": false,
-		// Databases
 		"**/dump.rdb": false,
-		// LaTeX
 		"**/*.aux": true,
 		"**/*.bbl": true,
 		"**/*.bcf": true,

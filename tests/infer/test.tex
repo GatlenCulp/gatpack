@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+
+% Package imports should come before input statements
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[scaled]{helvet}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{xcolor}  % Move this before the input statement
+\usepackage{sectsty}
+
+% Now include the jinja placeholders
+\input{assets/jinja_placeholders}
+
+% Rest of your document configuration
+\renewcommand{\familydefault}{\sfdefault}
+\allsectionsfont{\sffamily}
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0}
+}
+
+\begin{document}
+% ━━━━━━━━━━━━━━━━━━━━━━━━ Define Variables ━━━━━━━━━━━━━━━━━━━━━━━━ %
+
+% Define custom colors from JSON
+\definecolor{primaryColor}{HTML}{
+    123456
+}
+\definecolor{primaryFaded}{HTML}{
+    654321
+}
+
+% ━━━━━━━━━━━━━━━━━━━━━━ Document Begins Here ━━━━━━━━━━━━━━━━━━━━━━ %
+
+\thispagestyle{empty} % Remove page numbering
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Header ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{assets/caiac_logo.png}\\
+    \vspace{0.5em}
+    {\Large \textcolor[HTML]{333333}{}}\\
+    \vspace{0.5em}
+    {\textcolor[HTML]{333333}{Spring 2024}}
+    \end{center}
+
+\vspace{8em}
+
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━ Main Title ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+    [ WEEK 5 ]\\
+    \vspace{0.7em}
+    {\Huge \textbf{Model internals}}\\
+    \vspace{0.7em}
+    \uppercase{READINGS}
+\end{center}
+
+\vfill  % Push the following content to the bottom
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Readings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{center}
+\begin{minipage}{0.8\textwidth}  % Create a minipage to contain the readings
+\centering
+\end{minipage}
+\end{center}
+
+\vspace{2em}  % Add some space at the bottom margin
+
+\end{document}

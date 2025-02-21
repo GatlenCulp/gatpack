@@ -109,9 +109,6 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/t1phv.fd
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/helvetic/phvr8t.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./test-standard-jinja.jinja.aux
-INPUT ./test-standard-jinja.jinja.aux
-INPUT test-standard-jinja.jinja.aux
 OUTPUT test-standard-jinja.jinja.aux
 INPUT /usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
