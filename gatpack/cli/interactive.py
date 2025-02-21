@@ -34,7 +34,8 @@ def interactive_mode(app: typer.Typer) -> None:
     """Run GatPack in interactive mode."""
     console = Console()
 
-    console.print("\n[bold blue]🎮 Welcome to GatPack Interactive Mode![/]\n")
+    console.print("\n[bold blue]🎮 Welcome to GatPack Interactive Mode![/]")
+    console.print("[dim]Type 'help' to see available commands[/]\n")
 
     # Map commands to their info and callbacks
     commands = {
@@ -51,11 +52,6 @@ def interactive_mode(app: typer.Typer) -> None:
         if panel not in panels:
             panels[panel] = []
         panels[panel].append((name, help_text))
-
-    # Display commands in panels
-    for panel_name, cmds in panels.items():
-        content = "\n".join(f"{name} {help_text}" for name, help_text in sorted(cmds))
-        console.print(Panel(content, title=panel_name, expand=True))
 
     while True:
         action = Prompt.ask(

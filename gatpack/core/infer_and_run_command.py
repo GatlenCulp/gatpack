@@ -6,6 +6,12 @@ from pathlib import Path
 from typing import Literal, Optional
 
 from gatpack.core.build_pdf_from_latex import build_pdf_from_latex
+from gatpack.core.exceptions import (
+    ComposeFileNotFoundError,
+    FileTypeInferenceError,
+    MultipleComposeFilesError,
+    UnsupportedConversionError,
+)
 from gatpack.core.load_compose import GatPackCompose, load_compose
 from gatpack.core.render_jinja import render_jinja
 
@@ -19,7 +25,9 @@ def _search_for_compose(search_dir: Path) -> GatPackCompose | None:
         inferred_compose = found_compose_files[0]
     else:
         # TODO(Gatlen): Update this to prompt the user for which compose file they would like to use
-        inferred_compose = found_compose_files[0]
+        raise MultipleComposeFilesError(
+            f"Multiple compose files found in {search_dir}. Please specify which one to use.",
+        )
     return load_compose(inferred_compose)
 
 
@@ -30,24 +38,21 @@ def infer_compose(search_dir: Optional[Path] = None) -> GatPackCompose:
         compose = _search_for_compose(target_dir)
         if compose:
             return compose
-    err_msg = f"Could not infer compose from {search_order}."
-    raise Exception(err_msg)
+    raise ComposeFileNotFoundError(f"Could not infer compose from {search_order}.")
 
 
 def _infer_file_type(file: Path) -> Literal["tex", "jinja-tex", "pdf"]:
     """Infers the file type from a path. Currently just checks file extension."""
     input_type = file.name.split(".")
     if len(input_type) == 1:
-        err_msg = f"Unable to infer the file type of {file}"
-        raise Exception(err_msg)
+        raise FileTypeInferenceError(f"Unable to infer the file type of {file}")
     if input_type[-1] == "pdf":
         return "pdf"
     if input_type[-1] == "tex":
         if len(input_type) >= 3 and input_type[-2] == "jinja":
             return "jinja-tex"
         return "tex"
-    err_msg = f"Unable to infer the file type of {file}"
-    raise Exception(err_msg)
+    raise FileTypeInferenceError(f"Unable to infer the file type of {file}")
 
 
 def infer_and_run_command(
@@ -74,7 +79,6 @@ def infer_and_run_command(
         render_jinja(file, intermediate_path, context=compose.context, overwrite=overwrite)
         build_pdf_from_latex(intermediate_path, output, overwrite=overwrite)
         return
-    err_msg = (
-        f"Unable to infer command to run with input of {input_type} to output of {output_type}"
+    raise UnsupportedConversionError(
+        f"Unable to infer command to run with input of {input_type} to output of {output_type}",
     )
-    raise Exception(err_msg)
