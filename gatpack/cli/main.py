@@ -75,12 +75,17 @@ app.command(
     rich_help_panel=HELP_PANEL,
 )(version)
 
+app.command(
+    name="footer",
+    help="Add a footer to a pdf",
+    short_help="Add a footer to a pdf",
+    rich_help_panel=OPERATIONS_PANEL,
+)(footer)
+
 # Outdated Commands
 app.command(deprecated=True, hidden=True, rich_help_panel=OPERATIONS_PANEL)(render)
 app.command(deprecated=True, hidden=True, rich_help_panel=OPERATIONS_PANEL)(build)
 
-# Upcoming Commands
-app.command(hidden=True)(footer)
 
 # Add the interactive command
 app.command(

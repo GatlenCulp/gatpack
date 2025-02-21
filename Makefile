@@ -69,7 +69,8 @@ test-build: ## Run gatpack build
 
 .PHONY: test-footer
 test-footer: ## Run gatpack footer
-	gatpack footer ./tests/test-no-footer.pdf "Page n of N" ./tests/test-footer.pdf
+	# gatpack footer ./tests/footer/test-no-footer.pdf "Page n of N" ./tests/footer/test-footer.pdf
+	gatpack footer ./tests/footer/test-no-footer.pdf ./tests/footer/test-footer.pdf --text '{n} of {N}' --overwrite
 
 .PHONY: test-infer
 test-infer: ## Run gatpack infer

@@ -30,6 +30,39 @@
       "title": "CombineStep",
       "type": "object"
     },
+    "FooterStep": {
+      "description": "Step for adding footers and page numbers to PDFs.",
+      "properties": {
+        "name": {
+          "description": "Name of the footer step",
+          "title": "Name",
+          "type": "string"
+        },
+        "from": {
+          "description": "PDF to add footer to",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Path to save rendered footer",
+          "title": "To",
+          "type": "string"
+        },
+        "text": {
+          "default": "{n} of {N}",
+          "description": "Text to use for the footer, using Python templating (n is current page number, N is total pages).",
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "from",
+        "to"
+      ],
+      "title": "FooterStep",
+      "type": "object"
+    },
     "Pipeline": {
       "description": "Represents a single pipeline of steps to produce files.",
       "properties": {
@@ -59,6 +92,9 @@
               },
               {
                 "$ref": "#/$defs/CombineStep"
+              },
+              {
+                "$ref": "#/$defs/FooterStep"
               }
             ]
           },
