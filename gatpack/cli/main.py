@@ -76,8 +76,8 @@ app.command(
 )(version)
 
 # Outdated Commands
-app.command(deprecated=True, rich_help_panel=OPERATIONS_PANEL)(render)
-app.command(deprecated=True, rich_help_panel=OPERATIONS_PANEL)(build)
+app.command(deprecated=True, hidden=True, rich_help_panel=OPERATIONS_PANEL)(render)
+app.command(deprecated=True, hidden=True, rich_help_panel=OPERATIONS_PANEL)(build)
 
 # Upcoming Commands
 app.command(hidden=True)(footer)

@@ -19,7 +19,7 @@ from rich.theme import Theme
 load_dotenv()
 
 # Version
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 
 # Paths
 PROJ_ROOT = Path(__file__).resolve().parents[1]
@@ -33,7 +33,7 @@ custom_theme = Theme(
         "error": "red bold",
         "success": "green bold",
         "path": "blue underline",
-    }
+    },
 )
 
 # Create console instance with custom settings
