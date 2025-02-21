@@ -30,6 +30,7 @@ dependencies = [
     "pypdf>=5.2.0",
     "reportlab>=4.3.0",
     "orjson>=3.10.15",
+    "trogon>=0.6.0",
 ]
 
 [project.scripts]

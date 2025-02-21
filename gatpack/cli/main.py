@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Optional
 
 import typer
+from trogon.typer import init_tui
 
 from gatpack.cli.build import build
 from gatpack.cli.combine import combine
@@ -21,6 +22,8 @@ app = typer.Typer(
     name="gatpack",
     help="A LaTeX Template to PDF rendering tool.",
 )
+
+init_tui(app)
 
 
 def version_callback(value: bool) -> None:  # noqa: FBT001
