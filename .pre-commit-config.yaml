@@ -234,3 +234,8 @@ repos:
   #   args: ["--max-timeout=3"]
   #   pass_filenames: false
   #   always_run: true
+
+  # - repo: https://github.com/NixOS/nixfmt
+  #   rev: v0.6.0
+  #   hooks:
+  #     - id: nixfmt
