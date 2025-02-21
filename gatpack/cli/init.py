@@ -21,7 +21,7 @@ def init(
         logger.info(f"Initializing new project in {output_dir}")
         logger.info(f"Using template: {template}")
 
-        initialize_project(output_dir, template)  # **kwargs)
+        initialize_project(output_dir, template)
 
         console.print(f"✨ Successfully initialized project in [bold green]{output_dir}[/]")
 

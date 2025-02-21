@@ -458,6 +458,7 @@ dependencies = [
     { name = "loguru" },
     { name = "orjson" },
     { name = "pydantic" },
+    { name = "pyoxidizer" },
     { name = "pypdf" },
     { name = "python-dotenv" },
     { name = "reportlab" },
@@ -508,9 +509,10 @@ requires-dist = [
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "orjson", specifier = ">=3.10.15" },
     { name = "pydantic", specifier = ">=2.10.3" },
-    { name = "pypdf", specifier = ">=5.2.0" },
+    { name = "pyoxidizer", specifier = ">=0.24.0" },
+    { name = "pypdf", specifier = ">=5.1.0" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
-    { name = "reportlab", specifier = ">=4.3.0" },
+    { name = "reportlab", specifier = ">=4.2.5" },
     { name = "rich", specifier = ">=13.9.4" },
     { name = "typer", specifier = ">=0.15.1" },
 ]
@@ -1623,6 +1625,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/7c/44/e6de2fdc880ad0ec7547ca2e087212be815efbc9a425a8d5ba9ede602cbb/pymdown_extensions-10.14.3.tar.gz", hash = "sha256:41e576ce3f5d650be59e900e4ceff231e0aed2a88cf30acaee41e02f063a061b", size = 846846 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/eb/f5/b9e2a42aa8f9e34d52d66de87941ecd236570c7ed2e87775ed23bbe4e224/pymdown_extensions-10.14.3-py3-none-any.whl", hash = "sha256:05e0bee73d64b9c71a4ae17c72abc2f700e8bc8403755a00580b49a4e9f189e9", size = 264467 },
+]
+
+[[package]]
+name = "pyoxidizer"
+version = "0.24.0"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7a/93/aae15e73855e6e9a327528b506b4ae2e6e0f94d301fed8f27015bbe047e4/pyoxidizer-0.24.0-py3-none-macosx_10_9_x86_64.whl", hash = "sha256:eed0f08a38798f14cf0464272552aef97e534b9a418d2a671b8d85ec7af1a237", size = 10386860 },
+    { url = "https://files.pythonhosted.org/packages/ab/bc/ac789f384f84583a5057b6198553e407e1116375cf1840427bad56d1f97f/pyoxidizer-0.24.0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:1a9940d2bdb6c9e6c6c45eb4de3d4d6e5c9b3a3724dbc7d774d85d4956058447", size = 9705975 },
+    { url = "https://files.pythonhosted.org/packages/62/e5/2f5a9cc8fb06aff4fe84299bf7fa9815b1eaee81842137e0e98a45ab1b3e/pyoxidizer-0.24.0-py3-none-manylinux2010_x86_64.whl", hash = "sha256:ec56f2b99495aa0178e927389a3e151e9669beae4e2bce3f6897fb9891b5502e", size = 12356489 },
+    { url = "https://files.pythonhosted.org/packages/72/ff/02653151eb66ce7c945ee19aadcbdd5cd6a8e13e201254bb6a787df851dd/pyoxidizer-0.24.0-py3-none-manylinux2014_aarch64.whl", hash = "sha256:825d37c8d44971f3e7ca6beed77b560b508c69497f48019428f1aae3fd80c049", size = 11986314 },
+    { url = "https://files.pythonhosted.org/packages/fa/a5/dea667d142e7fe1df7e0f3436df8e9fbebce0a8538fa06534f28492291fd/pyoxidizer-0.24.0-py3-none-win32.whl", hash = "sha256:4ccc59d157952bccb6ab6897f061966ac31403b2cee18fe9dfbd871f429bd34c", size = 8490488 },
+    { url = "https://files.pythonhosted.org/packages/54/b8/0a8b6c744af3d553f0a7ac8affec7d40a9544a08d6c8b84164003c87c133/pyoxidizer-0.24.0-py3-none-win_amd64.whl", hash = "sha256:9b18f8d5f6b309ec856109b2f4d8228bae513da0b0213991e3305cf73583c385", size = 9014460 },
 ]
 
 [[package]]

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+# from trogon.typer import init_tui
 import typer
 
 from gatpack.cli.build import build
@@ -11,6 +12,7 @@ from gatpack.cli.examples import examples
 from gatpack.cli.footer import footer
 from gatpack.cli.infer import infer
 from gatpack.cli.init import init
+from gatpack.cli.interactive import interactive_mode
 from gatpack.cli.options import version
 from gatpack.cli.render import render
 
@@ -21,6 +23,8 @@ app = typer.Typer(
     no_args_is_help=True,
     add_completion=False,
 )
+
+# init_tui(app)
 
 PROJECT_PANEL = "📦 Project Operations"
 OPERATIONS_PANEL = "🛠️ Basic Operations"
@@ -72,12 +76,19 @@ app.command(
 )(version)
 
 # Outdated Commands
-app.command(deprecated=True, rich_help_panel=OPERATIONS_PANEL)(render)
-app.command(deprecated=True, rich_help_panel=OPERATIONS_PANEL)(build)
+app.command(deprecated=True, hidden=True, rich_help_panel=OPERATIONS_PANEL)(render)
+app.command(deprecated=True, hidden=True, rich_help_panel=OPERATIONS_PANEL)(build)
 
 # Upcoming Commands
 app.command(hidden=True)(footer)
 
+# Add the interactive command
+app.command(
+    name="interactive",
+    help="Start an interactive session with GatPack",
+    short_help="Start an interactive session",
+    rich_help_panel=HELP_PANEL,
+)(lambda: interactive_mode(app))
 
 if __name__ == "__main__":
     app()

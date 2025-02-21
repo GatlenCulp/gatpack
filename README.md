@@ -1,20 +1,22 @@
 <h1 align="center">
   <a href="https://github.com/GatlenCulp/gatpack">
-    <img src="docs/images/logo.png" alt="Logo" width="100" height="100">
+    <img src="https://raw.githubusercontent.com/GatlenCulp/gatpack/main/docs/images/logo.png" alt="Logo" width="100" height="100">
   </a>
 </h1>
 
 <div align="center">
-  <h1> GatPack </h1>
-  <a href="#about"><strong>Explore the docs »</strong></a>
-  <br />
-  <img src="docs/images/gatpack-cli.png" title="Home Page" width="500px">
-  <br />
-  <a href="https://github.com/GatlenCulp/gatpack/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
-  ·
-  <a href="https://github.com/GatlenCulp/gatpack/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
-  .
-  <a href="https://github.com//gatpack/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
+  <h1>GatPack</h1>
+
+<a href="#about"><strong>Explore the docs »</strong></a>
+<br />
+<img src="https://raw.githubusercontent.com/GatlenCulp/gatpack/main/docs/images/gatpack-cli.png" title="Home Page" width="500px">
+<br />
+<a href="https://github.com/GatlenCulp/gatpack/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
+·
+<a href="https://github.com/GatlenCulp/gatpack/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
+.
+<a href="https://github.com//gatpack/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
+
 </div>
 
 <div align="center">
@@ -24,9 +26,11 @@
 
 ![Uses the Cookiecutter Data Science project template, GOTem style](https://img.shields.io/badge/GOTem-Project%20Instance-328F97?logo=cookiecutter) ![PyPI - Version](https://img.shields.io/pypi/v/gatpack?style=flat) [![tests](https://github.com/GatlenCulp/gatlens-opinionated-template/actions/workflows/tests.yml/badge.svg)](https://github.com/GatlenCulp/gatpack/actions/workflows/tests.yml) [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv) ![GitHub stars](https://img.shields.io/github/stars/gatlenculp/gatpack?style=social)
 
-<!-- TODO: Borrow from https://pypi.org/project/latexbuild/ -->
+<h3>⚡️ Quick Install</h3>
 
-<!-- TODO: Maybe remove some of these sections, this feels a bit unnecessarily verbose. -->
+```bash
+curl -LsSf https://raw.githubusercontent.com/GatlenCulp/gatpack/main/install.sh | sh
+```
 
 </div>
 
@@ -40,9 +44,9 @@ GatPack is a CLI and Python API for automating LaTeX and PDF document generation
 <summary>Screenshots</summary>
 <br>
 
-|                                  CLI                                   |                          Generated Cover Page                          |                            Pre-Rendered Cover Page                             |
-| :--------------------------------------------------------------------: | :--------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
-| <img src="docs/images/gatpack-cli.png" title="Home Page" width="100%"> | <img src="docs/images/cover-page.png" title="Login Page" width="100%"> | <img src="docs/images/latex-jinja-pretty.png" title="Login Page" width="100%"> |
+|                                                               CLI                                                                |                                                       Generated Cover Page                                                       |                                                         Pre-Rendered Cover Page                                                          |
+| :------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/GatlenCulp/gatpack/main/docs/images/gatpack-cli.png" title="Home Page" width="100%"> | <img src="https://raw.githubusercontent.com/GatlenCulp/gatpack/main/docs/images/cover-page.png" title="Login Page" width="100%"> | <img src="https://raw.githubusercontent.com/GatlenCulp/gatpack/main/docs/images/latex-jinja-pretty.png" title="Login Page" width="100%"> |
 
 </details>
 
@@ -210,11 +214,11 @@ Standard Jinja placeholders: `{{ variable_name }}`, `{% for item in items %} {% 
 <div style="display: flex; gap: 20px; align-items: center;">
     <div>
         <p><strong>Standard Jinja:</strong></p>
-        <img src="docs/images/latex-jinja-ugly.png" title="Ugly Latex Jinja" width="300px">
+        <img src="https://raw.githubusercontent.com/GatlenCulp/gatpack/main/docs/images/latex-jinja-ugly.png" title="Ugly Latex Jinja" width="300px">
     </div>
     <div>
         <p><strong>LaTeX-Adapted Jinja:</strong></p>
-        <img src="docs/images/latex-jinja-pretty.png" title="Pretty Latex Jinja" width="300px">
+        <img src="https://raw.githubusercontent.com/GatlenCulp/gatpack/main/docs/images/latex-jinja-pretty.png" title="Pretty Latex Jinja" width="300px">
     </div>
 </div>
 
@@ -304,7 +308,7 @@ Here is the `compose.gatpack.json` file that comes with the sample `gatpack init
       }
     ]
   },
-  "pipelines":[
+  "pipelines": [
     {
       "description": "Create the full reading packet.",
       "id": "reading-packet",
@@ -328,7 +332,6 @@ Here is the `compose.gatpack.json` file that comes with the sample `gatpack init
     }
   ]
 }
-
 ```
 
 #### 05.01 The `context` object

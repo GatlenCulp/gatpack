@@ -21,7 +21,7 @@ build: clean ## Builds the python project into a binary with pyinstaller.
 	--name GatPack \
 	--add-data "$(shell python -c 'import cookiecutter; from pathlib import Path; print(Path(cookiecutter.__file__).parent/"VERSION.txt")')":cookiecutter/ \
 	--icon=docs/images/icon.icns \
-	--console
+	--console \
 
 .PHONY: gatpack
 gatpack: ## Run gatpack cli

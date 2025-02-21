@@ -35,7 +35,7 @@
 		"**/.idea": false,
 		"**/.ipynb_checkpoints": false,
 		"**/.mypy_cache": false,
-		"**/.prettierrc": false,
+		"**/.prettierrc": true,
 		"**/.pytest_cache": true,
 		"**/.python-version": false,
 		"**/.ruff_cache": false,

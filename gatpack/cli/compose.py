@@ -8,8 +8,10 @@ from loguru import logger
 from rich.table import Table
 import typer
 
+from gatpack.cli.error_handling import handle_gatpack_error
 from gatpack.cli.options import ComposeFileOption, OverwriteOption
 from gatpack.config import console
+from gatpack.core.exceptions import GatPackError
 from gatpack.core.run_pipeline import infer_compose, load_compose, run_pipeline
 from gatpack.schema.GatPackCompose import Pipeline
 
@@ -60,6 +62,11 @@ def compose(
             return
         logger.info(f"Running pipeline {pipeline_id}")
         run_pipeline(pipeline_id, compose_file=compose_file, overwrite=overwrite)
+    except GatPackError as e:
+        handle_gatpack_error(e)
+        raise typer.Exit(1)
     except Exception as e:
-        logger.error(f"Failed to infer and run command: {e}")
+        # Handle unexpected errors
+        console.print(f"\n[bold red]Unexpected Error:[/] {str(e)}\n")
+        logger.exception("Unexpected error occurred")
         raise typer.Exit(1)
