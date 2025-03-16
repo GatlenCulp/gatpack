@@ -23,6 +23,11 @@ build: clean ## Builds the python project into a binary with pyinstaller.
 	--icon=docs/images/icon.icns \
 	--console \
 
+.PHONY: docker-recording-studio
+docker-recording-studio: ## Build and run the recording-studio Docker container
+	docker build -t gatpack-recording-studio -f docker/recording-studio.Dockerfile .
+	docker run -it --rm -v $(PWD):/app gatpack-recording-studio
+
 .PHONY: gatpack
 gatpack: ## Run gatpack cli
 	echo "HELLO"

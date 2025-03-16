@@ -47,6 +47,10 @@
 		{
 			"name": "root",
 			"path": ".."
+		},
+		{
+			"name": "template",
+			"path": "../../cookiecutter-gatpack"
 		}
 		// Option: For tidyness, include source code as a separate workspace.
 		// {

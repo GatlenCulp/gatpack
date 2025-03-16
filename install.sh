@@ -3,12 +3,50 @@
 # Exit on error
 set -e
 
-echo "�� Installing GatPack..."
+# Check if GatPack is already installed
+if command -v gatpack &> /dev/null; then
+    echo "
+✅ GatPack is already installed!
+Current version: $(gatpack --version 2>/dev/null || echo "unknown")
+
+Would you like to reinstall or update GatPack?
+"
+    read -p "Reinstall/update GatPack? (y/N) " reinstall
+    if [[ ! "$reinstall" =~ ^[Yy]$ ]]; then
+        echo "Installation cancelled. GatPack is already installed."
+        exit 0
+    fi
+fi
+
+echo "
+🚀 GatPack Installation Script 🚀
+================================
+
+This script will:
+1. Install the uv package manager if not already installed
+2. Install GatPack using uv
+3. Check for and install LaTeX (pdflatex) if needed:
+   - On macOS: Using Homebrew and MacTeX
+   - On Linux: Using apt-get and texlive packages
+4. Optionally set up a GatPack project in your Documents folder
+
+Note: This may require sudo privileges for some installations.
+"
+
+# Ask for confirmation
+read -p "Would you like to proceed with the installation? (y/N) " proceed
+if [[ ! "$proceed" =~ ^[Yy]$ ]]; then
+    echo "Installation cancelled."
+    exit 0
+fi
+
+echo "📦 Installing GatPack..."
 
 # Check if uv is installed, install if not
 if ! command -v uv &> /dev/null; then
     echo "📦 Installing uv package manager..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
+    source $HOME/.local/bin/env
 fi
 
 # Install GatPack using uv tool
@@ -38,6 +76,11 @@ if ! command -v pdflatex &> /dev/null; then
         
         echo "🍺 Installing MacTeX using Homebrew..."
         brew install --cask mactex
+    # Check if running on Linux with apt-get
+    elif command -v apt-get &> /dev/null; then
+        echo "📦 Installing LaTeX using apt-get..."
+        sudo apt-get update
+        sudo apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-latex-extra
     else
         echo "❌ Please install LaTeX (pdflatex) manually for your operating system."
         exit 1

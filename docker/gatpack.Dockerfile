@@ -13,8 +13,6 @@ COPY . /app
 # Sync the project
 RUN uv sync
 
-#
-
 # Label associated repo
 LABEL org.opencontainers.image.source https://github.com/GatlenCulp/gatpack
 
