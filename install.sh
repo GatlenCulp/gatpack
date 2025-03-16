@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 # Exit on error
 set -e
 
 # Check for -y flag for non-interactive mode
 YES_MODE=false
-if [[ "$1" == "-y" ]]; then
+if [ "$1" = "-y" ]; then
     YES_MODE=true
 fi
 
@@ -21,26 +21,33 @@ prompt() {
     local message="$1"
     local default="$2"
     
-    if [[ "$YES_MODE" == true ]]; then
+    if [ "$YES_MODE" = true ]; then
         echo "$message (Automatically answering: Yes)"
         return 0
     else
-        read -p "$message " response
-        if [[ -z "$response" ]]; then
+        printf "%s " "$message"
+        read response
+        if [ -z "$response" ]; then
             response="$default"
         fi
-        [[ "$response" =~ ^[Yy]$ ]]
-        return $?
+        case "$response" in
+            [Yy]*)
+                return 0
+                ;;
+            *)
+                return 1
+                ;;
+        esac
     fi
 }
 
 # More thorough check if GatPack is already installed and working
 GATPACK_INSTALLED=false
-if command -v gatpack &> /dev/null; then
+if command -v gatpack > /dev/null 2>&1; then
     # Try to run a simple command to verify it actually works
-    if gatpack --version &> /dev/null; then
+    if gatpack --version > /dev/null 2>&1; then
         GATPACK_INSTALLED=true
-        GATPACK_VERSION=$(gatpack --version 2>/dev/null)
+        GATPACK_VERSION=$(gatpack --version 2>/dev/null || echo "unknown")
         echo "
 ✅ GatPack is already installed and working!
 Current version: $GATPACK_VERSION
@@ -80,19 +87,19 @@ fi
 echo "📦 Installing GatPack..."
 
 # Check if uv is installed, install if not
-if ! command -v uv &> /dev/null; then
+if ! command -v uv > /dev/null 2>&1; then
     echo "📦 Installing uv package manager..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
     
     # Source the environment file to update PATH
     if [ -f "$HOME/.local/bin/env" ]; then
-        source "$HOME/.local/bin/env"
+        . "$HOME/.local/bin/env"
     elif [ -f "$HOME/.uv/env" ]; then
-        source "$HOME/.uv/env"
+        . "$HOME/.uv/env"
     fi
     
     # Add to PATH directly if needed
-    if ! command -v uv &> /dev/null; then
+    if ! command -v uv > /dev/null 2>&1; then
         echo "Adding uv to PATH for this session..."
         export PATH="$HOME/.local/bin:$PATH"
     fi
@@ -106,23 +113,23 @@ uv tool install gatpack
 uv tool update-shell
 
 # Add uv tool bin to PATH for current session
-UV_TOOL_PATH="$(uv tool path)"
+UV_TOOL_PATH=$(uv tool path 2>/dev/null || echo "")
 if [ -n "$UV_TOOL_PATH" ]; then
     export PATH="$UV_TOOL_PATH:$PATH"
 fi
 
 # Check if pdflatex is installed
-if ! command -v pdflatex &> /dev/null; then
+if ! command -v pdflatex > /dev/null 2>&1; then
     echo "⚠️ LaTeX (pdflatex) is not installed."
     
     # Check if running on macOS
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        if ! command -v brew &> /dev/null; then
+    if [ "$(uname)" = "Darwin" ]; then
+        if ! command -v brew > /dev/null 2>&1; then
             echo "🍺 Homebrew not found. Installing Homebrew..."
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             
             # Add Homebrew to PATH based on chip architecture
-            if [[ $(uname -m) == "arm64" ]]; then
+            if [ "$(uname -m)" = "arm64" ]; then
                 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
                 eval "$(/opt/homebrew/bin/brew shellenv)"
             else
@@ -134,10 +141,10 @@ if ! command -v pdflatex &> /dev/null; then
         echo "🍺 Installing MacTeX using Homebrew..."
         brew install --cask mactex
     # Check if running on Linux with apt-get
-    elif command -v apt-get &> /dev/null; then
+    elif command -v apt-get > /dev/null 2>&1; then
         echo "📦 Installing LaTeX using apt-get..."
         # Use sudo only if not in Docker
-        if [[ "$IN_DOCKER" == true ]]; then
+        if [ "$IN_DOCKER" = true ]; then
             apt-get update
             apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-latex-extra
         else
@@ -152,7 +159,7 @@ fi
 
 # Verify installation and provide fallback instructions if not found
 echo "✅ Verifying installation..."
-if command -v gatpack &> /dev/null; then
+if command -v gatpack > /dev/null 2>&1; then
     gatpack --help
 else
     echo "⚠️ gatpack command not found in current PATH."
@@ -162,18 +169,37 @@ else
     echo "1. Run 'source ~/.bashrc' or 'source ~/.zshrc' (depending on your shell)"
     echo "2. Start a new terminal session"
     echo "3. Run the gatpack command directly from: $(uv tool path 2>/dev/null || echo "$HOME/.local/bin")/gatpack"
+    
+    # Try to find gatpack directly
+    POSSIBLE_PATHS="$HOME/.local/bin $HOME/.uv/bin $(uv tool path 2>/dev/null)"
+    for path in $POSSIBLE_PATHS; do
+        if [ -f "$path/gatpack" ]; then
+            echo ""
+            echo "✅ Found gatpack at: $path/gatpack"
+            echo "You can run it directly with: $path/gatpack"
+            break
+        fi
+    done
 fi
 
 # Skip project setup in Docker
-if [[ "$IN_DOCKER" == false ]]; then
+if [ "$IN_DOCKER" = false ]; then
     # Ask user about project setup
     if prompt "Would you like to set up a GatPack project in your Documents folder? (y/N)" "N"; then
         echo "📁 Setting up project in ~/Documents..."
         
         # Use full path to gatpack if needed
         GATPACK_CMD="gatpack"
-        if ! command -v gatpack &> /dev/null; then
-            GATPACK_CMD="$(uv tool path 2>/dev/null || echo "$HOME/.local/bin")/gatpack"
+        if ! command -v gatpack > /dev/null 2>&1; then
+            for path in $POSSIBLE_PATHS; do
+                if [ -f "$path/gatpack" ]; then
+                    GATPACK_CMD="$path/gatpack"
+                    break
+                fi
+            done
+            if [ "$GATPACK_CMD" = "gatpack" ]; then
+                GATPACK_CMD="$(uv tool path 2>/dev/null || echo "$HOME/.local/bin")/gatpack"
+            fi
         fi
         
         cd ~/Documents \
