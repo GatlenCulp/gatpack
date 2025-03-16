@@ -9,6 +9,12 @@ if [ "$1" = "-y" ]; then
     YES_MODE=true
 fi
 
+# Check if running in a pipe (non-interactive)
+if [ ! -t 0 ]; then
+    echo "Detected non-interactive mode (piped input). Automatically answering yes to all prompts."
+    YES_MODE=true
+fi
+
 # Check if running in Docker
 IN_DOCKER=false
 if [ -f /.dockerenv ] || grep -q docker /proc/1/cgroup 2>/dev/null; then
