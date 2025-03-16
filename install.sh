@@ -34,19 +34,27 @@ prompt() {
     fi
 }
 
-# Check if GatPack is already installed
+# More thorough check if GatPack is already installed and working
+GATPACK_INSTALLED=false
 if command -v gatpack &> /dev/null; then
-    echo "
-✅ GatPack is already installed!
-Current version: $(gatpack --version 2>/dev/null || echo "unknown")
+    # Try to run a simple command to verify it actually works
+    if gatpack --version &> /dev/null; then
+        GATPACK_INSTALLED=true
+        GATPACK_VERSION=$(gatpack --version 2>/dev/null)
+        echo "
+✅ GatPack is already installed and working!
+Current version: $GATPACK_VERSION
 
 Would you like to reinstall or update GatPack?
 "
-    if ! prompt "Reinstall/update GatPack? (y/N)" "N"; then
-        echo "Installation cancelled. GatPack is already installed."
-        exit 0
+        if ! prompt "Reinstall/update GatPack? (y/N)" "N"; then
+            echo "Installation cancelled. GatPack is already installed."
+            exit 0
+        fi
     fi
 fi
+
+# If we get here, either GatPack is not installed or user wants to reinstall
 
 echo "
 🚀 GatPack Installation Script 🚀
