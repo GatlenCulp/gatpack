@@ -1,0 +1,960 @@
+00:00:00:00 - 00:00:02:47
+Unknown
+Here's a setup, tutorial and demo of how to use gatpack. So,
+
+00:00:02:51 - 00:00:03:46
+Unknown
+if you can run this
+
+00:00:03:46 - 00:00:08:09
+Unknown
+command here in your terminal by opening up the terminal this way and just click on terminal,
+
+00:00:08:13 - 00:00:13:55
+Unknown
+using Spotlight search. Great. Otherwise, I'm going to walk through and complete the Getting Started guide.
+
+00:00:14:02 - 00:00:14:26
+Unknown
+So,
+
+00:00:14:26 - 00:00:16:19
+Unknown
+I'm not going to walk through how to install,
+
+00:00:16:19 - 00:00:17:38
+Unknown
+latka on your machine.
+
+00:00:17:38 - 00:00:23:43
+Unknown
+You can look up how to do that. If you do have Mac there, you could do brew install task attack
+
+00:00:23:43 - 00:00:26:40
+Unknown
+brew is a package management system for Mac, specifically
+
+00:00:26:40 - 00:00:29:19
+Unknown
+and it comes in a lot of handy. So
+
+00:00:29:19 - 00:00:31:34
+Unknown
+Gap Hack is just a normal Python package.
+
+00:00:31:34 - 00:00:35:27
+Unknown
+And you can install it using whatever system you want to.
+
+00:00:35:31 - 00:00:37:22
+Unknown
+Pip install gatpack,
+
+00:00:37:22 - 00:00:38:54
+Unknown
+would typically work, but,
+
+00:00:38:54 - 00:00:39:24
+Unknown
+Python
+
+00:00:39:24 - 00:00:41:51
+Unknown
+discourages globally install packages.
+
+00:00:41:56 - 00:00:42:46
+Unknown
+For this
+
+00:00:42:46 - 00:00:44:45
+Unknown
+purpose I recommend using UV.
+
+00:00:44:45 - 00:00:48:00
+Unknown
+So to install UV if you have brew,
+
+00:00:48:00 - 00:00:52:42
+Unknown
+do brew install UV. Otherwise you can go to their website and find out how to do so.
+
+00:00:52:42 - 00:00:56:34
+Unknown
+But once it's installed you can do UV tool, install gatpack
+
+00:00:56:34 - 00:01:00:02
+Unknown
+and it will pull it from PyPI. Then if you run gatpack,
+
+00:01:00:06 - 00:01:00:27
+Unknown
+help.
+
+00:01:00:27 - 00:01:02:03
+Unknown
+You should have it here. So
+
+00:01:02:03 - 00:01:03:09
+Unknown
+to start your project,
+
+00:01:03:09 - 00:01:06:19
+Unknown
+you're going to want to change directory into
+
+00:01:06:19 - 00:01:10:51
+Unknown
+wherever you want to put your project. So for me I'm going to put it into documents. So if I go CD
+
+00:01:10:51 - 00:01:14:27
+Unknown
+documents where the little squiggle just means your home folder.
+
+00:01:14:27 - 00:01:14:53
+Unknown
+So
+
+00:01:14:53 - 00:01:16:51
+Unknown
+I am going to go ahead and
+
+00:01:16:51 - 00:01:18:14
+Unknown
+run the command gatpack.
+
+00:01:18:20 - 00:01:18:34
+Unknown
+It.
+
+00:01:18:34 - 00:01:22:27
+Unknown
+Can ask me if I want to redownload it. That's perfectly fine. Project name.
+
+00:01:22:32 - 00:01:24:38
+Unknown
+Let's name this video tutorial
+
+00:01:24:38 - 00:01:26:52
+Unknown
+two because I already had a failed run earlier
+
+00:01:26:52 - 00:01:27:50
+Unknown
+and we'll go through there.
+
+00:01:27:50 - 00:01:30:08
+Unknown
+And now we have Video tutorial two. So
+
+00:01:30:08 - 00:01:31:42
+Unknown
+we're going to
+
+00:01:31:42 - 00:01:32:11
+Unknown
+create
+
+00:01:32:15 - 00:01:33:33
+Unknown
+so we have a few
+
+00:01:33:33 - 00:01:35:19
+Unknown
+files here and a directory
+
+00:01:35:19 - 00:01:36:26
+Unknown
+reading packet example.
+
+00:01:36:26 - 00:01:36:52
+Unknown
+So
+
+00:01:36:52 - 00:01:38:14
+Unknown
+that is the one that you're going
+
+00:01:38:14 - 00:01:39:31
+Unknown
+to enter into.
+
+00:01:39:35 - 00:01:42:12
+Unknown
+Okay. So this is really what.
+
+00:01:42:12 - 00:01:43:07
+Unknown
+A get back project
+
+00:01:43:07 - 00:01:43:37
+Unknown
+looks like.
+
+00:01:43:42 - 00:01:48:50
+Unknown
+Primarily it's indicated by the composer gatpack dot Json file, which contains
+
+00:01:48:50 - 00:01:51:46
+Unknown
+information about how to build your document.
+
+00:01:51:46 - 00:01:54:39
+Unknown
+So just to make sure this works before anything else, I'm going to run
+
+00:01:54:39 - 00:01:56:29
+Unknown
+gatpack compose
+
+00:01:56:29 - 00:02:00:29
+Unknown
+and run that, and it will tell me which pipelines are available.
+
+00:02:00:29 - 00:02:02:00
+Unknown
+Currently I just have reading packet,
+
+00:02:02:00 - 00:02:04:34
+Unknown
+so I'll run gatpack Compose
+
+00:02:04:34 - 00:02:05:42
+Unknown
+reading packet
+
+00:02:05:42 - 00:02:11:06
+Unknown
+and then I'll just put the overwrite there. So in case there is any PDF files that I forgot to take out of the template, it will overwrite them.
+
+00:02:11:06 - 00:02:12:04
+Unknown
+So go through that
+
+00:02:12:04 - 00:02:15:09
+Unknown
+and we should be good. So now I'll
+
+00:02:15:09 - 00:02:16:01
+Unknown
+check my output.
+
+00:02:16:01 - 00:02:16:21
+Unknown
+Here I'll
+
+00:02:16:21 - 00:02:18:06
+Unknown
+open this up in finder real
+
+00:02:18:19 - 00:02:25:29
+Unknown
+we'll go to output, and then we've got two packets here. So we got a pack of the footers and just a regular packet. So I'm just gonna open up pack with footers
+
+00:02:25:32 - 00:02:26:11
+Unknown
+we got our packet
+
+00:02:26:11 - 00:02:26:38
+Unknown
+here.
+
+00:02:26:38 - 00:02:27:13
+Unknown
+I got some
+
+00:02:27:13 - 00:02:28:18
+Unknown
+online readings.
+
+00:02:28:23 - 00:02:29:40
+Unknown
+We've got a few
+
+00:02:29:40 - 00:02:31:47
+Unknown
+PDF files that were added to this.
+
+00:02:31:47 - 00:02:33:36
+Unknown
+And if we scroll to the bottom
+
+00:02:33:36 - 00:02:35:22
+Unknown
+we've got some further readings
+
+00:02:35:44 - 00:02:38:16
+Unknown
+You can use VS code or whatever text editor you want to
+
+00:02:38:16 - 00:02:39:13
+Unknown
+If we open up
+
+00:02:39:13 - 00:02:41:11
+Unknown
+compose not get package.json,
+
+00:02:41:11 - 00:02:41:49
+Unknown
+we can see
+
+00:02:41:49 - 00:02:42:18
+Unknown
+the setup.
+
+00:02:42:18 - 00:02:46:15
+Unknown
+The name of this got pack compose files intro fellowship reading packet.
+
+00:02:46:17 - 00:02:47:45
+Unknown
+The description I just put as a,
+
+00:02:47:45 - 00:02:51:17
+Unknown
+packet for spring 2025. Intro fellowship.
+
+00:02:51:24 - 00:02:53:16
+Unknown
+So what is stored in context?
+
+00:02:53:16 - 00:02:54:16
+Unknown
+the context
+
+00:02:54:16 - 00:02:58:15
+Unknown
+provides the values to fill in the placeholders within the document.
+
+00:02:58:15 - 00:02:59:44
+Unknown
+Over here we've got time period
+
+00:02:59:44 - 00:03:01:31
+Unknown
+and we've got time period over here.
+
+00:03:01:31 - 00:03:03:36
+Unknown
+And we might also have,
+
+00:03:03:36 - 00:03:04:02
+Unknown
+a loop.
+
+00:03:04:02 - 00:03:06:48
+Unknown
+So over here we have for reading and core readings, we
+
+00:03:06:48 - 00:03:07:54
+Unknown
+list them all out.
+
+00:03:07:54 - 00:03:13:30
+Unknown
+And so this is the core readings list. And within each of these is some definition
+
+00:03:13:30 - 00:03:14:30
+Unknown
+of the readings.
+
+00:03:14:30 - 00:03:15:38
+Unknown
+what controls
+
+00:03:15:38 - 00:03:16:25
+Unknown
+merging together
+
+00:03:16:25 - 00:03:16:45
+Unknown
+these
+
+00:03:16:45 - 00:03:18:24
+Unknown
+documents, which are rendered to PDFs?
+
+00:03:18:24 - 00:03:20:22
+Unknown
+Well, that would be the pipelines
+
+00:03:20:38 - 00:03:22:24
+Unknown
+back when you ran get back compose.
+
+00:03:22:24 - 00:03:25:24
+Unknown
+We saw that we had one pipeline and that was reading packet
+
+00:03:25:27 - 00:03:26:34
+Unknown
+And here it is
+
+00:03:26:38 - 00:03:27:43
+Unknown
+all the steps
+
+00:03:27:43 - 00:03:29:06
+Unknown
+are like so.
+
+00:03:29:10 - 00:03:33:26
+Unknown
+You render the cover page using the context from above and then you just. Yeah.
+
+00:03:33:26 - 00:03:35:35
+Unknown
+From this to the PDF here.
+
+00:03:35:35 - 00:03:38:29
+Unknown
+Same thing for the device readings page from here to here.
+
+00:03:38:29 - 00:03:41:35
+Unknown
+And then from further readings page from here to here.
+
+00:03:41:35 - 00:03:44:54
+Unknown
+Lastly we just combine all the PDFs and save it to output
+
+00:03:44:54 - 00:03:49:11
+Unknown
+package PDF. And more recently I added the ability to add a footer.
+
+00:03:49:13 - 00:03:50:48
+Unknown
+if we go to the
+
+00:03:50:48 - 00:03:51:46
+Unknown
+Package with footers,
+
+00:03:51:46 - 00:03:57:18
+Unknown
+scroll down a little bit. You can see what I mean. So you have 749 in the corner here, 8 to 49.
+
+00:03:57:18 - 00:04:00:53
+Unknown
+And so on throughout the entire PDF. That's what the footer does.
+
+00:04:01:02 - 00:04:02:25
+Unknown
+So I'll just go up to the top
+
+00:04:02:25 - 00:04:02:42
+Unknown
+and I'll
+
+00:04:02:50 - 00:04:03:38
+Unknown
+change this
+
+00:04:03:38 - 00:04:05:37
+Unknown
+spring 2025 to,
+
+00:04:05:42 - 00:04:09:00
+Unknown
+3084.
+
+00:04:09:00 - 00:04:09:47
+Unknown
+And I'll
+
+00:04:09:47 - 00:04:10:38
+Unknown
+render that
+
+00:04:10:38 - 00:04:11:02
+Unknown
+to.
+
+00:04:11:02 - 00:04:14:45
+Unknown
+And I'll run that with the overwrite flag. So that way I will delete anything else.
+
+00:04:14:45 - 00:04:17:26
+Unknown
+And you can see that is updated at 380
+
+00:04:17:26 - 00:04:18:09
+Unknown
+over here. We can
+
+00:04:18:09 - 00:04:18:39
+Unknown
+add
+
+00:04:18:39 - 00:04:19:53
+Unknown
+more readings.
+
+00:04:19:53 - 00:04:24:18
+Unknown
+Just by copying pasting this and filling out the information there.
+
+00:04:24:18 - 00:04:24:40
+Unknown
+I'm.
+
+00:04:24:44 - 00:04:26:01
+Unknown
+And if we run it again.
+
+00:04:26:01 - 00:04:28:12
+Unknown
+We can see I just duplicated those
+
+00:04:28:12 - 00:04:31:41
+Unknown
+And to browse the intermediate documents. You can just come over to
+
+00:04:31:41 - 00:04:35:41
+Unknown
+oh one cover. O2 device readings, oh three core readings and oh for further readings
+
+00:04:36:01 - 00:04:42:17
+Unknown
+if it has jinja in the name, that means that it was the template file without any of the placeholders replaced.
+
+00:04:42:28 - 00:04:44:52
+Unknown
+And then if we go to covered up PDF without the jinja,
+
+00:04:44:52 - 00:04:47:36
+Unknown
+we'll see what it rendered out to. And this is just one page.
+
+00:04:47:36 - 00:04:55:10
+Unknown
+If we go to device readings this was the templates. And then device readings that the jinja will contain what was actually rendered.
+
+00:04:55:15 - 00:04:56:34
+Unknown
+Same thing for the further readings.
+
+00:04:56:38 - 00:05:00:12
+Unknown
+The interesting one would probably be the core readings, though.
+
+00:05:00:17 - 00:05:02:27
+Unknown
+That's kind of the the meat of the packet.
+
+00:05:02:27 - 00:05:03:41
+Unknown
+So within core readings,
+
+00:05:03:41 - 00:05:04:34
+Unknown
+you'll see
+
+00:05:04:34 - 00:05:08:29
+Unknown
+I have them labeled with 01020304.
+
+00:05:08:29 - 00:05:11:24
+Unknown
+The reason for that is within the pipeline
+
+00:05:11:24 - 00:05:16:38
+Unknown
+where I have combine all readings in to pack it up. PDF. This third entry here
+
+00:05:16:38 - 00:05:24:42
+Unknown
+where I have the core Reading starter PDF, it will select all of the PDFs within this file alphabetically
+
+00:05:24:42 - 00:05:26:12
+Unknown
+and then combine them.
+
+00:05:26:12 - 00:05:28:06
+Unknown
+if I wanted to remove
+
+00:05:28:06 - 00:05:30:49
+Unknown
+what will GP 2030 look like.
+
+00:05:30:49 - 00:05:31:33
+Unknown
+I could
+
+00:05:31:33 - 00:05:32:06
+Unknown
+delete it.
+
+00:05:32:06 - 00:05:35:53
+Unknown
+And if I were to render out the packet again it won't appear.
+
+00:05:35:53 - 00:05:37:44
+Unknown
+if we wanted to introduce another reading,
+
+00:05:37:44 - 00:05:38:47
+Unknown
+let's say
+
+00:05:38:47 - 00:05:41:50
+Unknown
+covered our jinja that PDF just so I can pull a random PDF out.
+
+00:05:41:50 - 00:05:45:40
+Unknown
+I'll put it over here. Go ahead and rename that to,
+
+00:05:45:44 - 00:05:48:14
+Unknown
+let's put it right after the first reading.
+
+00:05:48:14 - 00:05:50:02
+Unknown
+So we'll do oh to cover
+
+00:05:50:02 - 00:05:51:17
+Unknown
+rename these real quick.
+
+00:05:51:17 - 00:05:52:50
+Unknown
+So that way they're in the proper order.
+
+00:05:52:50 - 00:05:53:49
+Unknown
+Now let's run this again.
+
+00:05:53:49 - 00:05:56:33
+Unknown
+And let's check on the packet with footers.
+
+00:05:56:33 - 00:05:58:18
+Unknown
+So we've got the first reading here.
+
+00:05:58:18 - 00:05:59:33
+Unknown
+And then
+
+00:05:59:33 - 00:06:01:01
+Unknown
+we've got the second reading.
+
+00:06:01:01 - 00:06:02:04
+Unknown
+The third reading.
+
+00:06:02:09 - 00:06:03:40
+Unknown
+And then the fourth reading.
+
+00:06:03:44 - 00:06:04:40
+Unknown
+We'll have to fix that.
+
+00:06:04:40 - 00:06:06:44
+Unknown
+Onto recommended usage. Forget pack.
+
+00:06:06:44 - 00:06:20:16
+Unknown
+So I'm back in the folder that was originally created when we ran our pack in. Net video Tutorial two. Everything we're working with just previously is right over here, but I decided to zoom out a little bit more so we can talk about how to manage multiple packets together.
+
+00:06:20:19 - 00:06:22:52
+Unknown
+my recommended way of doing this would be
+
+00:06:22:52 - 00:06:25:53
+Unknown
+duplicate this and we'll just name it like week one.
+
+00:06:26:00 - 00:06:30:02
+Unknown
+Maybe you can figure this with all of your team settings. You know, instead of just,
+
+00:06:30:07 - 00:06:30:30
+Unknown
+having
+
+00:06:30:30 - 00:06:37:08
+Unknown
+the defaults. You can put in yours. You are probably not changing your program's name from week to week.
+
+00:06:37:08 - 00:06:38:32
+Unknown
+You should probably change that
+
+00:06:38:39 - 00:06:40:55
+Unknown
+You could also use a general gatpack
+
+00:06:40:55 - 00:06:42:15
+Unknown
+Compose file up here.
+
+00:06:42:27 - 00:06:45:37
+Unknown
+And the route that also works perfectly fine.
+
+00:06:45:37 - 00:06:47:22
+Unknown
+I have week one, week two.
+
+00:06:47:22 - 00:06:51:39
+Unknown
+Week three. And you can run each of these individually by going to the terminal
+
+00:06:51:39 - 00:06:52:22
+Unknown
+and
+
+00:06:52:22 - 00:06:54:12
+Unknown
+going to that particular week
+
+00:06:54:12 - 00:06:56:37
+Unknown
+and running gatpack Compose
+
+00:06:56:37 - 00:06:57:06
+Unknown
+there.
+
+00:06:57:11 - 00:07:04:12
+Unknown
+So this would create within week two. And if I go to the route and I run get back compose or throw an error because it couldn't find anything.
+
+00:07:04:12 - 00:07:04:34
+Unknown
+So
+
+00:07:04:34 - 00:07:05:49
+Unknown
+that's my recommended way.
+
+00:07:05:53 - 00:07:07:27
+Unknown
+Create a bunch of packets within the top,
+
+00:07:07:32 - 00:07:10:19
+Unknown
+and copy over settings that way, or create
+
+00:07:10:19 - 00:07:10:24
+Unknown
+a
+
+00:07:10:24 - 00:07:11:39
+Unknown
+global get back compose.
+
+00:07:11:39 - 00:07:15:05
+Unknown
+Then with all of these together, you could create a GitHub.
+
+00:07:15:05 - 00:07:18:17
+Unknown
+GitHub repo create and I can name it like
+
+00:07:18:17 - 00:07:19:05
+Unknown
+packets
+
+00:07:19:09 - 00:07:19:32
+Unknown
+and
+
+00:07:19:32 - 00:07:20:03
+Unknown
+push it.
+
+00:07:20:03 - 00:07:22:24
+Unknown
+But yeah, I have to run get a net first on this.
+
+00:07:22:24 - 00:07:28:40
+Unknown
+Then you can share this with your team. Your team can make the edits. And so long as they have got back installed, they should be able to render out the PDFs as well.
+
+00:07:28:52 - 00:07:35:55
+Unknown
+A second useful thing is that I've created this massive repository of readings for you and safety groups. These are all the readings that,
+
+00:07:35:55 - 00:07:37:49
+Unknown
+based Harvard University Group,
+
+00:07:37:49 - 00:07:38:19
+Unknown
+my,
+
+00:07:38:19 - 00:07:41:01
+Unknown
+MIT University group and kayak
+
+00:07:41:01 - 00:07:45:23
+Unknown
+been using for the past three years, either for their safety fundamentals or
+
+00:07:45:23 - 00:07:46:12
+Unknown
+member meetings
+
+00:07:46:18 - 00:07:50:46
+Unknown
+This can be really helpful if you're trying to design your own AI safety fundamentals course or just like a reading
+
+00:07:50:46 - 00:07:54:04
+Unknown
+for members meeting or share papers with others.
+
+00:07:54:06 - 00:07:55:55
+Unknown
+one of the big benefits of this
+
+00:07:55:55 - 00:07:57:38
+Unknown
+is I have already
+
+00:07:57:38 - 00:07:59:39
+Unknown
+created the PDFs for you.
+
+00:07:59:39 - 00:07:59:53
+Unknown
+some
+
+00:07:59:53 - 00:08:02:30
+Unknown
+websites are extremely hard to format.
+
+00:08:02:35 - 00:08:03:11
+Unknown
+You know,
+
+00:08:03:11 - 00:08:13:18
+Unknown
+the text will either be, like, too big or too small. You'll have pictures hanging off the side of your PDF. And when you use this, you can just control app and search for the PDF that you want and then download it.
+
+00:08:13:18 - 00:08:19:07
+Unknown
+there's the trimmed PDF here and there's the complete PDF. The differences between these are that the complete PDF is
+
+00:08:19:07 - 00:08:19:16
+Unknown
+the
+
+00:08:19:16 - 00:08:24:25
+Unknown
+unfiltered version of the document. Meanwhile, the trimmed PDF is down to the subsection that I have labeled
+
+00:08:24:25 - 00:08:25:03
+Unknown
+here.
+
+00:08:25:03 - 00:08:25:56
+Unknown
+that's why you'll see
+
+00:08:25:56 - 00:08:28:01
+Unknown
+multiple entries for the same reading.
+
+00:08:28:01 - 00:08:31:10
+Unknown
+here is adversarial. Examples are not bugs. They're features
+
+00:08:31:10 - 00:08:37:39
+Unknown
+without any subsection. This one has a subsections one through three. And so while the complete PDF is going to be exactly the same for the two,
+
+00:08:37:39 - 00:08:37:49
+Unknown
+this
+
+00:08:37:49 - 00:08:38:24
+Unknown
+will contain
+
+00:08:38:24 - 00:08:39:29
+Unknown
+the entire reading.
+
+00:08:39:29 - 00:08:40:21
+Unknown
+But this one
+
+00:08:40:21 - 00:08:42:27
+Unknown
+will only contain the first three sections.
+
+00:08:42:32 - 00:08:44:05
+Unknown
+That way you're not wasting paper
+
+00:08:44:05 - 00:08:49:08
+Unknown
+lastly, if you're having any difficulties with the software or maybe you want to do anything custom and special and
+
+00:08:49:08 - 00:08:51:34
+Unknown
+here in the university group, feel free
+
+00:08:51:34 - 00:08:52:25
+Unknown
+Reach out to me,
+
+00:08:52:25 - 00:08:55:28
+Unknown
+by my contact page over at MIT edu
+
+00:08:55:28 - 00:08:56:08
+Unknown
+till they
+
+00:08:56:12 - 00:08:57:19
+Unknown
+permission or contact,
+
+00:08:57:19 - 00:08:58:06
+Unknown
+send me a message.
+
+00:08:58:10 - 00:08:58:27
+Unknown
+if you're
+
+00:08:58:27 - 00:09:00:26
+Unknown
+interested in contributing to the
+
+00:09:00:26 - 00:09:01:38
+Unknown
+LA tech templates
+
+00:09:01:38 - 00:09:02:24
+Unknown
+that would be
+
+00:09:02:24 - 00:09:03:15
+Unknown
+very helpful because
+
+00:09:03:15 - 00:09:10:38
+Unknown
+they're very ugly compared with the ones I had originally, which were using a Microsoft word template instead of with tech, which
+
+00:09:10:38 - 00:09:12:08
+Unknown
+was an awful idea.
+
+00:09:12:08 - 00:09:14:01
+Unknown
+But anyways, thank you very much.
+
+00:09:14:01 - 00:09:14:36
+Unknown
+Have a good day.
+

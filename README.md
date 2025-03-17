@@ -103,7 +103,13 @@ ______________________________________________________________________
 
 ## Getting Started
 
-_Note: Parts 00 and 01 can be skipped if the quick install above worked._
+<div align="center">
+  <a href="https://youtu.be/wxu20DNqgGk">
+    <img src="https://img.youtube.com/vi/wxu20DNqgGk/0.jpg" alt="GatPack Demo Video" width="500px">
+    <br>
+    <b>▶️ Complete Setup & Tutorial of Working with GatPack Compose </b>
+  </a>
+</div>
 
 ### 00 Requirements
 
