@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "gatpack"
-version = "0.1.2"
+version = "0.1.3"
 description = "A PDF and website templating tool"
 authors = [{ name = "Gatlen Culp", email = "GatlenCulp@gmail.com" }]
 license = { file = "LICENSE" }

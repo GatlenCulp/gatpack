@@ -83,8 +83,8 @@ Let us know if your team is using it an how!
 
 - [About](#about)
 - [Getting Started](#getting-started)
-  - [00 Requirements (Python & LaTeX)](#00-requirements-python--latex)
-  - [01 Install GatPack (`pip install gatpack`)](#01-install-gatpack-pip-install-gatpack)
+  - [00 Requirements](#00-requirements)
+  - [01 Install GatPack](#01-install-gatpack)
   - [02 Initialize your project (`gatpack init`)](#02-initialize-your-project-gatpack-init)
   - [03 Build the Example project](#03-build-the-example-project)
 - [Usage](#usage)
@@ -103,28 +103,27 @@ ______________________________________________________________________
 
 ## Getting Started
 
-### 00 Requirements (Python & LaTeX)
+_Note: Parts 00 and 01 can be skipped if the quick install above worked._
 
-- Python 3.10+
+### 00 Requirements
+
 - LaTeX (`pdflatex` specifically, see more instructions on installing below)
-
-### 01 Install GatPack (`pip install gatpack`)
-
-Run the following command to install globally:
-
-```bash
-python3 -m pip install gatpack
-```
+- Python 3.10+
+- Text Editor (Ex: VSCode)
 
 <details>
-<summary>Further Install Instructions</summary>
+<summary><b>Installing Requirements</b></summary>
 <br />
 
-Run the following command to install globally (or install into a virtual environment and activate, whichever you prefer.):
+**00.01 installing python**
+
+Python can be installed from the [Python downloads page](https://www.python.org/downloads/), or if you have `brew` on macOS:
 
 ```bash
-python3 -m pip install gatpack
+brew install python
 ```
+
+**00.02 pdflatex requirement**
 
 To use `gatpack build` which will convert a LaTeX document to a PDF, you will need `pdflatex` to be available on your path. You can check for this with
 
@@ -144,30 +143,76 @@ _Note: Eventually this LaTeX requirement will be removed_
 
 <!-- I should take a look at this: https://pypi.org/project/pdflatex/ -->
 
-You can then run the following to confirm GatPack has been successfully installed (will not check for a valid pdflatex):
+**00.03 text editor requirement**
+
+Any text editor will do but you should probably choose something with JSON syntax highlighting such as VSCode.
+
+<br />
+</details>
+
+### 01 Install GatPack
+
+[Gatpack is a Python package](https://pypi.org/project/gatpack/) that can easily be installed from your favorite package manager
+
+**Using uv (Recommended)**
+
+[uv](https://docs.astral.sh/uv/getting-started/installation/) is a fast, reliable Python package installer and resolver:
+
+```bash
+uv tool install gatpack
+```
+
+_Note: Make sure you run `uv tool update-shell`, otherwise uv tools won't be in your PATH_
+
+<details>
+<summary><b>Alternative Installation Methods</b></summary>
+<br>
+
+**Using pipx**
+
+Ideal for CLI applications that you want isolated from your system:
+
+```bash
+pipx install gatpack
+```
+
+**Using pip with a virtual environment**
+
+```bash
+# Create and activate a virtual environment first
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Then install within the virtual environment
+pip install gatpack
+```
+
+**Using conda**
+
+```bash
+# Create a conda environment
+conda create -n gatpack-env python=3.12
+conda activate gatpack-env
+
+# Install gatpack
+pip install gatpack
+```
+
+</details>
+
+You can verify the installation by running:
 
 ```bash
 gatpack --help
 ```
 
-<br />
-</details>
-
 ### 02 Initialize your project (`gatpack init`)
 
-cd into the directory you would like to create your project and run
+cd into the directory you would like to create your example project [(source code)](https://github.com/GatlenCulp/cookiecutter-gatpack) and run:
 
 ```bash
 gatpack init
 ```
-
-Follow the set up steps to name your project.
-
-_Source code for the project template can be found [here](https://github.com/GatlenCulp/cookiecutter-gatpack)_
-
-<!-- ### 03 Build the Example Project (`build.sh`)
-
-Run the `build.sh` script. Check that `output/packet.pdf` was successfully built. -->
 
 ### 03 Build the Example project
 
