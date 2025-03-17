@@ -32,6 +32,8 @@ def resolve_globs(pdfs: list[str]) -> list[Path]:
                 invalid_selected_files,
             )
             raise Exception(err_msg)
+        # Sort files alphabetically before adding them
+        glob.sort()
         resolved_pdfs.extend(glob)
     return resolved_pdfs
 

@@ -187,6 +187,12 @@ test-debug-last: ## Debug last failed test with pdb
 _clean_manual_test:
 	rm -rf manual_test
 
+.PHONY: manual_test
+manual_test: _clean_manual_test
+	rm -rf manual_test
+	mkdir -p manual_test && cd manual_test && \
+	gatpack init
+
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
