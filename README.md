@@ -90,7 +90,7 @@ Let us know if your team is using it an how!
 - [Usage](#usage)
   - [01 CLI Help](#01-cli-help)
   - [02 LaTeX-Modified Jinja](#02-latex-modified-jinja)
-  - [04 Going Beyond LaTeX & PDFs](#04-going-beyond-latex--pdfs)
+  - [04 Going Beyond LaTeX \& PDFs](#04-going-beyond-latex--pdfs)
   - [05 Understand the Compose File (`compose.gatpack.json`)](#05-understand-the-compose-file-composegatpackjson)
     - [05.01 The `context` object](#0501-the-context-object)
     - [05.02 The `pipelines` list](#0502-the-pipelines-list)
@@ -116,6 +116,7 @@ ______________________________________________________________________
 - LaTeX (`pdflatex` specifically, see more instructions on installing below)
 - Python 3.10+
 - Text Editor (Ex: VSCode)
+- Git + Git LFS
 
 <details>
 <summary><b>Installing Requirements</b></summary>

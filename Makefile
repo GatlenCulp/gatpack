@@ -43,7 +43,8 @@ test-root: ## Tests the gatpack root functionality (infer)
 
 .PHONY: test-init
 test-init: ## Run gatpack init
-	cookiecutter "https://github.com/GatlenCulp/cookiecutter-gatpack" --checkout "dev"
+	cookiecutter "https://github.com/GatlenCulp/cookiecutter-gatpack"
+	# --checkout "dev"
 
 .PHONY: test-render
 test-render: ## Run gatpack render
